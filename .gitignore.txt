@@ -1,0 +1,3 @@
+VentaEnvioDesktop/WindowsFormsApplication1/obj
+VentaEnvioDesktop/WindowsFormsApplication1/bin
+*.exe
