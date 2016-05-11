@@ -20,7 +20,7 @@ namespace MercadoEnvio
         public static DataTable select()
         {
             ConexionSQL conn = new ConexionSQL();
-            return conn.cargarTablaSQL("select distinct Aeronave_Fabricante, Tipo_Servicio FROM gd_esquema.Maestra");
+            return conn.cargarTablaSQL("");
         }
     }
 }
