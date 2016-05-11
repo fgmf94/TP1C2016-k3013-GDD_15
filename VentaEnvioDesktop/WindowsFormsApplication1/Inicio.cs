@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1
     {
 
         private string username, password;
+        Elegir_Rol.Form1 eleccion;
 
         public Inicio()
         {
@@ -64,12 +65,15 @@ namespace WindowsFormsApplication1
                 try
                 {
                     if (username == "fede" || password == "1234")
+                    {
                         /*Sesion.iniciar(username, getSha256(password), "Administrador General");
                         Redireccionador redirec = new Redireccionador();
                         redirec.setFunciones(Sesion.getFuncionalidadesDisponibles);
                         redirec.Show();
                         this.Hide();*/
-                        MessageBox.Show("Iniciaste sesion");
+                        eleccion = new Elegir_Rol.Form1();
+                        eleccion.Show();
+                    }
                 }
                 catch (Exception er)
                 {
