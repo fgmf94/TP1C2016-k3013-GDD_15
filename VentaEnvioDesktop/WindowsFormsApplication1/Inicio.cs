@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            CompletadorDeTablas.hacerQuery("select top 5 * from gd_esquema.Maestra", ref dataGridView1);
+            CompletadorDeTablas.hacerQuery("select top 6 * from gd_esquema.Maestra", ref dataGridView1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
