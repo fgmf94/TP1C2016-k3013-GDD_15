@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            CompletadorDeTablas.hacerQuery("select top 0 * from gd_esquema.Maestra", ref dataGridView1);
+            CompletadorDeTablas.hacerQuery("select top 5 * from gd_esquema.Maestra", ref dataGridView1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -32,6 +32,12 @@ namespace WindowsFormsApplication1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Login.Form1 formLogin = new Login.Form1();
+            formLogin.Show();
         }
     }
 }
