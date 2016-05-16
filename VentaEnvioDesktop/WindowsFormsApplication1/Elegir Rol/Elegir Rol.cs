@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Elegir_Rol
 {
-    public partial class ElegirRol : Form
+    public partial class EleccionRol : Form
     {
-        public ElegirRol()
+        Elegir_Funcionalidad.EleccionFuncionalidad funcionalidades;
+
+        public EleccionRol()
         {
             InitializeComponent();
         }
@@ -25,6 +27,12 @@ namespace WindowsFormsApplication1.Elegir_Rol
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void boton_Click(object sender, EventArgs e)
+        {
+            funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad();
+            funcionalidades.Show();
         }
     }
 }

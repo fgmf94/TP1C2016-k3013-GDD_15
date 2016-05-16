@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Elegir_Rol
 {
-    partial class ElegirRol
+    partial class EleccionRol
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.rolCombo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.boton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // rolCombo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.rolCombo.FormattingEnabled = true;
+            this.rolCombo.Items.AddRange(new object[] {
             "Cliente",
             "Empresa",
             "Administrador"});
-            this.comboBox1.Location = new System.Drawing.Point(168, 101);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(219, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.rolCombo.Location = new System.Drawing.Point(168, 101);
+            this.rolCombo.Name = "rolCombo";
+            this.rolCombo.Size = new System.Drawing.Size(219, 21);
+            this.rolCombo.TabIndex = 0;
+            this.rolCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -64,8 +64,9 @@
             this.boton.TabIndex = 2;
             this.boton.Text = "Ingresar";
             this.boton.UseVisualStyleBackColor = true;
+            this.boton.Click += new System.EventHandler(this.boton_Click);
             // 
-            // Form1
+            // EleccionRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -73,8 +74,8 @@
             this.ClientSize = new System.Drawing.Size(493, 261);
             this.Controls.Add(this.boton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Name = "Elegir Rol";
+            this.Controls.Add(this.rolCombo);
+            this.Name = "EleccionRol";
             this.Text = "Elegir Rol";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -84,7 +85,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox rolCombo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button boton;
     }

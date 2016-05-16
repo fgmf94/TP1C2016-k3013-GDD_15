@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
     {
 
         private string username, password;
-        Elegir_Rol.ElegirRol eleccion;
+        Elegir_Rol.EleccionRol eleccion;
 
         public Inicio()
         {
@@ -64,15 +64,18 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
-                    if (username == "fede" || password == "1234")
+                    if (username == "fede" && password == "1234")
                     {
                         /*Sesion.iniciar(username, getSha256(password), "Administrador General");
                         Redireccionador redirec = new Redireccionador();
                         redirec.setFunciones(Sesion.getFuncionalidadesDisponibles);
                         redirec.Show();
                         this.Hide();*/
-                        eleccion = new Elegir_Rol.ElegirRol();
+                        eleccion = new Elegir_Rol.EleccionRol();
                         eleccion.Show();
+                    }
+                    else{
+                        MessageBox.Show("Nombre de usuario o contraseña incorrecta");
                     }
                 }
                 catch (Exception er)

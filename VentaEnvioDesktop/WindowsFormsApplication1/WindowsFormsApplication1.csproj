@@ -56,11 +56,17 @@
     <Compile Include="ABM Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Elegir Rol\Eleccion.cs">
+    <Compile Include="Elegir Funcionalidad\Elegir Funcionalidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Elegir Rol\Eleccion.Designer.cs">
-      <DependentUpon>Eleccion.cs</DependentUpon>
+    <Compile Include="Elegir Funcionalidad\Elegir Funcionalidad.Designer.cs">
+      <DependentUpon>Elegir Funcionalidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elegir Rol\Elegir Rol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Elegir Rol\Elegir Rol.Designer.cs">
+      <DependentUpon>Elegir Rol.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Usuario\Form1.cs">
       <SubType>Form</SubType>
@@ -121,8 +127,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\CompletadorDeTablas.cs" />
     <Compile Include="Utils\ConexionSQL.cs" />
-    <EmbeddedResource Include="Elegir Rol\Eleccion.resx">
-      <DependentUpon>Eleccion.cs</DependentUpon>
+    <EmbeddedResource Include="Elegir Funcionalidad\Elegir Funcionalidad.resx">
+      <DependentUpon>Elegir Funcionalidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elegir Rol\Elegir Rol.resx">
+      <DependentUpon>Elegir Rol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
