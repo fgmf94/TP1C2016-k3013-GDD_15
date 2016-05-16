@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Elegir_Rol
 {
-    public partial class Form1 : Form
+    public partial class ElegirRol : Form
     {
-        public Form1()
+        public ElegirRol()
         {
             InitializeComponent();
         }

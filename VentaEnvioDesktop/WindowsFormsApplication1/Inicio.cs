@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
     {
 
         private string username, password;
-        Elegir_Rol.Form1 eleccion;
+        Elegir_Rol.ElegirRol eleccion;
 
         public Inicio()
         {
@@ -71,7 +71,7 @@ namespace WindowsFormsApplication1
                         redirec.setFunciones(Sesion.getFuncionalidadesDisponibles);
                         redirec.Show();
                         this.Hide();*/
-                        eleccion = new Elegir_Rol.Form1();
+                        eleccion = new Elegir_Rol.ElegirRol();
                         eleccion.Show();
                     }
                 }
