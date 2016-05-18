@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 
+using MercadoEnvio.Utils;
+
 namespace MercadoEnvio
 {
     public class BDComun

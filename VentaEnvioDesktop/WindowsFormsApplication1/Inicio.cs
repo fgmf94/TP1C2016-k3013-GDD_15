@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 using MercadoEnvio.Utils;
 
@@ -56,7 +57,15 @@ namespace WindowsFormsApplication1
 
         private void BotonLogin_Click(object sender, EventArgs e)
         {
-            if (username == null || password == null)
+
+            string quey = "SELECT C_PASSWORD FROM GDD_15.USUARIOS WHERE C_USUARIO_WEB = 'admin'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(quey);
+            String passwordSistema = dt.Rows[0][0].ToString();
+            MessageBox.Show(passwordSistema);
+            MessageBox.Show(getSha256(password));
+            if (getSha256(password) == passwordSistema) MessageBox.Show("Funcionó");
+
+            /*if (username == null || password == null)
             {
                 MessageBox.Show("Debe ingresar su nombre de usuario y contraseña");
             }
@@ -64,13 +73,14 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
+
                     if (username == "fede" && password == "1234")
                     {
                         /*Sesion.iniciar(username, getSha256(password), "Administrador General");
                         Redireccionador redirec = new Redireccionador();
                         redirec.setFunciones(Sesion.getFuncionalidadesDisponibles);
                         redirec.Show();
-                        this.Hide();*/
+                        this.Hide(); * /
                         eleccion = new Elegir_Rol.EleccionRol();
                         eleccion.Show();
                     }
@@ -80,10 +90,19 @@ namespace WindowsFormsApplication1
                 }
                 catch (Exception er)
                 {
-                    MessageBox.Show(er.Message);
+                    MessageBox.Show(er.Message); //para los errores de la base de datos (la sesion la deberiamos iniciar con un stored procedure)
                 }
 
-            }
+            }*/
         }
-    }
+            public String getSha256(String input)
+            {
+            SHA256Managed encriptador = new SHA256Managed();
+            byte[] inputEnBytes = Encoding.UTF8.GetBytes(input);
+            byte[] inputHashBytes = encriptador.ComputeHash(inputEnBytes);
+            return BitConverter.ToString(inputHashBytes).Replace("-", String.Empty).ToLower();
+            }
+
+        }
 }
+

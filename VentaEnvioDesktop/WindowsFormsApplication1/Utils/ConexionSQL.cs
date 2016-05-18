@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
 
-namespace MercadoEnvio
+namespace MercadoEnvio.Utils
 {
     class ConexionSQL
     {

@@ -130,15 +130,6 @@ namespace WindowsFormsApplication1
 
         #endregion
 
-
-        public String getSha256(String input)
-        {
-            SHA256Managed encriptador = new SHA256Managed();
-            byte[] inputEnBytes = Encoding.UTF8.GetBytes(input);
-            byte[] inputHashBytes = encriptador.ComputeHash(inputEnBytes);
-            return BitConverter.ToString(inputHashBytes).Replace("-", String.Empty).ToLower();
-        }
-
         private Label label1;
         private Label label2;
         private Label label3;
