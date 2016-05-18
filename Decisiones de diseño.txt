@@ -1,0 +1,1 @@
+-A la hora de crear las passwords de los usuarios del sistema en la migración se tomara como password su dni en el caso de los clientes y el cuil en el caso de las empresas.
