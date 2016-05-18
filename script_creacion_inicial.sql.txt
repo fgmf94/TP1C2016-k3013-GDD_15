@@ -19,6 +19,7 @@ CREATE TABLE GDD_15.USUARIOS (
 	C_CORREO VARCHAR(50),
 	N_TELEFONO TINYINT,
 	N_CANT_INTENTOS TINYINT,
+	N_HABILITADO TINYINT DEFAULT 1,
 	F_ALTA DATETIME,
 	F_BAJA DATETIME
 );
@@ -255,15 +256,52 @@ INSERT INTO GDD_15.FUNCIONALIDADES (D_DESCRED) VALUES ('Consulta de facturas');
 INSERT INTO GDD_15.FUNCIONALIDADES (D_DESCRED) VALUES ('Listado Estadístico');
 GO
 
-/*Creo el rol administrativo*/
+/*Creo el rol Administrativo*/
 
 INSERT INTO GDD_15.ROLES(C_ROL) VALUES('Administrativo');
 GO
 
 
-/*Se agregan funcionalidades al rol administrador*/
+
+
+/*Se agregan funcionalidades al rol Administrativo*/
+
+
 
 INSERT INTO GDD_15.FUNCIONALIDADES_ROLES(N_ID_ROL, N_ID_FUNCIONALIDAD)
-SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD from GDD_15.ROLES  tablaRol, GDD_15.FUNCIONALIDADES tablaFuncionalidad
+SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD FROM GDD_15.ROLES  tablaRol, GDD_15.FUNCIONALIDADES tablaFuncionalidad
 WHERE tablaRol.C_ROL = 'Administrativo';
 GO
+
+/*Creo el rol Cliente*/
+
+INSERT INTO GDD_15.ROLES(C_ROL) VALUES('Cliente');
+GO
+
+
+/*Se agregan funcionalidades al rol Cliente*/
+
+INSERT INTO GDD_15.FUNCIONALIDADES_ROLES(N_ID_ROL, N_ID_FUNCIONALIDAD)
+SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD FROM GDD_15.ROLES  tablaRol, GDD_15.FUNCIONALIDADES tablaFuncionalidad
+WHERE tablaRol.C_ROL = 'Cliente' AND tablaFuncionalidad.D_DESCRED IN ('ABM de Usuarios', 'ABM de Rubro', 'ABM de visibilidad de publicación', 'Generar Publicación', 'Comprar/Ofertar', 'Historial', 'Calificar al Vendedor', 'Consulta de facturas', 'Listado Estadístico');
+GO
+
+/*Creo el rol Empresa*/
+
+INSERT INTO GDD_15.ROLES(C_ROL) VALUES('Empresa');
+GO
+
+/*Se agregan funcionalidades al rol Empresa*/
+
+INSERT INTO GDD_15.FUNCIONALIDADES_ROLES(N_ID_ROL, N_ID_FUNCIONALIDAD)
+SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD FROM GDD_15.ROLES  tablaRol, GDD_15.FUNCIONALIDADES tablaFuncionalidad
+WHERE tablaRol.C_ROL = 'Empresa' AND tablaFuncionalidad.D_DESCRED IN ('ABM de Usuarios', 'ABM de Rubro', 'ABM de visibilidad de publicación', 'Generar Publicación', 'Consulta de facturas', 'Listado Estadístico');
+GO
+
+/*Tests
+
+SELECT * FROM GDD_15.FUNCIONALIDADES
+SELECT * FROM GDD_15.FUNCIONALIDADES_ROLES
+SELECT * FROM GDD_15.ROLES
+
+*/
