@@ -83,7 +83,7 @@ GO
 CREATE TABLE GDD_15.CLIENTES (
 	N_ID_USUARIO BIGINT IDENTITY(1,1) PRIMARY KEY,
 	C_TIPO_DOCUMENTO  VARCHAR(100),
-	N_DOCUMENTO VARCHAR(100),
+	N_DOCUMENTO VARCHAR(100) NOT NULL,
 	D_NOMBRES VARCHAR(100),
 	D_APELLIDOS VARCHAR(100),
 	F_NACIMIENTO DATETIME,
@@ -184,7 +184,8 @@ CREATE TABLE GDD_15.CALIFICACIONES (
 );
 GO
 
-/*CREO  LAS PRIMARY KEY COMPUESTAS  */
+/* CREO  LAS PRIMARY KEY COMPUESTAS  */
+
 alter table GDD_15.PUBLICACIONES_RUBROS add constraint PK_PUBL_POR_RUBRO
 	primary key clustered (N_ID_PUBLICACION,N_ID_RUBRO);
 GO
@@ -195,7 +196,8 @@ alter table GDD_15.FUNCIONALIDADES_ROLES add constraint PK_FUNC_POR_ROL
 	primary key clustered (N_ID_ROL,N_ID_FUNCIONALIDAD);
 GO
 
-/*CREO LAS FOREIGN KEY   */
+/* CREO LAS FOREIGN KEY */
+
 alter table GDD_15.FACTURAS_ITEMS add constraint FK_FACTURA_ITEM
 	foreign key (N_ID_FACTURA) references GDD_15.FACTURAS (N_ID_FACTURA);
 GO	
@@ -241,6 +243,12 @@ GO
 alter table GDD_15.USUARIOS add constraint FK_USUARIO_DIR
 	foreign key (N_ID_DIRECCION) references GDD_15.DIRECCIONES(N_ID_DIRECCION);
 GO
+alter table GDD_15.CLIENTES add constraint FK_CLIENTE_USUARIO
+	foreign key (N_ID_USUARIO) references GDD_15.USUARIOS(N_ID_USUARIO);
+GO
+alter table GDD_15.EMPRESAS add constraint FK_EMPRESA_USUARIO
+	foreign key (N_ID_USUARIO) references GDD_15.USUARIOS(N_ID_USUARIO);
+GO
 
 /*Inserto las funcionalidades*/
 
@@ -262,11 +270,7 @@ INSERT INTO GDD_15.ROLES(C_ROL) VALUES('Administrativo');
 GO
 
 
-
-
 /*Se agregan funcionalidades al rol Administrativo*/
-
-
 
 INSERT INTO GDD_15.FUNCIONALIDADES_ROLES(N_ID_ROL, N_ID_FUNCIONALIDAD)
 SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD FROM GDD_15.ROLES  tablaRol, GDD_15.FUNCIONALIDADES tablaFuncionalidad
@@ -277,7 +281,6 @@ GO
 
 INSERT INTO GDD_15.ROLES(C_ROL) VALUES('Cliente');
 GO
-
 
 /*Se agregan funcionalidades al rol Cliente*/
 
@@ -298,10 +301,25 @@ SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD FROM GDD_15.ROLES
 WHERE tablaRol.C_ROL = 'Empresa' AND tablaFuncionalidad.D_DESCRED IN ('ABM de Usuarios', 'ABM de Rubro', 'ABM de visibilidad de publicación', 'Generar Publicación', 'Consulta de facturas', 'Listado Estadístico');
 GO
 
-/*Tests
+/* Se inserta el usuario admin, password w23e */
+
+INSERT INTO GDD_15.USUARIOS(C_USUARIO_WEB,C_PASSWORD)
+VALUES ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7')
+GO
+
+/* Se le asigna el rol administrador general al usuario admin */
+
+INSERT INTO GDD_15.ROLES_USUARIOS(N_ID_USUARIO, N_ID_ROL)
+SELECT tablaUsuarios.N_ID_USUARIO, tablaRoles.N_ID_ROL FROM GDD_15.USUARIOS tablaUsuarios, GDD_15.ROLES tablaRoles
+WHERE tablaRoles.C_ROL = 'Administrativo'
+GO
+
+/* Tests
 
 SELECT * FROM GDD_15.FUNCIONALIDADES
 SELECT * FROM GDD_15.FUNCIONALIDADES_ROLES
 SELECT * FROM GDD_15.ROLES
+SELECT * FROM GDD_15.USUARIOS
+SELECT * FROM GDD_15.ROLES_USUARIOS
 
 */
