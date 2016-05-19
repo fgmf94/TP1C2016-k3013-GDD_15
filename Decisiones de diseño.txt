@@ -25,4 +25,13 @@
 Además agregamos la funcionalidad de envío haciendo que se pueda elegir habilitar la opción desde la creación de la publicación y cada vez que se genera una compra u oferta elegir si es o no con envío.
 La comisión por el mismo la elegimos como un valor constante de $50.
 
--
+-Tomamos la descripción de los rubros como una descripción larga y la descripción corta la generamos con un código de 3 letras.
+
+-El rubro al cual se dedica la empresa lo definimos como el que tiene la mayor cantidad de publicaciones referidas a la misma.
+
+-En la tabla de usuarios creamos un id para cada usuario y establecimos que el campo del nombre de usuario sea UNIQUE para evitar repeticiones de nombres de usuarios.
+
+-Agregamos en la tabla ROLES_USUARIOS un campo de tipo número que indica si ese rol está habilitado (1) para ese usuario o no (0) ya que el enunciado pide que cuando se da de baja un rol se le desasigne a los usuarios que lo poseían, por lo cual este valor pasará a 0.
+La razón por la cual necesitamos esto es para que una vez que el rol vuelva a habilitarse no se le asigne al usuario (siguiendo con el enunciado) y se le pueda asignar a los usuarios si se quiere individualmente.
+
+-En el momento de la migración cambiamos los códigos de los clientes, las publicaciones, las visibilidades, etc. para resetearlos en el nuevo sistema.
