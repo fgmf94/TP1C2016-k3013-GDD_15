@@ -2542,6 +2542,30 @@
 											"width": 277.8671875,
 											"height": 13,
 											"autoResize": false
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAFUxwHMTKB3dkw=",
+											"_parent": {
+												"$ref": "AAAAAAFUesOmzlIscVs="
+											},
+											"model": {
+												"$ref": "AAAAAAFUxwHL8qB0uVk="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 293,
+											"top": 441,
+											"width": 277.8671875,
+											"height": 13,
+											"autoResize": false
 										}
 									],
 									"visible": true,
@@ -2556,7 +2580,7 @@
 									"left": 288,
 									"top": 271,
 									"width": 287.8671875,
-									"height": 173,
+									"height": 188,
 									"autoResize": false
 								}
 							],
@@ -2745,6 +2769,30 @@
 											"width": 231.62451171875,
 											"height": 13,
 											"autoResize": false
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAFUxwKysqB/OgE=",
+											"_parent": {
+												"$ref": "AAAAAAFUesdSRFJdPmg="
+											},
+											"model": {
+												"$ref": "AAAAAAFUxwKyfqB8Wzw="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 349,
+											"top": 679,
+											"width": 231.62451171875,
+											"height": 13,
+											"autoResize": false
 										}
 									],
 									"visible": true,
@@ -2759,7 +2807,7 @@
 									"left": 344,
 									"top": 599,
 									"width": 241.62451171875,
-									"height": 83,
+									"height": 98,
 									"autoResize": false
 								}
 							],
@@ -2972,6 +3020,30 @@
 											"width": 231.62451171875,
 											"height": 13,
 											"autoResize": false
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAFUxwLxaaCG0IE=",
+											"_parent": {
+												"$ref": "AAAAAAFUesdv61JqTc8="
+											},
+											"model": {
+												"$ref": "AAAAAAFUxwLxNqCD1v0="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 69,
+											"top": 686,
+											"width": 231.62451171875,
+											"height": 13,
+											"autoResize": false
 										}
 									],
 									"visible": true,
@@ -2986,7 +3058,7 @@
 									"left": 64,
 									"top": 591,
 									"width": 241.62451171875,
-									"height": 98,
+									"height": 113,
 									"autoResize": false
 								}
 							],
@@ -7581,6 +7653,20 @@
 							"foreignKey": false,
 							"nullable": false,
 							"unique": false
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAFUxwHL8qB0uVk=",
+							"_parent": {
+								"$ref": "AAAAAAFUesOmzFIoHko="
+							},
+							"name": "N_HABILITADO_ENVIO",
+							"type": "TINYINT",
+							"length": 0,
+							"primaryKey": false,
+							"foreignKey": false,
+							"nullable": false,
+							"unique": false
 						}
 					]
 				},
@@ -7839,6 +7925,20 @@
 							"foreignKey": false,
 							"nullable": false,
 							"unique": false
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAFUxwKyfqB8Wzw=",
+							"_parent": {
+								"$ref": "AAAAAAFUesdSQ1JZeDY="
+							},
+							"name": "N_ENVIO",
+							"type": "TINYINT",
+							"length": 0,
+							"primaryKey": false,
+							"foreignKey": false,
+							"nullable": false,
+							"unique": false
 						}
 					]
 				},
@@ -7927,6 +8027,20 @@
 								"$ref": "AAAAAAFUesdv61Jm+Uk="
 							},
 							"name": "C_GANADOR",
+							"type": "TINYINT",
+							"length": 0,
+							"primaryKey": false,
+							"foreignKey": false,
+							"nullable": false,
+							"unique": false
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAFUxwLxNqCD1v0=",
+							"_parent": {
+								"$ref": "AAAAAAFUesdv61Jm+Uk="
+							},
+							"name": "N_ENVIO",
 							"type": "TINYINT",
 							"length": 0,
 							"primaryKey": false,

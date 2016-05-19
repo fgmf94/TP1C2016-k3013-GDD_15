@@ -1,1 +1,28 @@
 -A la hora de crear las passwords de los usuarios del sistema en la migración se tomara como password su dni en el caso de los clientes y el cuil en el caso de las empresas.
+
+-Las calificaciones se agregan al nuevo sistema luego de dividirlas por 2 (las viejas van de 0 a 10 y las nuevas de 0 a 5).
+
+-Seteamos la fecha de inicio del sistema como la máxima encontrada en la tabla maestra
+
+-Tomamos como hipótesis de trabajo que todos los números de documentos en la tabla maestra son de tipo DNI a la hora de hacer la migración
+
+-A todos los datos que no se encontraban en el sistema viejo pero sí en el nuevo le asignamos el valor de NULL como por ejemplo los teléfonos o el nombre de contácto de las empresas a menos que hayamos indicado lo contrario.
+
+-A la fecha de creación de los usuarios que estaban en la tabla maestra se les asignará la fecha en la cual se ejecute la migración.
+
+-Tomamos al precio de las publicaciones de tipo oferta como un precio de reserva (ósea una vez que una oferta supere ese valor, el vendedor se compromete a realizar la venta). No es un precio base, se puede ofertar por menos de ese valor pero no por menos del valor de la oferta anterior si hubiera alguna.
+
+-Los nombres de usuario no son case sensitive
+
+-Tomamos los nombres de las visibilidades, los precios y los porcentajes como se encontraban en la tabla maestra:
+
+*Visibilidad: Gratis,  Precio: Gratis, Porcentaje:0.00
+*Visibilidad: Bronze,  Precio: 60,     Porcentaje:0.30
+*Visibilidad: Plata,   Precio: 100,    Porcentaje:0.20
+*Visibilidad: Oro,     Precio: 140,    Porcentaje:0.15
+*Visibilidad: Platino, Precio: 160,    Porcentaje:0.10
+
+Además agregamos la funcionalidad de envío haciendo que se pueda elegir habilitar la opción desde la creación de la publicación y cada vez que se genera una compra u oferta elegir si es o no con envío.
+La comisión por el mismo la elegimos como un valor constante de $50.
+
+-
