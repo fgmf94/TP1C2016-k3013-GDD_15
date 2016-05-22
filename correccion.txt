@@ -1,0 +1,60 @@
+
+Buen día,
+a continuación se presentan algunas correcciones sobre el DER:
+
+Usuarios
+- La referencia del rol se encuentra en roles_usuarios
+cmarino:ya habiamos sacado el N_ID_ROL de la tabla USUARIOS 
+- El atributo N_ID_Direccion deberia estar en el Cliente y en la empresa, como asi tambien el teléfono y el correo. De esta manera no se mezclan los conceptos asociados a cada entidad.Si lo pensaron de otra forma, lo vemos.
+cmarino: saque el n_id_direccion de USUARIOS  y lo puse  junto con c_correo y n_telefono como ellos quieren en clientes y empresas.
+ Ahora la tabla DIRECCIONES se relaciona con las tablas CLIENTES y EMPRESAS
+
+Funcionalidades_Roles
+- Les faltaria modelar el caso de deshabilitar una funcionalidad para un rol.
+cmarino : agregue las columnas F_ALTA Y F_BAJA en las tabla FUNCIONALIDADES_ROLES
+
+Preguntas/Respuestas
+- La opción de realización de preguntas quedo excluido del TP.
+cmarino: saque del der las tablas RESPUESTAS Y PREGUNTAS . Tambien elimine la de base todo lo referido a las mismas , creacion de tablas , pk ,fk.
+
+Publicación_Rubros
+- Cada publicación solo va a tener un rubro asociado.
+cmarino: elimine la tabla PUBLICACIONES_RUBROS y agregue el N_ID_RUBRO en la tabla PUBLICACIONES
+
+Publicaciones
+- Les falta normalizar el tipo de publicación y como van a manejar la opción del envio.
+cmarino : ya esta agregado el campo C_PERMITE_ENVIO (le cambie el nombre porque es un codigo si o no permite)
+Con repecto al tipo de publicacion crearia una tabla con los tipos 
+- Les falta normalizar el estado de la publicación.
+cmarino: yo crearia una tabla ESTADOS que se relaciona con PUBLICACIONES
+
+- La publicación no tiene un costo específico. 
+En general el costo de una publicación es lo que paga el usuario por el tipo de publicación y las respectivas comisiones.
+cmarino: elmine el campo N_COSTO de la tabla PUBLICACIONES
+
+Facturas
+- Justificar porque es necesario guardar el total de la factura, cuando el mismo se podria calcular a partir de los items.
+cmarino: tiene razon no es necesario el campo N_TOTAL que esta en la tabla FACTURAS porque lo podemos calcular sumando los items de la misma .
+elimine el campo N_TOTAL
+- Deberia poder identificarse a que corresponde cada uno de los items de la factura.
+
+
+Facturas
+- Revisar modelado. La factura esta asociada a una publicación y la misma se conforma de una serie de items.
+cmarino:relacione la tabla PUBLICACIONES con FACTURA , Y FACTURA con ITEMS . una factura puede tener muchos items ,
+ ahora bien un iteam puede estar en muchas facturas?
+
+Visibilidad
+- Entiendo que el precio hace referencia al costo de la publicación y el atributo n_comision?
+Tengan en cuenta que tiene el costo de la publicación, el % de visibilidad y el envio.
+
+- Falta el código de la visibilidad.
+cmarino: el codigo es un numero que hace referencia a la decripcion (plata,oro,bromce).
+Son 5 tipos de codigos por lo cual reemplace el N_ID_VISIBILIDAD por el c_visiilidad .
+
+- Cómo van a manejar el beneficio de los usuarios nuevos que tienen una publicación completamente gratuita?
+
+Saludos
+
+Corrección Gestión de Datos.
+
