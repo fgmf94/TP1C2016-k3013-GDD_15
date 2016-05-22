@@ -1,4 +1,4 @@
-
+﻿
 Buen día,
 a continuación se presentan algunas correcciones sobre el DER:
 
@@ -27,6 +27,7 @@ cmarino : ya esta agregado el campo C_PERMITE_ENVIO (le cambie el nombre porque 
 Con repecto al tipo de publicacion crearia una tabla con los tipos 
 - Les falta normalizar el estado de la publicación.
 cmarino: yo crearia una tabla ESTADOS que se relaciona con PUBLICACIONES
+fmartinez: agregué las tablas de estados y tipos
 
 - La publicación no tiene un costo específico. 
 En general el costo de una publicación es lo que paga el usuario por el tipo de publicación y las respectivas comisiones.
@@ -53,6 +54,7 @@ cmarino: el codigo es un numero que hace referencia a la decripcion (plata,oro,b
 Son 5 tipos de codigos por lo cual reemplace el N_ID_VISIBILIDAD por el c_visiilidad .
 
 - Cómo van a manejar el beneficio de los usuarios nuevos que tienen una publicación completamente gratuita?
+fmartinez: le puse un tinyint al usuario que indica si hizo o no su primera publicación (es necesario este campo xq no te podes dar cuenta viendo las publicaciones de los usuarios ya que un usuario pudo no haber hecho publicaciones con el sistema viejo y no debería tener este beneficio)
 
 Saludos
 
