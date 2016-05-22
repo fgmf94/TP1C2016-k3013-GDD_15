@@ -1,0 +1,21 @@
+primero clonar el repositorio (una unica vez al empezar)
+git clone 
+
+te bajas el tp , si lo queres en el escritorio 
+cd Desktop
+una vez adentro del escritorio
+git pull
+
+si queres agregar un archivo 
+git add nombreArchivo
+git commit -m "comentariosalrespecto"
+git push 
+
+seguramente te pide que te logues 
+
+cuando haces git pull y te dice que hay cambios en tu repo que son distintos 
+a lo que estas por descargar tenes que hacer un add o 
+un checkout(significa qe borras los cambios de tu repo no del tp )
+
+con git status te muestra que es lo que te falta commitear al tp
+con git diff te muestra las diferencias que hay entre tu repo y el tp en si 
