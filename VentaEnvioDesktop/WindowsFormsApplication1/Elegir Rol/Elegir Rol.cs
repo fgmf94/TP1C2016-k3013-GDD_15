@@ -39,8 +39,12 @@ namespace WindowsFormsApplication1.Elegir_Rol
         private void boton_Click(object sender, EventArgs e)
         {
             rol = comboBoxRoles.Text;
-            funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol);
-            funcionalidades.Show();
+            if(rol == "Cliente" || rol == "Empresa" || rol == "Administrativo"){
+                funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol);
+                funcionalidades.Show();
+            } else {
+                MessageBox.Show("Por favor elija un rol de los indicados");
+            }
         }
     }
 }

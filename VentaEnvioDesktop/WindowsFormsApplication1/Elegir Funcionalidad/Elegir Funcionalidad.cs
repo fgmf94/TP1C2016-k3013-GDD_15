@@ -43,20 +43,43 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
         private void button1_Click(object sender, EventArgs e)
         {
             funcionalidad = comboBoxFuncionalidad.Text;
-            MessageBox.Show(funcionalidad);
-            /*if (funcionalidadNumero == -1){
-                MessageBox.Show("Elija funcionalidad");
-            } else {
-                switch (funcionalidadNumero)
-                {
-                    case 0:
-                        MessageBox.Show("Funcionalidad en construcción (ABM Rol)");
-                        break;
-                    default:
-                        MessageBox.Show("Funcionalidad no implementada");
-                        break;
-                }
-            }*/
+            switch (funcionalidad)
+            {
+                case "ABM de Rol":
+                    MessageBox.Show("Funcionalidad en construcción (ABM Rol)");
+                    break;
+                case "ABM de Usuarios":
+                    MessageBox.Show("Funcionalidad en construcción (ABM Usuarios)");
+                    break;
+                case "ABM de Rubro":
+                    MessageBox.Show("Funcionalidad no requerida");
+                    break;
+                case "ABM de visibilidad de publicación":
+                    MessageBox.Show("ABM de visibilidad de publicación");
+                    break;
+                case "Generar Publicación":
+                    MessageBox.Show("Generar publicación");
+                    break;
+                case "Comprar/Ofertar":
+                    MessageBox.Show("Comprar/Ofertar");
+                    break;
+                case "Historial":
+                    MessageBox.Show("Historial");
+                    break;
+                case "Calificar al Vendedor":
+                    MessageBox.Show("Calificar al Vendedor");
+                    break;
+                case "Consulta de facturas":
+                    MessageBox.Show("Consulta de facturas");
+                    break;
+                case "Listado Estadístico":
+                    MessageBox.Show("Listado Estadístico");
+                    break;
+                default:
+                    MessageBox.Show("Por favor elija una funcionalidad de las indicadas");
+                    break;
+            }
+            
         }
     }
 }
