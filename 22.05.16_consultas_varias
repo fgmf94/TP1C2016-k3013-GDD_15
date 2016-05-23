@@ -1,0 +1,28 @@
+consideraciones al momento de hacer la migracion:
+USUARIOS : la idea del F_ALTA es que se complete mediante un trigger (ivi)
+N_PRIMERA_PUBLICACION no entiendo para que se utilizaria .
+
+DIRECCIONES : hay que arreglar en el der el tipo de C_PISO es un varchar(50) y esta puesto smallint 
+hay datos que son letras y otros numeros por eso tiene que ser varchar 
+
+ROLES : N_HABILITADO TINYINT DEFAULT 1 
+esta en la tabla y no en el der , para mi es un campo que no es necesario al tener la F_BAJA
+si es como ppienso que siginifica si el rol esta o no habilitado . lo mismo con la tablas ROLES_USUARIOS
+
+IDENTITYS: cuando inserto en empresas y luego inserto en usuarios ok .
+ ahora bien depsues  de migrar el campo con identity no me va dejar que inserrte un n_id_usario que nose ael orden en el que viene .
+
+EMPRESAS: F_CREACION DATETIME cuando empece con la migracion hay n campo que tiene la fecha de creacion de la empresa.. para que no se . 
+Agrgue el campo a la tabla , falta agrgarlo al DER.
+
+PUBLICACIONES : D_DESCRED a que nos referimos exactamente .
+C_PERMITE_ENVIO dice en el codifo que es un TINYINT y en el der un varchar . Lo puse como varchar como para ponerle si o no . 
+
+VISIBILIDADES: le saque el identity al c_visibilidad porque ya nos lo dan el codigo no tenesmo que generarlo . son 5 
+N_COMISION para qe lo pusimos?  
+en la maestra hay un campo que nosotros no tenemso que el visiilidad_porcentaje
+
+OFERTAS : N_ENVIO esta en el codigo y en el der va . Para que seria ? lo dejamos? lo sacamos ?
+lo mismo en COMPRAS 
+
+CALIFICACIONES : nos dan un calificacion_codigo que es unico por eso  saco el identity .
