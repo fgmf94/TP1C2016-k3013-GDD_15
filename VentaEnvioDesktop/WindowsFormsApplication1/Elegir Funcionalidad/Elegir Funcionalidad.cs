@@ -15,11 +15,13 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
     public partial class EleccionFuncionalidad : Form
     {
         string funcionalidad;
+        string nombreUsuario;
 
-        public EleccionFuncionalidad(String rol)
+        public EleccionFuncionalidad(String rol, String username)
         {
             InitializeComponent();
 
+            nombreUsuario = username;
             DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT F.D_DESCRED FROM GDD_15.FUNCIONALIDADES_ROLES FR JOIN GDD_15.ROLES R ON (R.N_ID_ROL = FR.N_ID_ROL) JOIN GDD_15.FUNCIONALIDADES F ON (F.N_ID_FUNCIONALIDAD = FR.N_ID_FUNCIONALIDAD) WHERE R.C_ROL = '" + rol + "' AND R.F_BAJA IS NULL AND FR.F_BAJA IS NULL"); 
             comboBoxFuncionalidad.DataSource = dt.DefaultView;
             comboBoxFuncionalidad.ValueMember = "D_DESCRED";
