@@ -265,7 +265,7 @@ GO
 
 INSERT INTO GDD_15.FUNCIONALIDADES_ROLES(N_ID_ROL, N_ID_FUNCIONALIDAD)
 SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD FROM GDD_15.ROLES  tablaRol, GDD_15.FUNCIONALIDADES tablaFuncionalidad
-WHERE tablaRol.C_ROL = 'Administrativo';
+WHERE tablaRol.C_ROL = 'Administrativo' AND tablaFuncionalidad.D_DESCRED IN ('ABM de Rol', 'ABM de Usuarios', 'ABM de Rubro', 'ABM de visibilidad de publicación');
 GO
 
 /*Creo el rol Cliente*/

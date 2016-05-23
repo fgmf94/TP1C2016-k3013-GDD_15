@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.funcionalidadCombo = new System.Windows.Forms.ComboBox();
+            this.comboBoxFuncionalidad = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -45,8 +45,8 @@
             // 
             // funcionalidadCombo
             // 
-            this.funcionalidadCombo.FormattingEnabled = true;
-            this.funcionalidadCombo.Items.AddRange(new object[] {
+            this.comboBoxFuncionalidad.FormattingEnabled = true;
+            this.comboBoxFuncionalidad.Items.AddRange(new object[] {
             "ABM de Rol",
             "ABM de Usuarios",
             "ABM de Rubro",
@@ -56,17 +56,17 @@
             "Historial del Vendedor",
             "Consulta de facturas",
             "Listado Estadístico"});
-            this.funcionalidadCombo.Location = new System.Drawing.Point(159, 77);
-            this.funcionalidadCombo.Name = "funcionalidadCombo";
-            this.funcionalidadCombo.Size = new System.Drawing.Size(219, 21);
-            this.funcionalidadCombo.TabIndex = 3;
-            this.funcionalidadCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxFuncionalidad.Location = new System.Drawing.Point(159, 77);
+            this.comboBoxFuncionalidad.Name = "funcionalidadCombo";
+            this.comboBoxFuncionalidad.Size = new System.Drawing.Size(219, 21);
+            this.comboBoxFuncionalidad.TabIndex = 3;
+            this.comboBoxFuncionalidad.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(159, 164);
+            this.button1.Location = new System.Drawing.Point(159, 170);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 28);
+            this.button1.Size = new System.Drawing.Size(219, 22);
             this.button1.TabIndex = 4;
             this.button1.Text = "Seleccionar Funcionalidad";
             this.button1.UseVisualStyleBackColor = true;
@@ -77,9 +77,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(455, 266);
+            this.ClientSize = new System.Drawing.Size(450, 233);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.funcionalidadCombo);
+            this.Controls.Add(this.comboBoxFuncionalidad);
             this.Controls.Add(this.label2);
             this.Name = "EleccionFuncionalidad";
             this.Text = "Elección Funcionalidad";
@@ -92,7 +92,7 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox funcionalidadCombo;
+        private System.Windows.Forms.ComboBox comboBoxFuncionalidad;
         private System.Windows.Forms.Button button1;
 
     }

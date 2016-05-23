@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1.Elegir_Rol
     public partial class EleccionRol : Form
     {
         Elegir_Funcionalidad.EleccionFuncionalidad funcionalidades;
+        String rol;
 
         public EleccionRol(String username)
         {
@@ -27,17 +28,18 @@ namespace WindowsFormsApplication1.Elegir_Rol
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void boton_Click(object sender, EventArgs e)
         {
-            funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad();
+            rol = comboBoxRoles.Text;
+            funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol);
             funcionalidades.Show();
         }
     }
