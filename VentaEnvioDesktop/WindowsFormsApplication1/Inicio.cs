@@ -18,6 +18,7 @@ namespace WindowsFormsApplication1
 
         private string username, password;
         Elegir_Rol.EleccionRol eleccion;
+        Elegir_Funcionalidad.EleccionFuncionalidad funcionalidades;
 
         public Inicio()
         {
@@ -58,34 +59,38 @@ namespace WindowsFormsApplication1
         private void BotonLogin_Click(object sender, EventArgs e)
         {
 
-            string quey = "SELECT C_PASSWORD FROM GDD_15.USUARIOS WHERE C_USUARIO_WEB = 'admin'";
-            DataTable dt = (new ConexionSQL()).cargarTablaSQL(quey);
-            String passwordSistema = dt.Rows[0][0].ToString();
-            MessageBox.Show(passwordSistema);
-            MessageBox.Show(getSha256(password));
-            if (getSha256(password) == passwordSistema) MessageBox.Show("Funcionó");
-
-            /*if (username == null || password == null)
+            if (username == null || password == null)
             {
                 MessageBox.Show("Debe ingresar su nombre de usuario y contraseña");
             }
             else
             {
+                string query = "SELECT C_PASSWORD FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + username + "'";
+                DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+                String passwordSistema = dt.Rows[0][0].ToString();
                 try
                 {
-
-                    if (username == "fede" && password == "1234")
+                    if (getSha256(password) == passwordSistema)
                     {
                         /*Sesion.iniciar(username, getSha256(password), "Administrador General");
                         Redireccionador redirec = new Redireccionador();
                         redirec.setFunciones(Sesion.getFuncionalidadesDisponibles);
                         redirec.Show();
-                        this.Hide(); * /
-                        eleccion = new Elegir_Rol.EleccionRol();
-                        eleccion.Show();
+                        this.Hide(); */
+                        string query2 = "SELECT COUNT(*) FROM GDD_15.ROLES_USUARIOS ROLES JOIN GDD_15.USUARIOS USUARIOS ON (USUARIOS.N_ID_USUARIO = ROLES.N_ID_USUARIO) WHERE USUARIOS.C_USUARIO_NOMBRE = '" + username + "' AND ROLES.F_BAJA IS NULL";
+                        DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+                        string cantidadRoles = dt2.Rows[0][0].ToString();
+                        if (cantidadRoles == "1"){ 
+                            funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad();
+                            funcionalidades.Show();
+                        } else {
+                            eleccion = new Elegir_Rol.EleccionRol(username);
+                            eleccion.Show();
+                        }
                     }
                     else{
                         MessageBox.Show("Nombre de usuario o contraseña incorrecta");
+                        //debería sumarse un intento fallido...
                     }
                 }
                 catch (Exception er)
@@ -93,7 +98,7 @@ namespace WindowsFormsApplication1
                     MessageBox.Show(er.Message); //para los errores de la base de datos (la sesion la deberiamos iniciar con un stored procedure)
                 }
 
-            }*/
+            }
         }
             public String getSha256(String input)
             {

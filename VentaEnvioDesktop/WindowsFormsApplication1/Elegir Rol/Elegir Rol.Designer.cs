@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rolCombo = new System.Windows.Forms.ComboBox();
+            this.comboBoxRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.boton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // rolCombo
+            // comboBoxRoles
             // 
-            this.rolCombo.FormattingEnabled = true;
-            this.rolCombo.Items.AddRange(new object[] {
+            this.comboBoxRoles.FormattingEnabled = true;
+            this.comboBoxRoles.Items.AddRange(new object[] {
             "Cliente",
             "Empresa",
             "Administrador"});
-            this.rolCombo.Location = new System.Drawing.Point(168, 101);
-            this.rolCombo.Name = "rolCombo";
-            this.rolCombo.Size = new System.Drawing.Size(219, 21);
-            this.rolCombo.TabIndex = 0;
-            this.rolCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxRoles.Location = new System.Drawing.Point(168, 101);
+            this.comboBoxRoles.Name = "comboBoxRoles";
+            this.comboBoxRoles.Size = new System.Drawing.Size(219, 21);
+            this.comboBoxRoles.TabIndex = 0;
+            this.comboBoxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -74,7 +74,7 @@
             this.ClientSize = new System.Drawing.Size(493, 261);
             this.Controls.Add(this.boton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.rolCombo);
+            this.Controls.Add(this.comboBoxRoles);
             this.Name = "EleccionRol";
             this.Text = "Elegir Rol";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -85,7 +85,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox rolCombo;
+        private System.Windows.Forms.ComboBox comboBoxRoles;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button boton;
     }
