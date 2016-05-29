@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
     {
         string funcionalidad;
         string nombreUsuario;
+        ABM_Rol.ABMRol abmRol;
 
         public EleccionFuncionalidad(String rol, String username)
         {
@@ -48,7 +49,8 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
             switch (funcionalidad)
             {
                 case "ABM de Rol":
-                    MessageBox.Show("Funcionalidad en construcción (ABM Rol)");
+                    abmRol = new ABM_Rol.ABMRol();
+                    abmRol.Show();
                     break;
                 case "ABM de Usuarios":
                     MessageBox.Show("Funcionalidad en construcción (ABM Usuarios)");
@@ -82,6 +84,11 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     break;
             }
             
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

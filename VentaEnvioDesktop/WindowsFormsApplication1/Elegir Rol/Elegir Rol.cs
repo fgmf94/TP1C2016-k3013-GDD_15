@@ -48,5 +48,10 @@ namespace WindowsFormsApplication1.Elegir_Rol
                 MessageBox.Show("Por favor elija un rol de los indicados");
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

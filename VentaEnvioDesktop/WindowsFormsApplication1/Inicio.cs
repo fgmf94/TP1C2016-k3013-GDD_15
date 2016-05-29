@@ -67,16 +67,14 @@ namespace WindowsFormsApplication1
             {
                 string query = "SELECT C_PASSWORD FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + username + "'";
                 DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
-                String passwordSistema = dt.Rows[0][0].ToString();
-                try
+                if (dt.Rows.Count == 0)
                 {
+                    MessageBox.Show("Nombre de usuario incorrecto");
+                } else {
+
+                    String passwordSistema = dt.Rows[0][0].ToString();            
                     if (getSha256(password) == passwordSistema)
                     {
-                        /*Sesion.iniciar(username, getSha256(password), "Administrador General");
-                        Redireccionador redirec = new Redireccionador();
-                        redirec.setFunciones(Sesion.getFuncionalidadesDisponibles);
-                        redirec.Show();
-                        this.Hide(); */
                         string query2 = "SELECT COUNT(*) FROM GDD_15.ROLES_USUARIOS ROLES JOIN GDD_15.USUARIOS USUARIOS ON (USUARIOS.N_ID_USUARIO = ROLES.N_ID_USUARIO) WHERE USUARIOS.C_USUARIO_NOMBRE = '" + username + "' AND ROLES.F_BAJA IS NULL";
                         DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
                         string cantidadRoles = dt2.Rows[0][0].ToString();
@@ -95,11 +93,6 @@ namespace WindowsFormsApplication1
                         //debería sumarse un intento fallido...
                     }
                 }
-                catch (Exception er)
-                {
-                    MessageBox.Show(er.Message); //para los errores de la base de datos (la sesion la deberiamos iniciar con un stored procedure)
-                }
-
             }
         }
             public String getSha256(String input)

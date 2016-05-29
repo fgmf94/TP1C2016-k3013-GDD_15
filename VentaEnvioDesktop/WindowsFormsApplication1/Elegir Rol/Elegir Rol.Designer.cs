@@ -40,7 +40,7 @@
             "Cliente",
             "Empresa",
             "Administrador"});
-            this.comboBoxRoles.Location = new System.Drawing.Point(168, 101);
+            this.comboBoxRoles.Location = new System.Drawing.Point(125, 69);
             this.comboBoxRoles.Name = "comboBoxRoles";
             this.comboBoxRoles.Size = new System.Drawing.Size(219, 21);
             this.comboBoxRoles.TabIndex = 0;
@@ -50,15 +50,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(48, 102);
+            this.label1.Location = new System.Drawing.Point(86, 70);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 20);
+            this.label1.Size = new System.Drawing.Size(33, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Elegir Rol";
+            this.label1.Text = "Rol";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // boton
             // 
-            this.boton.Location = new System.Drawing.Point(168, 170);
+            this.boton.Location = new System.Drawing.Point(125, 138);
             this.boton.Name = "boton";
             this.boton.Size = new System.Drawing.Size(219, 23);
             this.boton.TabIndex = 2;
@@ -71,7 +72,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(493, 261);
+            this.ClientSize = new System.Drawing.Size(452, 225);
             this.Controls.Add(this.boton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxRoles);
