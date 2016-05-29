@@ -38,13 +38,13 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void modificarButton_Click(object sender, EventArgs e)
         {
-            elegirRol = new ABM_Rol.ElegirRol("modificar");
+            elegirRol = new ABM_Rol.ElegirRol("Modificar Rol");
             elegirRol.Show();
         }
 
         private void eliminarButton_Click(object sender, EventArgs e)
         {
-            elegirRol = new ABM_Rol.ElegirRol("elminar");
+            elegirRol = new ABM_Rol.ElegirRol("Eliminar Rol");
             elegirRol.Show();
         }
     }

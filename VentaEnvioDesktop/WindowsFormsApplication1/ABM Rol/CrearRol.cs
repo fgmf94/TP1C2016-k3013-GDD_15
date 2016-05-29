@@ -120,5 +120,10 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

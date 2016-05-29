@@ -65,6 +65,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
+                //Hay que ver si el usuario esta habilitado! (to do)
                 string query = "SELECT C_PASSWORD FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + username + "'";
                 DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
                 if (dt.Rows.Count == 0)
@@ -90,7 +91,7 @@ namespace WindowsFormsApplication1
                     }
                     else{
                         MessageBox.Show("Contraseña incorrecta",this.Text,MessageBoxButtons.OK,MessageBoxIcon.Error);
-                        //debería sumarse un intento fallido...
+                        //debería sumarse un intento fallido... (to do)
                     }
                 }
             }

@@ -37,11 +37,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(43, 78);
+            this.label2.Location = new System.Drawing.Point(30, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 20);
+            this.label2.Size = new System.Drawing.Size(190, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Funcionalidad";
+            this.label2.Text = "Seleccione Funcionalidad";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // comboBoxFuncionalidad
@@ -57,7 +57,7 @@
             "Historial del Vendedor",
             "Consulta de facturas",
             "Listado Estadístico"});
-            this.comboBoxFuncionalidad.Location = new System.Drawing.Point(159, 77);
+            this.comboBoxFuncionalidad.Location = new System.Drawing.Point(240, 77);
             this.comboBoxFuncionalidad.Name = "comboBoxFuncionalidad";
             this.comboBoxFuncionalidad.Size = new System.Drawing.Size(219, 21);
             this.comboBoxFuncionalidad.TabIndex = 3;
@@ -66,7 +66,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(159, 165);
+            this.button1.Location = new System.Drawing.Point(240, 165);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(219, 30);
             this.button1.TabIndex = 4;
@@ -79,7 +79,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(450, 233);
+            this.ClientSize = new System.Drawing.Size(504, 233);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBoxFuncionalidad);
             this.Controls.Add(this.label2);

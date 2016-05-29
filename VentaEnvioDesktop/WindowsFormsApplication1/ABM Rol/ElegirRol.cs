@@ -18,6 +18,35 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             elegirFormato = formato;
             InitializeComponent();
+            label1.Text = formato;
+            buttonGuardar.Text = formato;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonGuardar_Click(object sender, EventArgs e)
+        {
+            if (elegirFormato == "Eliminar Rol")
+            {
+                MessageBox.Show("Eliminar Rol");
+            } 
+            else if (elegirFormato == "Modificar Rol")
+            {
+                MessageBox.Show("Modificar Rol");
+            }
+        }
+
+        private void btFiltro_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("No implementado por ahora", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
