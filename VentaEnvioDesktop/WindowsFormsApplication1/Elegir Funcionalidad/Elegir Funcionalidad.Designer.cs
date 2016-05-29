@@ -65,9 +65,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(159, 170);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.button1.Location = new System.Drawing.Point(159, 165);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 22);
+            this.button1.Size = new System.Drawing.Size(219, 30);
             this.button1.TabIndex = 4;
             this.button1.Text = "Seleccionar Funcionalidad";
             this.button1.UseVisualStyleBackColor = true;

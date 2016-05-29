@@ -38,16 +38,17 @@
             // 
             this.label2.AutoSize = true;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(240, 35);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label2.Location = new System.Drawing.Point(225, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 20);
+            this.label2.Size = new System.Drawing.Size(89, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "ABM Rol";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // crearButton
             // 
+            this.crearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.crearButton.Location = new System.Drawing.Point(43, 138);
             this.crearButton.Name = "crearButton";
             this.crearButton.Size = new System.Drawing.Size(98, 38);
@@ -58,6 +59,7 @@
             // 
             // modificarButton
             // 
+            this.modificarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.modificarButton.Location = new System.Drawing.Point(230, 138);
             this.modificarButton.Name = "modificarButton";
             this.modificarButton.Size = new System.Drawing.Size(98, 38);
@@ -68,6 +70,7 @@
             // 
             // eliminarButton
             // 
+            this.eliminarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.eliminarButton.Location = new System.Drawing.Point(411, 138);
             this.eliminarButton.Name = "eliminarButton";
             this.eliminarButton.Size = new System.Drawing.Size(98, 38);

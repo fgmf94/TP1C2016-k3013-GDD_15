@@ -100,6 +100,7 @@ namespace WindowsFormsApplication1
             // 
             // BotonLogin
             // 
+            this.BotonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.BotonLogin.Location = new System.Drawing.Point(182, 201);
             this.BotonLogin.Name = "BotonLogin";
             this.BotonLogin.Size = new System.Drawing.Size(198, 32);

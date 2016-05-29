@@ -22,3 +22,4 @@ C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplica
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rol.ABMRol.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rol.CrearRol.resources

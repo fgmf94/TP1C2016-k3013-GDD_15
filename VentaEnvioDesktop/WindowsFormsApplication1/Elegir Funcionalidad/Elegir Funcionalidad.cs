@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     MessageBox.Show("Listado Estadístico");
                     break;
                 default:
-                    MessageBox.Show("Por favor elija una funcionalidad de las indicadas");
+                    MessageBox.Show("Por favor elija una funcionalidad de las indicadas",this.Text,MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     break;
             }
             

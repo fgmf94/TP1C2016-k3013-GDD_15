@@ -80,6 +80,7 @@
     <Compile Include="ABM Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Funcionalidades.cs" />
     <Compile Include="Elegir Funcionalidad\Elegir Funcionalidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +154,9 @@
     <Compile Include="Utils\ConexionSQL.cs" />
     <EmbeddedResource Include="ABM Rol\ABM Rol.resx">
       <DependentUpon>ABM Rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Rol\CrearRol.resx">
+      <DependentUpon>CrearRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elegir Funcionalidad\Elegir Funcionalidad.resx">
       <DependentUpon>Elegir Funcionalidad.cs</DependentUpon>

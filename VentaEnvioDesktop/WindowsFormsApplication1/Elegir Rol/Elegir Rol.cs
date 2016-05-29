@@ -45,7 +45,7 @@ namespace WindowsFormsApplication1.Elegir_Rol
                 funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol,nombreUsuario);
                 funcionalidades.Show();
             } else {
-                MessageBox.Show("Por favor elija un rol de los indicados");
+                MessageBox.Show("Por favor elija un rol de los indicados", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

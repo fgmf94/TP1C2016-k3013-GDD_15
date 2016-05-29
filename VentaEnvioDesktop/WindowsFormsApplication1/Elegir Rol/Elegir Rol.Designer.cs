@@ -59,9 +59,10 @@
             // 
             // boton
             // 
+            this.boton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.boton.Location = new System.Drawing.Point(125, 138);
             this.boton.Name = "boton";
-            this.boton.Size = new System.Drawing.Size(219, 23);
+            this.boton.Size = new System.Drawing.Size(219, 31);
             this.boton.TabIndex = 2;
             this.boton.Text = "Ingresar";
             this.boton.UseVisualStyleBackColor = true;

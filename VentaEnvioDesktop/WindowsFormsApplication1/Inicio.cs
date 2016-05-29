@@ -61,7 +61,7 @@ namespace WindowsFormsApplication1
 
             if (username == null || password == null)
             {
-                MessageBox.Show("Debe ingresar su nombre de usuario y contraseña");
+                MessageBox.Show("Debe ingresar su nombre de usuario y contraseña",this.Text,MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace WindowsFormsApplication1
                 DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
                 if (dt.Rows.Count == 0)
                 {
-                    MessageBox.Show("Nombre de usuario incorrecto");
+                    MessageBox.Show("Nombre de usuario incorrecto",this.Text,MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 } else {
 
                     String passwordSistema = dt.Rows[0][0].ToString();            
@@ -89,7 +89,7 @@ namespace WindowsFormsApplication1
                         }
                     }
                     else{
-                        MessageBox.Show("Nombre de usuario o contraseña incorrecta");
+                        MessageBox.Show("Contraseña incorrecta",this.Text,MessageBoxButtons.OK,MessageBoxIcon.Error);
                         //debería sumarse un intento fallido...
                     }
                 }
