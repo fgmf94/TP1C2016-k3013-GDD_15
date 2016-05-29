@@ -65,6 +65,7 @@
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(232, 28);
             this.comboBoxRol.TabIndex = 13;
+            this.comboBoxRol.SelectedIndexChanged += new System.EventHandler(this.comboBoxRol_SelectedIndexChanged);
             // 
             // label2
             // 

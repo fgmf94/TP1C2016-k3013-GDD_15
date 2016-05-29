@@ -62,12 +62,6 @@
     <Compile Include="ABM Rol\ElegirRol.Designer.cs">
       <DependentUpon>ElegirRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Rol\EliminarRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM Rol\EliminarRol.Designer.cs">
-      <DependentUpon>EliminarRol.cs</DependentUpon>
-    </Compile>
     <Compile Include="ABM Rol\ModificarRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\ElegirRol.resx">
       <DependentUpon>ElegirRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Rol\ModificarRol.resx">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elegir Funcionalidad\Elegir Funcionalidad.resx">
       <DependentUpon>Elegir Funcionalidad.cs</DependentUpon>
