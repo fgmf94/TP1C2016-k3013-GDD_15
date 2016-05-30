@@ -147,7 +147,7 @@
             this.Controls.Add(this.txtNombreRol);
             this.Controls.Add(this.label1);
             this.Name = "CrearRol";
-            this.Text = "CrearRol";
+            this.Text = "Crear Rol";
             this.ResumeLayout(false);
             this.PerformLayout();
 

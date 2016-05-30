@@ -60,6 +60,7 @@
             // modificarButton
             // 
             this.modificarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.modificarButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.modificarButton.Location = new System.Drawing.Point(230, 138);
             this.modificarButton.Name = "modificarButton";
             this.modificarButton.Size = new System.Drawing.Size(98, 38);
@@ -90,7 +91,7 @@
             this.Controls.Add(this.crearButton);
             this.Controls.Add(this.label2);
             this.Name = "ABMRol";
-            this.Text = "ABMRol";
+            this.Text = "ABM Rol";
             this.ResumeLayout(false);
             this.PerformLayout();
 

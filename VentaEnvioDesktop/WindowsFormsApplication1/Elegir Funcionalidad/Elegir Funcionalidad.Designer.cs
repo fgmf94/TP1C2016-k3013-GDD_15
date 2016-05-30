@@ -85,7 +85,7 @@
             this.Controls.Add(this.comboBoxFuncionalidad);
             this.Controls.Add(this.label2);
             this.Name = "EleccionFuncionalidad";
-            this.Text = "Elección Funcionalidad";
+            this.Text = "Elegir Funcionalidad";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

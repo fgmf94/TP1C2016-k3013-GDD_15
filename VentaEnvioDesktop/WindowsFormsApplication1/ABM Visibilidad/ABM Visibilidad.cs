@@ -37,5 +37,10 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             elegirV = new ABM_Visibilidad.ElegirVisibilidad("Eliminar Visibilidad");
             elegirV.Show();
         }
+
+        private void ABMVisibilidad_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

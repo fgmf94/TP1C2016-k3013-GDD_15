@@ -89,7 +89,8 @@
             this.Controls.Add(this.crearButton);
             this.Controls.Add(this.label2);
             this.Name = "ABMVisibilidad";
-            this.Text = "Form1";
+            this.Text = "ABM Visibilidad";
+            this.Load += new System.EventHandler(this.ABMVisibilidad_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

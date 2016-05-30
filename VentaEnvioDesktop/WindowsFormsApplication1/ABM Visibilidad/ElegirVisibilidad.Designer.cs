@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Name = "ElegirVisibilidad";
-            this.Text = "ElegirVisibilidad";
+            this.Text = "Elegir Visibilidad";
             this.Load += new System.EventHandler(this.ElegirVisibilidad_Load);
             this.ResumeLayout(false);
 

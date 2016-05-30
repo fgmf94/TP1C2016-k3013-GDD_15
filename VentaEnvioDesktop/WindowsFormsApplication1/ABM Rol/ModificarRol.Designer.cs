@@ -172,7 +172,7 @@
             this.Controls.Add(this.txtNombreRol);
             this.Controls.Add(this.label1);
             this.Name = "ModificarRol";
-            this.Text = "ModificarRol";
+            this.Text = "Modificar Rol";
             this.Load += new System.EventHandler(this.ModificarRol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
