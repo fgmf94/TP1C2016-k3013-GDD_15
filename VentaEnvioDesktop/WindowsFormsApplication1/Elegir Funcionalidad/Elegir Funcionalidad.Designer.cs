@@ -46,6 +46,7 @@
             // 
             // comboBoxFuncionalidad
             // 
+            this.comboBoxFuncionalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFuncionalidad.FormattingEnabled = true;
             this.comboBoxFuncionalidad.Items.AddRange(new object[] {
             "ABM de Rol",
