@@ -35,6 +35,7 @@
             // 
             // comboBoxRoles
             // 
+            this.comboBoxRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRoles.FormattingEnabled = true;
             this.comboBoxRoles.Items.AddRange(new object[] {
             "Cliente",
