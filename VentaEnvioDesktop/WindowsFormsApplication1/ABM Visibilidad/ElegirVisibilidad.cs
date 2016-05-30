@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.ABM_Visibilidad
 {
-    public partial class Form1 : Form
+    public partial class ElegirVisibilidad : Form
     {
-        public Form1()
+        String formato;
+
+        public ElegirVisibilidad(String formatoPasado)
         {
+            formato = formatoPasado;
             InitializeComponent();
+        }
+
+        private void ElegirVisibilidad_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

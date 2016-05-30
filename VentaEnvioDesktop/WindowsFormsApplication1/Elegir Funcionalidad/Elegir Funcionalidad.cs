@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
         string funcionalidad;
         string nombreUsuario;
         ABM_Rol.ABMRol abmRol;
+        ABM_Visibilidad.ABMVisibilidad abmVis;
 
         public EleccionFuncionalidad(String rol, String username)
         {
@@ -59,7 +60,8 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     MessageBox.Show("Funcionalidad no requerida");
                     break;
                 case "ABM de visibilidad de publicación":
-                    MessageBox.Show("ABM de visibilidad de publicación");
+                    abmVis = new ABM_Visibilidad.ABMVisibilidad();
+                    abmVis.Show();
                     break;
                 case "Generar Publicación":
                     MessageBox.Show("Generar publicación");

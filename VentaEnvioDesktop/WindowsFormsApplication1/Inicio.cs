@@ -47,19 +47,21 @@ namespace WindowsFormsApplication1
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-            username = txtNombre.Text;
+            
         }
             
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            password = txtPass.Text;
+            
         }
 
         private void BotonLogin_Click(object sender, EventArgs e)
         {
+            username = txtNombre.Text;
+            password = txtPass.Text;
 
-            if (username == null || password == null)
+            if (username == null || password == null || password == "" || username == "")
             {
                 MessageBox.Show("Debe ingresar su nombre de usuario y contraseña",this.Text,MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }

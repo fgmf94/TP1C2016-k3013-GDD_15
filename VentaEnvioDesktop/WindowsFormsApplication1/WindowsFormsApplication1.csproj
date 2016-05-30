@@ -74,6 +74,24 @@
     <Compile Include="ABM Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Visibilidad\CrearVisibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Visibilidad\CrearVisibilidad.Designer.cs">
+      <DependentUpon>CrearVisibilidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Visibilidad\ElegirVisibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Visibilidad\ElegirVisibilidad.Designer.cs">
+      <DependentUpon>ElegirVisibilidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Visibilidad\ModificarVisibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Visibilidad\ModificarVisibilidad.Designer.cs">
+      <DependentUpon>ModificarVisibilidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Funcionalidades.cs" />
     <Compile Include="Elegir Funcionalidad\Elegir Funcionalidad.cs">
       <SubType>Form</SubType>
@@ -93,11 +111,11 @@
     <Compile Include="ABM Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Visibilidad\Form1.cs">
+    <Compile Include="ABM Visibilidad\ABM Visibilidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Visibilidad\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM Visibilidad\ABM Visibilidad.Designer.cs">
+      <DependentUpon>ABM Visibilidad.cs</DependentUpon>
     </Compile>
     <Compile Include="BDComun.cs" />
     <Compile Include="Calificar\Form1.cs">
@@ -157,6 +175,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\ModificarRol.resx">
       <DependentUpon>ModificarRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Visibilidad\ABM Visibilidad.resx">
+      <DependentUpon>ABM Visibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Visibilidad\ElegirVisibilidad.resx">
+      <DependentUpon>ElegirVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elegir Funcionalidad\Elegir Funcionalidad.resx">
       <DependentUpon>Elegir Funcionalidad.cs</DependentUpon>
