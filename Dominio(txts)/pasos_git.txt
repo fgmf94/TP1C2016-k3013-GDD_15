@@ -1,3 +1,4 @@
+pasos para GIT:
 primero clonar el repositorio (una unica vez al empezar)
 git clone 
 
