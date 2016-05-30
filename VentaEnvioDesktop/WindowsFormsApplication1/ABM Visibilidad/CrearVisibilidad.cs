@@ -14,30 +14,51 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 {
     public partial class CrearVisibilidad : Form
     {
+        float cPrecio, cPorcentaje, cEnvio;
+
         public CrearVisibilidad()
         {
             InitializeComponent();
+            txtNombreVisibilidad.Text = "";
+            txtCPrecio.Text = "";
+            txtCPorcentaje.Text = "";
+            txtCEnvio.Text = "";
         }
 
         private bool validaciones(){
-            float a = 0;
 
-            a = (new Validaciones()).validacionStringAFloat(txtCPrecio.Text, "Error Precio");
+            if(txtNombreVisibilidad.Text == "" || txtCPrecio.Text == "" || txtCPorcentaje.Text == "" || txtCEnvio.Text == ""){
+                MessageBox.Show("Debe completar todos los campos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
-            if (a==-1){
+            string comando = "SELECT * FROM  GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + txtNombreVisibilidad.Text + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(comando);
+            if (dt.Rows.Count != 0)
+            {
+                MessageBox.Show("El nombre de visibilidad ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            cPrecio = (new Validaciones()).validacionStringAFloat(txtCPrecio.Text, "Error Precio");
+
+            if (cPrecio==-1){
                 return false;   
             }
 
-            a = (new Validaciones()).validacionStringAFloat(txtCPorcentaje.Text, "Error Porcentaje");
-            if (a == -1)
+            cPorcentaje = (new Validaciones()).validacionStringAFloat(txtCPorcentaje.Text, "Error Porcentaje");
+            if (cPorcentaje == -1)
             {
                 return false;
-            } else if (a > 100){
+            }
+            else if (cPorcentaje > 100)
+            {
                 MessageBox.Show("Solo se admiten números entre 0 y 100", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
 
-            a = (new Validaciones()).validacionStringAFloat(txtCEnvio.Text, "Error Envío");
-            if (a == -1)
+            cEnvio = (new Validaciones()).validacionStringAFloat(txtCEnvio.Text, "Error Envío");
+            if (cEnvio == -1)
             {
                 return false;
             }
@@ -57,9 +78,17 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
         private void buttonGuardar_Click_1(object sender, EventArgs e)
         {
-            if (!validaciones())
+            if (validaciones())
             {
-                return;
+                string scPorcentaje = (cPorcentaje/100).ToString().Replace(',','.');
+                string scPrecio = cPrecio.ToString().Replace(',', '.');
+                string scEnvio = cEnvio.ToString().Replace(',', '.');
+
+                string agregarVisibilidad = "INSERT INTO GDD_15.VISIBILIDADES(D_DESCRIP,N_COMISION_PRECIO,N_COMISION_PORCENTAJE,N_COMISION_ENVIO) SELECT '" + txtNombreVisibilidad.Text + "', " + scPrecio + ", " + scPorcentaje + ", " + scEnvio;
+                (new ConexionSQL()).ejecutarComandoSQL(agregarVisibilidad);
+
+                MessageBox.Show("Visibilidad agregada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                this.Close();
             }
         }
 
