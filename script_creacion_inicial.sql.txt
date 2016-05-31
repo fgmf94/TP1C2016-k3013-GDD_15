@@ -876,4 +876,13 @@ INSERT INTO GDD_15.VISIBILIDADES(D_DESCRIP,N_COMISION_PRECIO,N_COMISION_PORCENTA
 SELECT 'Gratis', 0, 0, 0
 
 
+--Inserto los tipos de Publicacion--
+INSERT INTO GDD_15.TIPOS(C_TIPO) VALUES ('Subasta');
+INSERT INTO GDD_15.TIPOS(C_TIPO) VALUES ('Compra Inmediata');
 
+--Inserto los estados de una Publicacion--
+INSERT INTO GDD_15.ESTADOS(C_ESTADO) VALUES ('Publicada');
+INSERT INTO GDD_15.ESTADOS(C_ESTADO) VALUES ('Borrador');
+INSERT INTO GDD_15.ESTADOS(C_ESTADO) VALUES ('Activa');--- tengo la duda si activa es lo mismo que publicada ?--
+INSERT INTO GDD_15.ESTADOS(C_ESTADO) VALUES ('Pausada');
+INSERT INTO GDD_15.ESTADOS(C_ESTADO) VALUES ('Finalizada');
