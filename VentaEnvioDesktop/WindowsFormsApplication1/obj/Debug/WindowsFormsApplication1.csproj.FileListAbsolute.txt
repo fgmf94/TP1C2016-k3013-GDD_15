@@ -48,3 +48,7 @@ C:\Users\ABM\Desktop\TP\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\Win
 C:\Users\ABM\Desktop\TP\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ElegirVisibilidad.resources
 C:\Users\ABM\Desktop\TP\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.CrearVisibilidad.resources
 C:\Users\ABM\Desktop\TP\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ModificarVisibilidad.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ABMVisibilidad.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.CrearVisibilidad.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ElegirVisibilidad.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ModificarVisibilidad.resources

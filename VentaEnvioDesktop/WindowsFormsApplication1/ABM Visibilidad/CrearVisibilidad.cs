@@ -80,9 +80,9 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
         {
             if (validaciones())
             {
-                string scPorcentaje = (cPorcentaje/100).ToString().Replace(',','.');
-                string scPrecio = cPrecio.ToString().Replace(',', '.');
-                string scEnvio = cEnvio.ToString().Replace(',', '.');
+                string scPorcentaje = aStringSinComa(cPorcentaje / 100);
+                string scPrecio = aStringSinComa(cPrecio);
+                string scEnvio = aStringSinComa(cEnvio);
 
                 string agregarVisibilidad = "INSERT INTO GDD_15.VISIBILIDADES(D_DESCRIP,N_COMISION_PRECIO,N_COMISION_PORCENTAJE,N_COMISION_ENVIO) SELECT '" + txtNombreVisibilidad.Text + "', " + scPrecio + ", " + scPorcentaje + ", " + scEnvio;
                 (new ConexionSQL()).ejecutarComandoSQL(agregarVisibilidad);
@@ -90,6 +90,12 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 MessageBox.Show("Visibilidad agregada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                 this.Close();
             }
+        }
+
+        private string aStringSinComa(float numero)
+        {
+            string stringNumero = numero.ToString().Replace(',', '.');
+            return stringNumero;
         }
 
         private void button2_Click(object sender, EventArgs e)
