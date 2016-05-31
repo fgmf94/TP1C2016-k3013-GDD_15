@@ -16,15 +16,18 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
     {
         string funcionalidad;
         string nombreUsuario;
+        string rol;
         ABM_Rol.ABMRol abmRol;
         ABM_Visibilidad.ABMVisibilidad abmVis;
+        ABM_Usuario.ABMUsuario abmUsuario;
+        ABM_Usuario.Modificar_Usuario mUsuario;
 
-        public EleccionFuncionalidad(String rol, String username)
+        public EleccionFuncionalidad(String rolPasado, String username)
         {
             InitializeComponent();
-
+            rol = rolPasado;
             nombreUsuario = username;
-            DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT F.D_DESCRED FROM GDD_15.FUNCIONALIDADES_ROLES FR JOIN GDD_15.ROLES R ON (R.N_ID_ROL = FR.N_ID_ROL) JOIN GDD_15.FUNCIONALIDADES F ON (F.N_ID_FUNCIONALIDAD = FR.N_ID_FUNCIONALIDAD) WHERE R.C_ROL = '" + rol + "' AND R.F_BAJA IS NULL AND FR.F_BAJA IS NULL"); 
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT F.D_DESCRED FROM GDD_15.FUNCIONALIDADES_ROLES FR JOIN GDD_15.ROLES R ON (R.N_ID_ROL = FR.N_ID_ROL) JOIN GDD_15.FUNCIONALIDADES F ON (F.N_ID_FUNCIONALIDAD = FR.N_ID_FUNCIONALIDAD) WHERE R.C_ROL = '" + rolPasado + "' AND R.F_BAJA IS NULL AND FR.F_BAJA IS NULL"); 
             comboBoxFuncionalidad.DataSource = dt.DefaultView;
             comboBoxFuncionalidad.ValueMember = "D_DESCRED";
         }
@@ -54,7 +57,16 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     abmRol.Show();
                     break;
                 case "ABM de Usuarios":
-                    MessageBox.Show("Funcionalidad en construcción (ABM Usuarios)");
+                    if (rol == "Administrativo")
+                    {
+                        abmUsuario = new ABM_Usuario.ABMUsuario();
+                        abmUsuario.Show();
+                    }
+                    else
+                    {
+                        mUsuario = new ABM_Usuario.Modificar_Usuario();
+                        mUsuario.Show();
+                    }
                     break;
                 case "ABM de Rubro":
                     MessageBox.Show("Funcionalidad no requerida");

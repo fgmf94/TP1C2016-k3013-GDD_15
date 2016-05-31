@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
             cPrecio = (new Validaciones()).validacionStringAFloat(txtCPrecio.Text, "Error Precio");
 
-            if (cPrecio==-1){
+            if (cPrecio == -1){
                 return false;   
             }
 

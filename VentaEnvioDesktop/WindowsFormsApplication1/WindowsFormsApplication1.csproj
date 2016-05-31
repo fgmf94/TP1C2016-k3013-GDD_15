@@ -74,6 +74,24 @@
     <Compile Include="ABM Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Usuario\CrearUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\CrearUsuario.Designer.cs">
+      <DependentUpon>CrearUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\ElegirUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\ElegirUsuario.Designer.cs">
+      <DependentUpon>ElegirUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\M Usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\M Usuario.Designer.cs">
+      <DependentUpon>M Usuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Visibilidad\CrearVisibilidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,11 +123,11 @@
     <Compile Include="Elegir Rol\Elegir Rol.Designer.cs">
       <DependentUpon>Elegir Rol.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuario\Form1.cs">
+    <Compile Include="ABM Usuario\ABM Usuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Usuario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM Usuario\ABM Usuario.Designer.cs">
+      <DependentUpon>ABM Usuario.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Visibilidad\ABM Visibilidad.cs">
       <SubType>Form</SubType>
@@ -176,6 +194,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\ModificarRol.resx">
       <DependentUpon>ModificarRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\ABM Usuario.resx">
+      <DependentUpon>ABM Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\M Usuario.resx">
+      <DependentUpon>M Usuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\ABM Visibilidad.resx">
       <DependentUpon>ABM Visibilidad.cs</DependentUpon>

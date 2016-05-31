@@ -18,7 +18,7 @@ namespace MercadoEnvio.Utils
 
             try
             {
-                resultado = float.Parse(numero, System.Globalization.CultureInfo.InvariantCulture);
+                resultado = float.Parse(numero.Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
                 if (resultado < 0)
                 {
                     MessageBox.Show("Solo se admiten números positivos", textoError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
