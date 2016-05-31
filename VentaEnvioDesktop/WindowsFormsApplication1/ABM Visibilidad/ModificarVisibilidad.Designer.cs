@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCEnvio = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,16 +42,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(415, 178);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 20);
-            this.label6.TabIndex = 43;
-            this.label6.Text = "%";
             // 
             // label5
             // 
@@ -165,6 +154,7 @@
             this.button2.TabIndex = 46;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // buttonGuardar
             // 
@@ -187,7 +177,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.chkHabilitado);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCEnvio);
             this.Controls.Add(this.label4);
@@ -207,7 +196,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtCEnvio;
         private System.Windows.Forms.Label label4;

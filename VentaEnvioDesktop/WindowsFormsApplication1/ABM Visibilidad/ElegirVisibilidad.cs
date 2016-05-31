@@ -24,10 +24,20 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             label1.Text = formato;
             buttonGuardar.Text = formato;
 
-            string query = "SELECT D_DESCRIP FROM GDD_15.VISIBILIDADES";
-            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
-            comboBoxVisi.DataSource = dt.DefaultView;
-            comboBoxVisi.ValueMember = "D_DESCRIP";
+            if (formato == "Eliminar Visibilidad")
+            {
+                string query = "SELECT D_DESCRIP FROM GDD_15.VISIBILIDADES WHERE F_BAJA IS NULL";
+                DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+                comboBoxVisi.DataSource = dt.DefaultView;
+                comboBoxVisi.ValueMember = "D_DESCRIP";
+            } 
+            else if (formato == "Modificar Visibilidad")
+            {
+                string query = "SELECT D_DESCRIP FROM GDD_15.VISIBILIDADES";
+                DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+                comboBoxVisi.DataSource = dt.DefaultView;
+                comboBoxVisi.ValueMember = "D_DESCRIP";
+            }
         }
 
         private void ElegirVisibilidad_Load(object sender, EventArgs e)
@@ -52,6 +62,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 if ((MessageBox.Show("¿Realmente desea dar de baja la Visibilidad " + comboBoxVisi.Text + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
                     //dar de baja visibilidad (to do)
+                    //ver que no haya ninguna publicacion que la este usando, si es que hay tirar error
                     MessageBox.Show("Visibilidad " + comboBoxVisi.Text + " eliminada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                 }

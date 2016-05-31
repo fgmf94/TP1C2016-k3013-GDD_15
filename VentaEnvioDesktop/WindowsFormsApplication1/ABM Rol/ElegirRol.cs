@@ -24,10 +24,20 @@ namespace WindowsFormsApplication1.ABM_Rol
             label1.Text = formato;
             buttonGuardar.Text = formato;
 
-            string query = "SELECT C_ROL FROM GDD_15.ROLES";
-            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
-            comboBoxRol.DataSource = dt.DefaultView;
-            comboBoxRol.ValueMember = "C_ROL";
+            if (elegirFormato == "Eliminar Rol")
+            {
+                string query = "SELECT C_ROL FROM GDD_15.ROLES WHERE F_BAJA IS NULL";
+                DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+                comboBoxRol.DataSource = dt.DefaultView;
+                comboBoxRol.ValueMember = "C_ROL";
+            }
+            else if (elegirFormato == "Modificar Rol")
+            {
+                string query = "SELECT C_ROL FROM GDD_15.ROLES";
+                DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+                comboBoxRol.DataSource = dt.DefaultView;
+                comboBoxRol.ValueMember = "C_ROL";
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

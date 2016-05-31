@@ -34,6 +34,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
         private void eliminarButton_Click(object sender, EventArgs e)
         {
+            //ver si hay visibilidades para eliminar (to do)
             elegirV = new ABM_Visibilidad.ElegirVisibilidad("Eliminar Visibilidad");
             elegirV.Show();
         }

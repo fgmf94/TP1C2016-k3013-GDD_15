@@ -51,9 +51,9 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             {
                 return false;
             }
-            else if (cPorcentaje > 100)
+            else if (cPorcentaje >= 1)
             {
-                MessageBox.Show("Solo se admiten números entre 0 y 100", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Solo se admiten números entre 0 y 1", "Error Porcentaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
         {
             if (validaciones())
             {
-                string scPorcentaje = aStringSinComa(cPorcentaje / 100);
+                string scPorcentaje = aStringSinComa(cPorcentaje);
                 string scPrecio = aStringSinComa(cPrecio);
                 string scEnvio = aStringSinComa(cEnvio);
 
