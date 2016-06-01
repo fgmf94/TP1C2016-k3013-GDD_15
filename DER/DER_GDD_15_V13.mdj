@@ -7794,7 +7794,7 @@
 								"$ref": "AAAAAAFUepFCOs1KbNk="
 							},
 							"name": "N_TELEFONO",
-							"type": "TINYINT",
+							"type": "BIGINT",
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": false,
@@ -8066,7 +8066,7 @@
 								"$ref": "AAAAAAFUepJyy816fQE="
 							},
 							"name": "N_TELEFONO",
-							"type": "TINYINT",
+							"type": "BIGINT",
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": false,
