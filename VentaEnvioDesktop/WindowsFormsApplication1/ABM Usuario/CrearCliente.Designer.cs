@@ -199,9 +199,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(561, 100);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 20);
+            this.label8.Size = new System.Drawing.Size(104, 20);
             this.label8.TabIndex = 44;
-            this.label8.Text = "Calle";
+            this.label8.Text = "Nombre Calle";
             // 
             // txtCalle
             // 
@@ -221,11 +221,11 @@
             this.label9.TabIndex = 46;
             this.label9.Text = "Número";
             // 
-            // txtNumero
+            // txtNumeroCalle
             // 
             this.txtNumeroCalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumeroCalle.Location = new System.Drawing.Point(706, 146);
-            this.txtNumeroCalle.Name = "txtNumero";
+            this.txtNumeroCalle.Name = "txtNumeroCalle";
             this.txtNumeroCalle.Size = new System.Drawing.Size(230, 26);
             this.txtNumeroCalle.TabIndex = 45;
             // 

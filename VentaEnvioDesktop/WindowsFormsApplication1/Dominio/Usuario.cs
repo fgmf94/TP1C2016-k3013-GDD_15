@@ -15,7 +15,7 @@ namespace MercadoEnvio.Dominio
         public string mail;
         public Int64 telefono;
         public string calle;
-        public int numeroCalle;
+        public Int64 numeroCalle;
         public string piso;
         public string depto;
         public string codigoPostal;

@@ -16,5 +16,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             InitializeComponent();
         }
+
+        private void buttonGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

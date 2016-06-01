@@ -51,6 +51,25 @@ namespace WindowsFormsApplication1.ABM_Usuario
             {
                 return;
             }
+
+            usuario.cliNombre = txtNombre.Text;
+            usuario.cliApellido = txtApellido.Text;
+            usuario.cliTipoDocumento = comboBoxTipoDoc.Text;
+            usuario.cliNumeroDocumento = txtNumDoc.Text;
+            usuario.mail = txtMail.Text;
+            usuario.telefono = Convert.ToInt64(txtTel.Text);
+            usuario.calle = txtCalle.Text;
+            usuario.numeroCalle = Convert.ToInt64(txtNumeroCalle.Text);
+            usuario.piso = txtPiso.Text;
+            usuario.depto = txtDepto.Text;
+            usuario.codigoPostal = txtCodPost.Text;
+            usuario.cliFechaNac = dateFechaNac.Value.ToString();
+
+            //Inserto los datos en la BD (to do)
+
+            MessageBox.Show("Cliente agregado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+            form.Close();
+            this.Close();
         }
 
         private bool validaciones()
@@ -72,9 +91,33 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 usuario.depto = "-1";
             }
 
-            if (txtNumDoc.TextLength > 100)
+            if (txtNombre.TextLength > 100)
             {
-                MessageBox.Show("El número de documento no debe superar los 100 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El nombre no debe superar los 100 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtPiso.TextLength > 50)
+            {
+                MessageBox.Show("El piso no debe superar los 50 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtDepto.TextLength > 50)
+            {
+                MessageBox.Show("El departamento no debe superar los 50 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtNombre.TextLength > 100)
+            {
+                MessageBox.Show("El nombre no debe superar los 100 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtApellido.TextLength > 100)
+            {
+                MessageBox.Show("El apellido no debe superar los 100 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -90,8 +133,26 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 return false;
             }
 
-            if (numDoc < 1){
+            if (numDoc < 1)
+            {
                 MessageBox.Show("El número de documento debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtNumDoc.TextLength > 100)
+            {
+                MessageBox.Show("El número de documento no debe superar los 100 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtMail.TextLength > 50){
+                MessageBox.Show("El mail no debe superar los 50 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!(txtMail.Text.Contains("@")))
+            {
+                MessageBox.Show("El mail debe contener el carácter @", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -109,6 +170,35 @@ namespace WindowsFormsApplication1.ABM_Usuario
             if (numDoc < 1)
             {
                 MessageBox.Show("El número de teléfono debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtCalle.TextLength > 100)
+            {
+                MessageBox.Show("La calle no debe superar los 100 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            Int64 numCalle;
+            try
+            {
+                numCalle = Convert.ToInt64(txtNumeroCalle.Text);
+            }
+            catch
+            {
+                MessageBox.Show("El número de calle debe ser un entero menor a 100000000000000", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (numDoc < 1)
+            {
+                MessageBox.Show("El número de calle debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtCodPost.TextLength > 50)
+            {
+                MessageBox.Show("El código postal no debe superar los 50 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
