@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     }
                     else
                     {
-                        mUsuario = new ABM_Usuario.Modificar_Usuario();
+                        mUsuario = new ABM_Usuario.Modificar_Usuario(rol, nombreUsuario);
                         mUsuario.Show();
                     }
                     break;

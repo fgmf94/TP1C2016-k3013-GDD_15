@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.ABM_Usuario
 {
-    partial class ElegirUsuario
+    partial class CrearEmpresa
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // ElegirUsuario
+            // CrearEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "ElegirUsuario";
-            this.Text = "Elegir Usuario";
+            this.Name = "CrearEmpresa";
+            this.Text = "Crear Empresa";
+            this.Load += new System.EventHandler(this.CrearEmpresa_Load);
             this.ResumeLayout(false);
 
         }
