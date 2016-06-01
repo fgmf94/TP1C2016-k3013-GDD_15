@@ -21,13 +21,13 @@ namespace MercadoEnvio.Utils
                 resultado = float.Parse(numero.Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
                 if (resultado < 0)
                 {
-                    MessageBox.Show("Solo se admiten números positivos", textoError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Sólo se admiten números positivos", textoError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return -1;
                 }
 
                 if (resultado > 1000000)
                 {
-                    MessageBox.Show("Solo se admiten números menores a 1000000", textoError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Sólo se admiten números menores a 1000000", textoError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return -1;
                 }
 
@@ -35,7 +35,7 @@ namespace MercadoEnvio.Utils
 
             catch
             {
-                MessageBox.Show("Solo se admiten números", textoError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Sólo se admiten números", textoError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return -1;
             }
 

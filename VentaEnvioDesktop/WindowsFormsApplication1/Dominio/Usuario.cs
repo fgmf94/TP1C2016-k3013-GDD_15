@@ -8,36 +8,36 @@ namespace MercadoEnvio.Dominio
 {
     public class Usuario
     {
-        string username;
-        string password;
-        string rol;
-        
-        string mail;
-        string telefono;
-        string calle;
-        int numeroCalle;
-        string piso;
-        string depto;
-        string codigoPostal;
-        
-        string cliNombre;
-        string cliApellido;
-        string cliTipoDocumento;
-        string cliNumeroDocumento;
-        string cliFechaNac;
- 
-        string empRazonSocial;
-        string empCiudad;
-        string empCuit;
-        string empNombreContacto;
-        string empRubroPrincipal;
-        string empFechaCreacion;
+        public string username;
+        public string password;
+        public string rol;
+
+        public string mail;
+        public Int64 telefono;
+        public string calle;
+        public int numeroCalle;
+        public string piso;
+        public string depto;
+        public string codigoPostal;
+
+        public string cliNombre;
+        public string cliApellido;
+        public string cliTipoDocumento;
+        public string cliNumeroDocumento;
+        public string cliFechaNac;
+
+        public string empRazonSocial;
+        public string empCiudad;
+        public string empCuit;
+        public string empNombreContacto;
+        public string empRubroPrincipal;
+        public string empFechaCreacion;
 
         public Usuario(String nombre, String pass, String rols)
         {
-            username = nombre;
-            password = pass;
-            rol = rols;
+            this.username = nombre;
+            this.password = pass;
+            this.rol = rols;
         }
 
     }
