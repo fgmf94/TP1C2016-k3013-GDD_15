@@ -63,13 +63,15 @@ namespace WindowsFormsApplication1.ABM_Usuario
             usuario.piso = txtPiso.Text;
             usuario.depto = txtDepto.Text;
             usuario.codigoPostal = txtCodPost.Text;
-            usuario.cliFechaNac = dateFechaNac.Value.ToString();
+            usuario.cliFechaNac = DateTime.Parse(dateFechaNac.Text).ToString();
 
             //Inserto los datos en la BD (to do)
 
+            MessageBox.Show(usuario.cliFechaNac);
+
             MessageBox.Show("Cliente agregado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
-            form.Close();
-            this.Close();
+            //form.Close();
+            //this.Close();
         }
 
         private bool validaciones()
