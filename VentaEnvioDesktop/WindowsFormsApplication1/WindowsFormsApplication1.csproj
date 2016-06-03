@@ -92,6 +92,12 @@
     <Compile Include="ABM Usuario\CrearUsuario.Designer.cs">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Usuario\ElegirModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\ElegirModificar.Designer.cs">
+      <DependentUpon>ElegirModificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Usuario\ElegirUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,11 +122,23 @@
     <Compile Include="ABM Usuario\M Usuario.Designer.cs">
       <DependentUpon>M Usuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuario\ModificarUsuario.cs">
+    <Compile Include="ABM Usuario\ModificarContraseña.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Usuario\ModificarUsuario.Designer.cs">
-      <DependentUpon>ModificarUsuario.cs</DependentUpon>
+    <Compile Include="ABM Usuario\ModificarContraseña.Designer.cs">
+      <DependentUpon>ModificarContraseña.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\ModificarDatosCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\ModificarDatosCliente.Designer.cs">
+      <DependentUpon>ModificarDatosCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\ModificarDatosEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\ModificarDatosEmpresa.Designer.cs">
+      <DependentUpon>ModificarDatosEmpresa.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Visibilidad\CrearVisibilidad.cs">
       <SubType>Form</SubType>
@@ -238,6 +256,9 @@
     <EmbeddedResource Include="ABM Usuario\CrearUsuario.resx">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\ElegirModificar.resx">
+      <DependentUpon>ElegirModificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\ElegirUsuario.resx">
       <DependentUpon>ElegirUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,8 +271,8 @@
     <EmbeddedResource Include="ABM Usuario\M Usuario.resx">
       <DependentUpon>M Usuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Usuario\ModificarUsuario.resx">
-      <DependentUpon>ModificarUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="ABM Usuario\ModificarContraseña.resx">
+      <DependentUpon>ModificarContraseña.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\ABM Visibilidad.resx">
       <DependentUpon>ABM Visibilidad.cs</DependentUpon>

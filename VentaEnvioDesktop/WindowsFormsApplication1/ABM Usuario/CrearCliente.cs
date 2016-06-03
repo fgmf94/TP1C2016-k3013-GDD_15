@@ -209,6 +209,15 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 MessageBox.Show("La fecha de nacimiento tiene que ser anterior al día de hoy", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            string query2 = "SELECT COUNT(*) FROM GDD_15.CLIENTES WHERE C_TIPO_DOCUMENTO = '" + comboBoxTipoDoc.Text + "' AND N_DOCUMENTO = '" + txtNumDoc.Text + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string cantidad = dt2.Rows[0][0].ToString();
+            if (cantidad == "1")
+            {
+                MessageBox.Show("Ya existe ese tipo y número de documento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
                  
             return true;
         }

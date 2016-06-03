@@ -12,11 +12,16 @@ namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class Modificar_Usuario : Form
     {
+        String usuario;
+        String rol;
+
         public Modificar_Usuario(String rolPasado, String usuarioPasado)
         {
             InitializeComponent();
             labelUsuario.Text = "Modificar " + rolPasado;
             buttonModificar.Text = "Modificar " + rolPasado;
+            usuario = usuarioPasado;
+            rol = rolPasado;
         }
 
         private void Modificar_Usuario_Load(object sender, EventArgs e)
@@ -36,7 +41,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void buttonModificar_Click(object sender, EventArgs e)
         {
-
+            ABM_Usuario.ElegirModificar elegirModif = new ABM_Usuario.ElegirModificar(usuario, this,rol);
+            elegirModif.Show();
         }
     }
 }

@@ -62,10 +62,12 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                         abmUsuario = new ABM_Usuario.ABMUsuario();
                         abmUsuario.Show();
                     }
-                    else
+                    else if (rol == "Empresa" || rol == "Cliente")
                     {
                         mUsuario = new ABM_Usuario.Modificar_Usuario(rol, nombreUsuario);
                         mUsuario.Show();
+                    } else {
+                        MessageBox.Show("No se puede modificar un usuario del rol: " + rol);
                     }
                     break;
                 case "ABM de Rubro":

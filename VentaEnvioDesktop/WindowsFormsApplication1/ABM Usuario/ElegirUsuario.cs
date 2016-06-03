@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
     {
         ABM_Usuario.FiltroCliente filtroCliente;
         ABM_Usuario.FiltroEmpresa filtroEmpresa;
-        ABM_Usuario.ModificarUsuario modifUsuario;
+        ABM_Usuario.ElegirModificar modifElegir;
         String formato;
 
         public ElegirUsuario(String formatoPasado, String usuarioPasado)
@@ -56,8 +56,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
             if (formato == "Modificar Usuario")
             {
-                modifUsuario = new ABM_Usuario.ModificarUsuario(txtNombreUsuario.Text);
-                modifUsuario.Show();
+                modifElegir = new ABM_Usuario.ElegirModificar(txtNombreUsuario.Text,this,"Administrativo");
+                modifElegir.Show();
             }
             else if (formato == "Eliminar Usuario")
             {
