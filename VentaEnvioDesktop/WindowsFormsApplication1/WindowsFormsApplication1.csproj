@@ -98,11 +98,29 @@
     <Compile Include="ABM Usuario\ElegirUsuario.Designer.cs">
       <DependentUpon>ElegirUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Usuario\FiltroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\FiltroCliente.Designer.cs">
+      <DependentUpon>FiltroCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\FiltroEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\FiltroEmpresa.Designer.cs">
+      <DependentUpon>FiltroEmpresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Usuario\M Usuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Usuario\M Usuario.Designer.cs">
       <DependentUpon>M Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\ModificarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\ModificarUsuario.Designer.cs">
+      <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Visibilidad\CrearVisibilidad.cs">
       <SubType>Form</SubType>
@@ -223,8 +241,17 @@
     <EmbeddedResource Include="ABM Usuario\ElegirUsuario.resx">
       <DependentUpon>ElegirUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\FiltroCliente.resx">
+      <DependentUpon>FiltroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\FiltroEmpresa.resx">
+      <DependentUpon>FiltroEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\M Usuario.resx">
       <DependentUpon>M Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\ModificarUsuario.resx">
+      <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\ABM Visibilidad.resx">
       <DependentUpon>ABM Visibilidad.cs</DependentUpon>

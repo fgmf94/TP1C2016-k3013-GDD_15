@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (!validaciones())
+            if (!validacionesCliente())
             {
                 return;
             }
@@ -67,14 +67,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
             //Inserto los datos en la BD (to do)
 
-            MessageBox.Show(usuario.cliFechaNac);
-
             MessageBox.Show("Cliente agregado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
-            //form.Close();
-            //this.Close();
+            form.Close();
+            this.Close();
         }
 
-        private bool validaciones()
+        private bool validacionesCliente()
         {
             if (txtNombre.Text == "" || txtApellido.Text == "" || txtCalle.Text == "" || comboBoxTipoDoc.Text == "" || txtNumDoc.Text == "" || txtMail.Text == "" || txtTel.Text == "" || txtCalle.Text == "" || txtNumeroCalle.Text == "" || txtCodPost.Text == "" || dateFechaNac.Value.ToString() == "")
             {
@@ -204,6 +202,14 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 return false;
             }
 
+            DateTime diaDeHoy = DateTime.Now;
+
+            if (diaDeHoy < DateTime.Parse(dateFechaNac.Text))
+            {
+                MessageBox.Show("La fecha de nacimiento tiene que ser anterior al día de hoy", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+                 
             return true;
         }
     }

@@ -68,3 +68,6 @@ C:\Users\ABM\Desktop\TP1C2016-k3013-GDD_15\VentaEnvioDesktop\WindowsFormsApplica
 C:\Users\ABM\Desktop\TP1C2016-k3013-GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.CrearVisibilidad.resources
 C:\Users\ABM\Desktop\TP1C2016-k3013-GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ElegirVisibilidad.resources
 C:\Users\ABM\Desktop\TP1C2016-k3013-GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ModificarVisibilidad.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.FiltroCliente.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.FiltroEmpresa.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.ModificarUsuario.resources
