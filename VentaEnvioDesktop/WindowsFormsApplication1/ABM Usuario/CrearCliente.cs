@@ -65,7 +65,25 @@ namespace WindowsFormsApplication1.ABM_Usuario
             usuario.codigoPostal = txtCodPost.Text;
             usuario.cliFechaNac = DateTime.Parse(dateFechaNac.Text).ToString();
 
-            //Inserto los datos en la BD (to do)
+            string agregarUsuario = "INSERT INTO GDD_15.USUARIOS(C_USUARIO_NOMBRE,C_PASSWORD,N_PUBLICACION_GRATIS) VALUES ('" + usuario.username + "',(SELECT SUBSTRING(master.dbo.fn_varbintohexstr(HASHBYTES('SHA2_256','" + usuario.password + "')),3,250)),'SI')";
+            (new ConexionSQL()).ejecutarComandoSQL(agregarUsuario);
+
+            string asignarRol = "INSERT INTO GDD_15.ROLES_USUARIOS(N_ID_USUARIO, N_ID_ROL) SELECT tablaUsuarios.N_ID_USUARIO, tablaRoles.N_ID_ROL FROM GDD_15.USUARIOS tablaUsuarios, GDD_15.ROLES tablaRoles WHERE tablaRoles.C_ROL = 'Cliente' AND tablaUsuarios.C_USUARIO_NOMBRE = '" + usuario.username + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(asignarRol);
+
+            string agregarDireccion = "INSERT INTO GDD_15.DIRECCIONES(C_CALLE, N_NUMERO, C_PISO, C_DEPTO, C_POSTAL) VALUES ('" + usuario.calle + "', '" + usuario.numeroCalle + "', '" + usuario.piso + "', '" + usuario.depto + "', '" + usuario.codigoPostal + "')";
+            (new ConexionSQL()).ejecutarComandoSQL(agregarDireccion);
+
+            string query2 = "SELECT N_ID_DIRECCION FROM GDD_15.DIRECCIONES WHERE C_CALLE = '" + usuario.calle + "' AND N_NUMERO = '" + usuario.numeroCalle + "' AND C_PISO = '" + usuario.piso + "' AND C_DEPTO = '" + usuario.depto + "' AND C_POSTAL = '" + usuario.codigoPostal + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string direccionID = dt2.Rows[0][0].ToString();
+
+            string query = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + usuario.username + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            string usuarioID = dt.Rows[0][0].ToString();
+
+            string agregarCliente = "INSERT INTO GDD_15.CLIENTES(N_ID_USUARIO, N_ID_DIRECCION, C_TIPO_DOCUMENTO, N_DOCUMENTO, D_APELLIDOS, D_NOMBRES, F_NACIMIENTO, N_TELEFONO, C_CORREO) VALUES ('" + usuarioID + "', '" + direccionID + "', '" + usuario.cliTipoDocumento + "', '" + usuario.cliNumeroDocumento + "', '" + usuario.cliApellido + "', '" + usuario.cliNombre + "', '" + usuario.cliFechaNac + "', '" + usuario.telefono + "', '" + usuario.mail + "')";
+            (new ConexionSQL()).ejecutarComandoSQL(agregarCliente);
 
             MessageBox.Show("Cliente agregado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
             form.Close();
@@ -87,8 +105,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
 
             if (txtPiso.Text == "" && txtDepto.Text == ""){
-                usuario.piso = "-1";
-                usuario.depto = "-1";
+                usuario.piso = "NULL";
+                usuario.depto = "NULL";
             }
 
             if (txtNombre.TextLength > 100)
