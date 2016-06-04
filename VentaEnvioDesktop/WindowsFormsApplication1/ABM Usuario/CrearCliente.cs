@@ -190,7 +190,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 return false;
             }
 
-            if (numDoc < 1)
+            if (numCalle < 1)
             {
                 MessageBox.Show("El número de calle debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -213,7 +213,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             string query2 = "SELECT COUNT(*) FROM GDD_15.CLIENTES WHERE C_TIPO_DOCUMENTO = '" + comboBoxTipoDoc.Text + "' AND N_DOCUMENTO = '" + txtNumDoc.Text + "'";
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string cantidad = dt2.Rows[0][0].ToString();
-            if (cantidad == "1")
+            if (cantidad != "0")
             {
                 MessageBox.Show("Ya existe ese tipo y número de documento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;

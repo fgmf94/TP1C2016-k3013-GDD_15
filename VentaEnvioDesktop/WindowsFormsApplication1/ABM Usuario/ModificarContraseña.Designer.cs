@@ -36,15 +36,13 @@
             this.txtPass1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
-            this.chkHabilitado = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.buttonModificar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonCancelar
             // 
             this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelar.Location = new System.Drawing.Point(33, 285);
+            this.buttonCancelar.Location = new System.Drawing.Point(33, 239);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(117, 58);
             this.buttonCancelar.TabIndex = 45;
@@ -75,7 +73,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label1.Location = new System.Drawing.Point(153, 29);
+            this.label1.Location = new System.Drawing.Point(131, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(198, 25);
             this.label1.TabIndex = 40;
@@ -119,32 +117,10 @@
             this.txtNombreUsuario.Size = new System.Drawing.Size(230, 26);
             this.txtNombreUsuario.TabIndex = 36;
             // 
-            // chkHabilitado
-            // 
-            this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkHabilitado.Location = new System.Drawing.Point(196, 245);
-            this.chkHabilitado.Name = "chkHabilitado";
-            this.chkHabilitado.Size = new System.Drawing.Size(15, 14);
-            this.chkHabilitado.TabIndex = 48;
-            this.chkHabilitado.UseVisualStyleBackColor = true;
-            this.chkHabilitado.CheckedChanged += new System.EventHandler(this.chkHabilitado_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(31, 239);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 20);
-            this.label6.TabIndex = 47;
-            this.label6.Text = "Usuario Habilitado";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
             // buttonModificar
             // 
             this.buttonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonModificar.Location = new System.Drawing.Point(309, 285);
+            this.buttonModificar.Location = new System.Drawing.Point(309, 239);
             this.buttonModificar.Name = "buttonModificar";
             this.buttonModificar.Size = new System.Drawing.Size(117, 58);
             this.buttonModificar.TabIndex = 49;
@@ -157,10 +133,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(461, 361);
+            this.ClientSize = new System.Drawing.Size(461, 314);
             this.Controls.Add(this.buttonModificar);
-            this.Controls.Add(this.chkHabilitado);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPass2);
@@ -186,8 +160,6 @@
         private System.Windows.Forms.TextBox txtPass1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNombreUsuario;
-        private System.Windows.Forms.CheckBox chkHabilitado;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonModificar;
     }
 }

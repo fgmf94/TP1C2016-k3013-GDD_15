@@ -22,18 +22,6 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             InitializeComponent();
 
-            string query2 = "SELECT COUNT(*) FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + usuarioPasado + "' AND F_BAJA IS NULL";
-            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
-            string habilitado = dt2.Rows[0][0].ToString();
-            if (habilitado == "1")
-            {
-                chkHabilitado.Checked = true;
-            }
-            else
-            {
-                chkHabilitado.Checked = false;
-            }
-
             txtNombreUsuario.Text = usuarioPasado;
             nombre = usuarioPasado;
             form1 = formPasado;

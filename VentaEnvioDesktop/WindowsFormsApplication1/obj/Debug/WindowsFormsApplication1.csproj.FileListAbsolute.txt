@@ -72,3 +72,4 @@ C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplica
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.FiltroEmpresa.resources
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.ElegirModificar.resources
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.ModificarContraseña.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.ModificarDatosEmpresa.resources

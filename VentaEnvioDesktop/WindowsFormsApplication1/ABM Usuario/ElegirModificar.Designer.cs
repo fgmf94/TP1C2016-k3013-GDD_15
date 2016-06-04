@@ -28,44 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonHabilitar = new System.Windows.Forms.Button();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonModificar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
-            this.buttonCancelar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // buttonModificar
-            // 
-            this.buttonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonModificar.Location = new System.Drawing.Point(227, 123);
-            this.buttonModificar.Name = "buttonModificar";
-            this.buttonModificar.Size = new System.Drawing.Size(117, 58);
-            this.buttonModificar.TabIndex = 53;
-            this.buttonModificar.Text = "Contraseña";
-            this.buttonModificar.UseVisualStyleBackColor = true;
-            this.buttonModificar.Click += new System.EventHandler(this.buttonModificar_Click);
-            // 
-            // buttonGuardar
-            // 
-            this.buttonGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonGuardar.Location = new System.Drawing.Point(409, 123);
-            this.buttonGuardar.Name = "buttonGuardar";
-            this.buttonGuardar.Size = new System.Drawing.Size(117, 58);
-            this.buttonGuardar.TabIndex = 52;
-            this.buttonGuardar.Text = "Datos";
-            this.buttonGuardar.UseVisualStyleBackColor = true;
-            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
-            // 
-            // buttonCancelar
-            // 
-            this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelar.Location = new System.Drawing.Point(42, 123);
-            this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(117, 58);
-            this.buttonCancelar.TabIndex = 51;
-            this.buttonCancelar.Text = "Cancelar";
-            this.buttonCancelar.UseVisualStyleBackColor = true;
-            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // label1
             // 
@@ -77,15 +45,60 @@
             this.label1.TabIndex = 50;
             this.label1.Text = "¿Qué desea modificar?";
             // 
+            // buttonHabilitar
+            // 
+            this.buttonHabilitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHabilitar.Location = new System.Drawing.Point(227, 74);
+            this.buttonHabilitar.Name = "buttonHabilitar";
+            this.buttonHabilitar.Size = new System.Drawing.Size(117, 43);
+            this.buttonHabilitar.TabIndex = 55;
+            this.buttonHabilitar.Text = "Habilitar";
+            this.buttonHabilitar.UseVisualStyleBackColor = true;
+            this.buttonHabilitar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelar.Location = new System.Drawing.Point(42, 123);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(117, 58);
+            this.buttonCancelar.TabIndex = 56;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click_1);
+            // 
+            // buttonModificar
+            // 
+            this.buttonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonModificar.Location = new System.Drawing.Point(227, 123);
+            this.buttonModificar.Name = "buttonModificar";
+            this.buttonModificar.Size = new System.Drawing.Size(117, 58);
+            this.buttonModificar.TabIndex = 57;
+            this.buttonModificar.Text = "Contraseña";
+            this.buttonModificar.UseVisualStyleBackColor = true;
+            this.buttonModificar.Click += new System.EventHandler(this.buttonModificar_Click_1);
+            // 
+            // buttonGuardar
+            // 
+            this.buttonGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.buttonGuardar.Location = new System.Drawing.Point(406, 123);
+            this.buttonGuardar.Name = "buttonGuardar";
+            this.buttonGuardar.Size = new System.Drawing.Size(117, 58);
+            this.buttonGuardar.TabIndex = 58;
+            this.buttonGuardar.Text = "Datos";
+            this.buttonGuardar.UseVisualStyleBackColor = true;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click_1);
+            // 
             // ElegirModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(552, 209);
-            this.Controls.Add(this.buttonModificar);
+            this.ClientSize = new System.Drawing.Size(572, 209);
             this.Controls.Add(this.buttonGuardar);
+            this.Controls.Add(this.buttonModificar);
             this.Controls.Add(this.buttonCancelar);
+            this.Controls.Add(this.buttonHabilitar);
             this.Controls.Add(this.label1);
             this.Name = "ElegirModificar";
             this.Text = "Elegir Modificar";
@@ -97,9 +110,10 @@
 
         #endregion
 
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonHabilitar;
+        private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonModificar;
         private System.Windows.Forms.Button buttonGuardar;
-        private System.Windows.Forms.Button buttonCancelar;
-        private System.Windows.Forms.Label label1;
     }
 }
