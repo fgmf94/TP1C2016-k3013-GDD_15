@@ -53,12 +53,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
             {
                 if (rol == "Cliente")
                 {
-                    ABM_Usuario.ModificarDatosCliente modifCliente = new ABM_Usuario.ModificarDatosCliente(username);
+                    ABM_Usuario.ModificarDatosCliente modifCliente = new ABM_Usuario.ModificarDatosCliente(username,this,form);
                     modifCliente.Show();
                 }
                 else if (rol == "Empresa")
                 {
-                    ABM_Usuario.ModificarDatosEmpresa modifEmpresa = new ABM_Usuario.ModificarDatosEmpresa(username);
+                    ABM_Usuario.ModificarDatosEmpresa modifEmpresa = new ABM_Usuario.ModificarDatosEmpresa(username,this,form);
                     modifEmpresa.Show();
                 }
             }

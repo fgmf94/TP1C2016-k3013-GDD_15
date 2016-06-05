@@ -40,5 +40,10 @@ namespace MercadoEnvio.Dominio
             this.rol = rols;
         }
 
+        public Usuario()
+        {
+
+        }
+
     }
 }

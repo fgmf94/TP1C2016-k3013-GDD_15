@@ -274,6 +274,9 @@
     <EmbeddedResource Include="ABM Usuario\ModificarContraseña.resx">
       <DependentUpon>ModificarContraseña.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\ModificarDatosCliente.resx">
+      <DependentUpon>ModificarDatosCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\ModificarDatosEmpresa.resx">
       <DependentUpon>ModificarDatosEmpresa.cs</DependentUpon>
     </EmbeddedResource>
