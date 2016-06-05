@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 using MercadoEnvio.Utils;
 using MercadoEnvio.Dominio;
@@ -52,12 +53,21 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
             if ((MessageBox.Show("¿Realmente desea modificar la contraseña?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
             {
-                //Modificar Usuario contraseña (acordarse del sha 256) (to do)
+                string query = "UPDATE GDD_15.USUARIOS SET C_PASSWORD = '" + getSha256(txtPass1.Text) + "' WHERE C_USUARIO_NOMBRE = '" + nombre + "'";
+                (new ConexionSQL()).ejecutarComandoSQL(query);
                 MessageBox.Show("Contraseña modificada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                 this.Close();
                 form1.Close();
                 form2.Close();
             }
+        }
+
+        public String getSha256(String input)
+        {
+            SHA256Managed encriptador = new SHA256Managed();
+            byte[] inputEnBytes = Encoding.UTF8.GetBytes(input);
+            byte[] inputHashBytes = encriptador.ComputeHash(inputEnBytes);
+            return BitConverter.ToString(inputHashBytes).Replace("-", String.Empty).ToLower();
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
