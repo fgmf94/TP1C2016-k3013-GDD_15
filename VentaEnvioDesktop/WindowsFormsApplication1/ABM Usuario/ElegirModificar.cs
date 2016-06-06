@@ -71,7 +71,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string query2 = "SELECT COUNT(*) FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + username + "' AND F_BAJA IS NULL";
+            string query2 = "SELECT COUNT(*) FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + username + "' AND N_HABILITADO = 1";
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string habilitado = dt2.Rows[0][0].ToString();
             if (habilitado == "1")
@@ -82,7 +82,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
             {
                 if ((MessageBox.Show("¿Realmente desea habilitar al usuario "+ username +"?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
-                    //Modificar Usuario habilitar (to do)
+                    string habilitarUsuario = "UPDATE GDD_15.USUARIOS SET N_HABILITADO = 1, N_CANT_INTENTOS = 0 WHERE C_USUARIO_NOMBRE = '" + username + "'";
+                    (new ConexionSQL()).ejecutarComandoSQL(habilitarUsuario);
                     MessageBox.Show("Usuario habilitado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                     form.Close();
