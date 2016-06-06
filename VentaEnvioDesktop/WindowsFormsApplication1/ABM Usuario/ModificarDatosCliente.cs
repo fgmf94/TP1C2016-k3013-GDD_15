@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             form2 = formPasada2;
 
             usuario = new Usuario();
+            usuario.username = usuarioPasado;
 
             string query = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + usuarioPasado + "'";
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
@@ -87,7 +88,32 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void modificarUsuario()
         {
-            //Hay que modificar los datos del cliente
+            usuario.cliNombre = txtNombre.Text;
+            usuario.cliApellido = txtApellido.Text;
+            usuario.cliTipoDocumento = comboBoxTipoDoc.Text;
+            usuario.cliNumeroDocumento = txtNumDoc.Text;
+            usuario.mail = txtMail.Text;
+            usuario.telefono = Convert.ToInt64(txtTel.Text);
+            usuario.calle = txtCalle.Text;
+            usuario.numeroCalle = Convert.ToInt64(txtNumeroCalle.Text);
+            usuario.piso = txtPiso.Text;
+            usuario.depto = txtDepto.Text;
+            usuario.codigoPostal = txtCodPost.Text;
+            usuario.cliFechaNac = DateTime.Parse(dateFechaNac.Text).ToString();
+
+            string query = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + usuario.username + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            string usuarioID = dt.Rows[0][0].ToString(); 
+
+            string query2 = "SELECT N_ID_DIRECCION FROM GDD_15.CLIENTES WHERE N_ID_USUARIO = '" + usuarioID + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string direccionID = dt2.Rows[0][0].ToString();
+            
+            string modifDireccion = "UPDATE GDD_15.DIRECCIONES SET C_CALLE = '" + usuario.calle + "', N_NUMERO = '" + usuario.numeroCalle + "', C_PISO ='" + usuario.piso + "', C_DEPTO = '" + usuario.depto + "', C_POSTAL = '" + usuario.codigoPostal + "' WHERE N_ID_DIRECCION = '" + direccionID + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(modifDireccion);
+
+            string modifCliente = "UPDATE GDD_15.CLIENTES SET N_ID_USUARIO = '" + usuarioID + "', N_ID_DIRECCION = '" + direccionID + "', C_TIPO_DOCUMENTO = '" + usuario.cliTipoDocumento + "', N_DOCUMENTO = '" + usuario.cliNumeroDocumento + "', D_APELLIDOS = '" + usuario.cliApellido + "', D_NOMBRES = '" + usuario.cliNombre + "', F_NACIMIENTO = '" + usuario.cliFechaNac + "', N_TELEFONO = '" + usuario.telefono + "', C_CORREO = '" + usuario.mail + "' WHERE N_ID_USUARIO = '" + usuarioID + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(modifCliente);
         }
 
         private bool validacionesCliente()
