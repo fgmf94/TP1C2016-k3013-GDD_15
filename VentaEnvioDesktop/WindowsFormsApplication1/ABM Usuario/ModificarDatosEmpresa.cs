@@ -26,6 +26,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
             form2 = formPasado2;
             usuario = new Usuario();
 
+            usuario.username = usuarioPasado;
+
             string query = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + usuarioPasado + "'";
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
             string idUsuario = dt.Rows[0][0].ToString();
@@ -97,7 +99,33 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void modificarUsuario()
         {
-            //Hay que modificar el usuario
+            usuario.empRazonSocial = txtRazonSocial.Text;
+            usuario.empNombreContacto = txtNombreContacto.Text;
+            usuario.empRubroPrincipal = comboBoxRubro.Text;
+            usuario.empCuit = txtCuit.Text;
+            usuario.empCiudad = txtCiudad.Text;
+            usuario.mail = txtMail.Text;
+            usuario.telefono = Convert.ToInt64(txtTel.Text);
+            usuario.calle = txtCalle.Text;
+            usuario.numeroCalle = Convert.ToInt64(txtNumeroCalle.Text);
+            usuario.piso = txtPiso.Text;
+            usuario.depto = txtDepto.Text;
+            usuario.codigoPostal = txtCodPost.Text;
+            usuario.empFechaCreacion = DateTime.Parse(dateFechaNac.Text).ToString();
+
+            string query = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + usuario.username + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            string usuarioID = dt.Rows[0][0].ToString();
+
+            string query2 = "SELECT N_ID_DIRECCION FROM GDD_15.EMPRESAS WHERE N_ID_USUARIO = '" + usuarioID + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string direccionID = dt2.Rows[0][0].ToString();
+
+            string modifDireccion = "UPDATE GDD_15.DIRECCIONES SET C_CALLE = '" + usuario.calle + "', N_NUMERO = '" + usuario.numeroCalle + "', C_PISO ='" + usuario.piso + "', C_DEPTO = '" + usuario.depto + "', C_POSTAL = '" + usuario.codigoPostal + "' WHERE N_ID_DIRECCION = '" + direccionID + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(modifDireccion);
+
+            string modifCliente = "UPDATE GDD_15.EMPRESAS SET N_ID_USUARIO = '" + usuarioID + "', N_ID_DIRECCION = '" + direccionID + "', C_RAZON_SOCIAL = '" + usuario.empRazonSocial + "', C_CIUDAD = '" + usuario.empCiudad + "', N_CUIT = '" + usuario.empCuit + "', D_NOMBRE_CONTACTO = '" + usuario.empNombreContacto + "', F_CREACION = '" + usuario.empFechaCreacion + "', N_TELEFONO = '" + usuario.telefono + "', C_CORREO = '" + usuario.mail + "' WHERE N_ID_USUARIO = '" + usuarioID + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(modifCliente);
         }
 
         private bool validacionesEmpresa()
