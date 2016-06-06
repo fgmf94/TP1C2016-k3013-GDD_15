@@ -188,6 +188,12 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private bool validacionNombreExistente()
         {
+            if(txtNombreRol.Text.Length >= 100)
+            {
+                MessageBox.Show("El nombre de rol debe tener menos de 100 caracteres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+
             string comando = "SELECT * FROM  GDD_15.ROLES WHERE C_ROL = '" + txtNombreRol.Text + "'";
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(comando);
             if (dt.Rows.Count != 0)
@@ -200,7 +206,7 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void modificarRol(String rol)
         {
-            string query2 = "SELECT N_ID_ROL FROM GDD_15.ROLES WHERE C_ROL = '" + txtNombreRol.Text + "'";
+            string query2 = "SELECT N_ID_ROL FROM GDD_15.ROLES WHERE C_ROL = '" + rol + "'";
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string idRol = dt2.Rows[0][0].ToString();
 
@@ -217,6 +223,9 @@ namespace WindowsFormsApplication1.ABM_Rol
             comando2 = comando2 + ")";
 
             (new ConexionSQL()).ejecutarComandoSQL(comando2);
+
+            string comando5 = "UPDATE GDD_15.ROLES SET C_ROL = '" + txtNombreRol.Text + "' WHERE N_ID_ROL = '" + idRol + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(comando5);
 
             if (estadoAnterior == true && chkHabilitado.Checked == true)
             {
