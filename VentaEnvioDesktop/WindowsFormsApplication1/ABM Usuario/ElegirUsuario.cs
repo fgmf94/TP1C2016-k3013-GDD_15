@@ -63,7 +63,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
             {
                 if ((MessageBox.Show("¿Realmente desea dar de baja el usuario " + txtNombreUsuario.Text + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
-                    //dar de baja usuario (to do)
+                    string agregarUsuario = "UPDATE GDD_15.USUARIOS SET N_HABILITADO = 0 WHERE C_USUARIO_NOMBRE = '" + txtNombreUsuario.Text + "'";
+                    (new ConexionSQL()).ejecutarComandoSQL(agregarUsuario);
                     MessageBox.Show("Usuario " + txtNombreUsuario.Text + " eliminado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                 }

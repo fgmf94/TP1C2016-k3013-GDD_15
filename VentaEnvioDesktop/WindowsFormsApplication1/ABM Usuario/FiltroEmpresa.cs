@@ -16,5 +16,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             InitializeComponent();
         }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
