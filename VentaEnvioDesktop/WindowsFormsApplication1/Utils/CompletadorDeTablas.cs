@@ -37,12 +37,6 @@ namespace MercadoEnvio.Utils
             }
             else
             {
-                DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
-                boton.Name = "Seleccionar";
-                boton.HeaderText = "Seleccionar";
-                boton.Text = "Seleccionar";
-                boton.UseColumnTextForButtonValue = true;
-                dataGrid.Columns.Insert(dataGrid.Columns.Count, boton);
                 dataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
                 dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
