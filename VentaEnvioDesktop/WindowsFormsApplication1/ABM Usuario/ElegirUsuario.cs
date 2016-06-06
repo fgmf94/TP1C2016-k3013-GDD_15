@@ -83,14 +83,14 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            filtroCliente = new ABM_Usuario.FiltroCliente();
+            filtroCliente = new ABM_Usuario.FiltroCliente(formato);
             filtroCliente.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            filtroEmpresa = new ABM_Usuario.FiltroEmpresa();
+            filtroEmpresa = new ABM_Usuario.FiltroEmpresa(formato);
             filtroEmpresa.Show();
         }
     }

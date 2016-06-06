@@ -12,9 +12,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class FiltroEmpresa : Form
     {
-        public FiltroEmpresa()
+        String formato;
+        public FiltroEmpresa(String formatoPasado)
         {
             InitializeComponent();
+            formato = formatoPasado;
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)

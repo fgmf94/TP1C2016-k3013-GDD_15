@@ -32,7 +32,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtDNI = new System.Windows.Forms.TextBox();
+            this.txtNumDoc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -84,11 +84,11 @@
             // 
             // txtDNI
             // 
-            this.txtDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDNI.Location = new System.Drawing.Point(596, 57);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(230, 26);
-            this.txtDNI.TabIndex = 47;
+            this.txtNumDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumDoc.Location = new System.Drawing.Point(596, 57);
+            this.txtNumDoc.Name = "txtDNI";
+            this.txtNumDoc.Size = new System.Drawing.Size(230, 26);
+            this.txtNumDoc.TabIndex = 47;
             // 
             // label3
             // 
@@ -194,7 +194,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtDNI);
+            this.Controls.Add(this.txtNumDoc);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.label1);
@@ -214,7 +214,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtDNI;
+        private System.Windows.Forms.TextBox txtNumDoc;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label label1;

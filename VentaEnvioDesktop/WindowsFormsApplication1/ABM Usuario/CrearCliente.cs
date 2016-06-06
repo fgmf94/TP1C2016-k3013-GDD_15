@@ -239,5 +239,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
                  
             return true;
         }
+
+        private void txtNumDoc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

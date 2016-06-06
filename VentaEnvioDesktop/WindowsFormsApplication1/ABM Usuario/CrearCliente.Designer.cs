@@ -156,6 +156,7 @@
             this.txtNumDoc.Name = "txtNumDoc";
             this.txtNumDoc.Size = new System.Drawing.Size(230, 26);
             this.txtNumDoc.TabIndex = 37;
+            this.txtNumDoc.TextChanged += new System.EventHandler(this.txtNumDoc_TextChanged);
             // 
             // label6
             // 
