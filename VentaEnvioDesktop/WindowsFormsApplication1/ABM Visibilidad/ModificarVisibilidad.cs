@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 if ((MessageBox.Show("¿Realmente desea modificar la Visibilidad " + visibilidadPasada + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
                     modificarVisibilidad(visibilidadPasada);
-                    MessageBox.Show("Rol " + visibilidadPasada + " modificado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                    MessageBox.Show("Visibilidad " + visibilidadPasada + " modificada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                     formPasado.Close();
                 }
@@ -113,6 +113,12 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
             if(txtNombreVisibilidad.Text == "" || txtCPrecio.Text == "" || txtCPorcentaje.Text == "" || txtCEnvio.Text == ""){
                 MessageBox.Show("Debe completar todos los campos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtNombreVisibilidad.Text.Length >= 50)
+            {
+                MessageBox.Show("El nombre de visibilidad debe tener menos de 50 caracteres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

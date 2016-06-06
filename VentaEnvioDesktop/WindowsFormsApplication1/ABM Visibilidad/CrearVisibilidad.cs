@@ -32,6 +32,12 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 return false;
             }
 
+            if (txtNombreVisibilidad.Text.Length >= 50)
+            {
+                MessageBox.Show("El nombre de visibilidad debe tener menos de 50 caracteres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             string comando = "SELECT * FROM  GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + txtNombreVisibilidad.Text + "'";
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(comando);
             if (dt.Rows.Count != 0)

@@ -47,6 +47,12 @@ namespace WindowsFormsApplication1.ABM_Rol
                 return;
             };
 
+            if (txtNombreRol.Text.Length >= 100)
+            {
+                MessageBox.Show("El nombre de rol debe tener menos de 100 caracteres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (validacionNombreExistente())
             {
                 return;
