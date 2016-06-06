@@ -72,6 +72,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 {
                     if (!validacionCuit())
                     {
+                        MessageBox.Show("El CUIT debe ser de tipo XX-XXXXXXXX-XX", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -82,6 +83,33 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         public bool validacionCuit()
         {
+            if(txtCuit.Text.Length == 14)
+            {
+                if(txtCuit.Text[2] != '-' || txtCuit.Text[11] != '-')
+                {
+                    return false;
+                }
+
+                StringBuilder sb = new StringBuilder(txtCuit.Text);
+                sb[2] = '0';
+                sb[11] = '0';
+                string nuevoCuit = sb.ToString();
+
+                Int64 cuil;
+
+                try
+                {
+                    cuil = Convert.ToInt64(nuevoCuit);
+                }
+                catch
+                {
+                    return false;
+                }
+            } 
+            else 
+            {
+                return false;
+            }
             return true;
         }
 
