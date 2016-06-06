@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1.ABM_Rol
     {
         String rolPasado;
         ABM_Rol.ElegirRol form;
+        Boolean estadoAnterior;
 
         public ModificarRol(String rol, ABM_Rol.ElegirRol formElegirRol)
         {
@@ -36,17 +37,17 @@ namespace WindowsFormsApplication1.ABM_Rol
 
             //cargo el nombre y si esta habilitado el rol
             txtNombreRol.Text = rolPasado;
-            string query2 = "SELECT COUNT(*) FROM GDD_15.ROLES WHERE C_ROL = '" + rolPasado + "' AND F_BAJA IS NULL";
+            string query2 = "SELECT COUNT(*) FROM GDD_15.ROLES WHERE C_ROL = '" + rolPasado + "' AND N_HABILITADO = 1";
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string habilitado = dt2.Rows[0][0].ToString();
             if(habilitado == "1"){
-                chkHabilitado.Checked = true;
+                estadoAnterior = chkHabilitado.Checked = true;
             }else{
-            chkHabilitado.Checked = false;
+                estadoAnterior = chkHabilitado.Checked = false;
             }
 
             //cargo las funcionalidades del rol
-            string qfuncion = "SELECT F.D_DESCRED FROM GDD_15.FUNCIONALIDADES_ROLES FR JOIN GDD_15.ROLES R ON (R.N_ID_ROL = FR.N_ID_ROL) JOIN GDD_15.FUNCIONALIDADES F ON (F.N_ID_FUNCIONALIDAD = FR.N_ID_FUNCIONALIDAD) WHERE R.C_ROL = '" + rolPasado + "' AND FR.F_BAJA IS NULL";
+            string qfuncion = "SELECT F.D_DESCRED FROM GDD_15.FUNCIONALIDADES_ROLES FR JOIN GDD_15.ROLES R ON (R.N_ID_ROL = FR.N_ID_ROL) JOIN GDD_15.FUNCIONALIDADES F ON (F.N_ID_FUNCIONALIDAD = FR.N_ID_FUNCIONALIDAD) WHERE R.C_ROL = '" + rolPasado + "'";
             DataTable dtfunciones = (new ConexionSQL()).cargarTablaSQL(qfuncion);
 
             List<string> servicios = new List<string>();
@@ -199,7 +200,41 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void modificarRol(String rol)
         {
-            // (to do)
+            string query2 = "SELECT N_ID_ROL FROM GDD_15.ROLES WHERE C_ROL = '" + txtNombreRol.Text + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string idRol = dt2.Rows[0][0].ToString();
+
+            string comando = "DELETE FROM GDD_15.FUNCIONALIDADES_ROLES WHERE N_ID_ROL = '" + idRol + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(comando);
+
+            string comando2 = "INSERT INTO GDD_15.FUNCIONALIDADES_ROLES(N_ID_ROL, N_ID_FUNCIONALIDAD) SELECT tablaRol.N_ID_ROL,tablaFuncionalidad.N_ID_FUNCIONALIDAD FROM GDD_15.ROLES  tablaRol, GDD_15.FUNCIONALIDADES tablaFuncionalidad WHERE tablaRol.C_ROL = '" + rol + "' AND tablaFuncionalidad.D_DESCRED IN (";
+
+            foreach (Funcionalidades elemento in chkListaFuncionalidades.CheckedItems)
+            {
+                comando2 = comando2 + " '" + elemento.Descripcion + "',";
+            }
+            comando2 = comando2.Substring(0, comando2.Length - 1);
+            comando2 = comando2 + ")";
+
+            (new ConexionSQL()).ejecutarComandoSQL(comando2);
+
+            if (estadoAnterior == true && chkHabilitado.Checked == true)
+            {
+
+            } else if (estadoAnterior == true && chkHabilitado.Checked == false)
+            {
+                string comando3 = "UPDATE GDD_15.ROLES SET N_HABILITADO = 0 WHERE C_ROL = '" + rol + "'";
+                (new ConexionSQL()).ejecutarComandoSQL(comando3);
+            }
+            else if (estadoAnterior == false && chkHabilitado.Checked == true)
+            {
+                string comando4 = "UPDATE GDD_15.ROLES SET N_HABILITADO = 1 WHERE C_ROL = '" + rol + "'";
+                (new ConexionSQL()).ejecutarComandoSQL(comando4);
+            }
+            else
+            {
+
+            }
         }
     }
 }

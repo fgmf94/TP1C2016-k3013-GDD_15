@@ -78,16 +78,21 @@ namespace WindowsFormsApplication1
                     String passwordSistema = dt.Rows[0][0].ToString();            
                     if (getSha256(password) == passwordSistema)
                     {
-                        string query2 = "SELECT COUNT(*) FROM GDD_15.ROLES_USUARIOS ROLES JOIN GDD_15.USUARIOS USUARIOS ON (USUARIOS.N_ID_USUARIO = ROLES.N_ID_USUARIO) WHERE USUARIOS.C_USUARIO_NOMBRE = '" + username + "' AND ROLES.F_BAJA IS NULL";
+                        string query2 = "SELECT COUNT(*) FROM GDD_15.ROLES_USUARIOS ROLES JOIN GDD_15.USUARIOS USUARIOS ON (USUARIOS.N_ID_USUARIO = ROLES.N_ID_USUARIO) WHERE USUARIOS.C_USUARIO_NOMBRE = '" + username + "' AND ROLES.N_HABILITADO = 1";
                         DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
                         string cantidadRoles = dt2.Rows[0][0].ToString();
-                        //Hay que ver si no tiene funcionalidades habilitadas (to do)
                         if (cantidadRoles == "1"){
-                            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL("SELECT R.C_ROL FROM GDD_15.ROLES_USUARIOS RU JOIN GDD_15.USUARIOS U ON (U.N_ID_USUARIO = RU.N_ID_USUARIO) JOIN GDD_15.ROLES R ON (R.N_ID_ROL = RU.N_ID_ROL) WHERE U.C_USUARIO_NOMBRE = '" + username + "' AND R.F_BAJA IS NULL AND RU.F_BAJA IS NULL ");
+                            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL("SELECT R.C_ROL FROM GDD_15.ROLES_USUARIOS RU JOIN GDD_15.USUARIOS U ON (U.N_ID_USUARIO = RU.N_ID_USUARIO) JOIN GDD_15.ROLES R ON (R.N_ID_ROL = RU.N_ID_ROL) WHERE U.C_USUARIO_NOMBRE = '" + username + "' AND R.N_HABILITADO = 1 AND RU.N_HABILITADO = 1");
                             string rol = dt3.Rows[0][0].ToString();
                             funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol,username);
                             funcionalidades.Show();
-                        } else {
+                        }
+                        else if (cantidadRoles == "0")
+                        {
+                            MessageBox.Show("El usuario no tiene roles habilitados", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
                             eleccion = new Elegir_Rol.EleccionRol(username);
                             eleccion.Show();
                         }

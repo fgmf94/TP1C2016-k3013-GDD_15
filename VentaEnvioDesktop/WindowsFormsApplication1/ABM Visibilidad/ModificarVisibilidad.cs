@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
         String visibilidadPasada;
         ABM_Visibilidad.ElegirVisibilidad formPasado;
         float cPrecio, cPorcentaje, cEnvio;
+        Boolean estadoAnterior;
 
         public ModificarVisibilidad(String visibilidad, ABM_Visibilidad.ElegirVisibilidad form)
         {
@@ -27,16 +28,16 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
             txtNombreVisibilidad.Text = visibilidad;
 
-            string query2 = "SELECT COUNT(*) FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + visibilidadPasada + "' AND F_BAJA IS NULL";
+            string query2 = "SELECT COUNT(*) FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + visibilidadPasada + "' AND N_HABILITADO = 1";
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string habilitado = dt2.Rows[0][0].ToString();
             if (habilitado == "1")
             {
-                chkHabilitado.Checked = true;
+               estadoAnterior = chkHabilitado.Checked = true;
             }
             else
             {
-                chkHabilitado.Checked = false;
+               estadoAnterior = chkHabilitado.Checked = false;
             }
 
             string query = "SELECT N_COMISION_PRECIO, N_COMISION_PORCENTAJE, N_COMISION_ENVIO FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + visibilidadPasada + "'";
@@ -78,7 +79,28 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             string scPorcentaje = aStringSinComa(cPorcentaje);
             string scPrecio = aStringSinComa(cPrecio);
             string scEnvio = aStringSinComa(cEnvio);
-            //hay que modificar la visibilidad (to do)
+
+            string agregarVisibilidad = "UPDATE GDD_15.VISIBILIDADES SET D_DESCRIP = '" + txtNombreVisibilidad.Text + "', N_COMISION_PRECIO = '" + scPrecio + "', N_COMISION_PORCENTAJE = '" + scPorcentaje + "', N_COMISION_ENVIO = '" + scEnvio + "' WHERE D_DESCRIP = '" + visibilidad + "'";
+            (new ConexionSQL()).ejecutarComandoSQL(agregarVisibilidad);
+
+            if (estadoAnterior == true && chkHabilitado.Checked == true)
+            {
+
+            }
+            else if (estadoAnterior == true && chkHabilitado.Checked == false)
+            {
+                string comando3 = "UPDATE GDD_15.VISIBILIDADES SET N_HABILITADO = 0 WHERE D_DESCRIP = '" + visibilidad + "'";
+                (new ConexionSQL()).ejecutarComandoSQL(comando3);
+            }
+            else if (estadoAnterior == false && chkHabilitado.Checked == true)
+            {
+                string comando4 = "UPDATE GDD_15.VISIBILIDADES SET N_HABILITADO = 1 WHERE D_DESCRIP = '" + visibilidad + "'";
+                (new ConexionSQL()).ejecutarComandoSQL(comando4);
+            }
+            else
+            {
+
+            }
         }
 
         private string aStringSinComa(float numero)

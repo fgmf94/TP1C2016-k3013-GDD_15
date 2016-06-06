@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1.ABM_Rol
 
             if (elegirFormato == "Eliminar Rol")
             {
-                string query = "SELECT C_ROL FROM GDD_15.ROLES WHERE F_BAJA IS NULL";
+                string query = "SELECT C_ROL FROM GDD_15.ROLES WHERE N_HABILITADO = 1";
                 DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
                 comboBoxRol.DataSource = dt.DefaultView;
                 comboBoxRol.ValueMember = "C_ROL";
@@ -51,7 +51,8 @@ namespace WindowsFormsApplication1.ABM_Rol
             {
                 if ((MessageBox.Show("¿Realmente desea dar de baja el rol " + comboBoxRol.Text + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
-                    //dar de baja rol (to do)
+                    string query = "UPDATE GDD_15.ROLES SET N_HABILITADO = 0 WHERE C_ROL = '" + comboBoxRol.Text + "'";
+                    DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
                     MessageBox.Show("Rol " + comboBoxRol.Text + " eliminado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                 }

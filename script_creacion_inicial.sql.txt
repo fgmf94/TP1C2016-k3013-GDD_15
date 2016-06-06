@@ -525,6 +525,13 @@ EXEC GDD_15.MIGRO_DIRECCIONES;
 EXEC GDD_15.MIGRO_USUARIOS;
 -- FIN MIGRACION --
 
+DROP TABLE dbo.#tmp_usuarios;
+GO
+DROP TRIGGER GDD_15.alta_USUARIO;
+GO
+DROP TRIGGER GDD_15.alta_USU_EMP;
+GO
+
 /* Se inserta el usuario admin, password w23e */
 
 INSERT INTO GDD_15.USUARIOS(C_USUARIO_NOMBRE,C_PASSWORD)
@@ -538,9 +545,36 @@ SELECT tablaUsuarios.N_ID_USUARIO, tablaRoles.N_ID_ROL FROM GDD_15.USUARIOS tabl
 WHERE tablaUsuarios.C_USUARIO_NOMBRE = 'admin'
 GO
 
-DROP TABLE dbo.#tmp_usuarios;
-GO
-DROP TRIGGER GDD_15.alta_USUARIO;
-GO
-DROP TRIGGER GDD_15.alta_USU_EMP;
-GO
+CREATE TRIGGER  BAJA_ROL ON GDD_15.ROLES 
+AFTER UPDATE AS
+BEGIN
+	-- Declaracion de variables para el cursor
+	DECLARE	@N_ID_ROL BIGINT,
+			@N_HABILITADO TINYINT
+	-- Declaración del cursor
+	DECLARE cROLES CURSOR FOR
+	SELECT N_ID_ROL, N_HABILITADO
+	FROM INSERTED
+	-- Apertura del cursor
+	OPEN cROLES
+	-- Lectura de la primera fila del cursor
+	FETCH cROLES INTO @N_ID_ROL, @N_HABILITADO
+	WHILE (@@FETCH_STATUS = 0 )
+	BEGIN
+		-- Si el rol queda deshabilitado, actualiza la tabla de roles_usuarios
+		IF @N_HABILITADO = 0
+		BEGIN
+			UPDATE ROLES_USUARIOS
+			SET N_HABILITADO = 0
+			WHERE N_ID_ROL = @N_ID_ROL
+		END
+		
+		-- Lectura de la siguiente fila del cursor
+		FETCH cROLES INTO @N_ID_ROL, @N_HABILITADO
+	END
+	-- Cierre del cursor
+	CLOSE cROLES
+	-- Liberar los recursos
+	DEALLOCATE cROLES
+END
+

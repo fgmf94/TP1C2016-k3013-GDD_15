@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1.Elegir_Rol
             InitializeComponent();
 
             nombreUsuario = username;
-            DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT R.C_ROL FROM GDD_15.ROLES_USUARIOS RU JOIN GDD_15.USUARIOS U ON (U.N_ID_USUARIO = RU.N_ID_USUARIO) JOIN GDD_15.ROLES R ON (R.N_ID_ROL = RU.N_ID_ROL) WHERE U.C_USUARIO_NOMBRE = '" + username + "' AND R.F_BAJA IS NULL AND RU.F_BAJA IS NULL "); 
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT R.C_ROL FROM GDD_15.ROLES_USUARIOS RU JOIN GDD_15.USUARIOS U ON (U.N_ID_USUARIO = RU.N_ID_USUARIO) JOIN GDD_15.ROLES R ON (R.N_ID_ROL = RU.N_ID_ROL) WHERE U.C_USUARIO_NOMBRE = '" + username + "' AND R.N_HABILITADO = 1 AND RU.N_HABILITADO = 1"); 
             comboBoxRoles.DataSource = dt.DefaultView;
             comboBoxRoles.ValueMember = "C_ROL";
         }
