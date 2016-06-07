@@ -170,7 +170,7 @@ GO
 CREATE TABLE GDD_15.CALIFICACIONES (
 	N_ID_CALIFICACION BIGINT PRIMARY KEY ,
 	N_ID_COMPRA BIGINT,
-	--N_ID_OFERTA BIGINT,
+	N_ID_OFERTA BIGINT,
 	N_ID_CLIENTE BIGINT,
 	C_CALIFICACION SMALLINT,
 	D_DESCRIP VARCHAR(250)
@@ -185,7 +185,7 @@ alter table GDD_15.FUNCIONALIDADES_ROLES add constraint PK_FUNC_POR_ROL
 	primary key clustered (N_ID_ROL,N_ID_FUNCIONALIDAD);
 GO
 
-/* CREO LAS FOREIGN KEY 
+/*CREO LAS FOREIGN KEY*/ 
 
 alter table GDD_15.FACTURAS add constraint FK_FACTURA_PUBL
 	foreign key (N_ID_PUBLICACION) references GDD_15.PUBLICACIONES (N_ID_PUBLICACION);
@@ -576,8 +576,25 @@ BEGIN
 	CLOSE cROLES
 	-- Liberar los recursos
 	DEALLOCATE cROLES
-END
--MIGRO COMPRAS --
+END;
+GO
+
+ --MIGRO RUBROS--
+INSERT INTO GDD_15.RUBROS
+(D_DESCRED, D_DESCRIP)
+SELECT  DISTINCT Publicacion_Rubro_Descripcion,
+CASE 
+WHEN Publicacion_Rubro_Descripcion = 'Audio para el Hogar' THEN 'AUDI1'
+WHEN Publicacion_Rubro_Descripcion = 'Audio Portátil y Radios' THEN 'AUDI2'
+WHEN Publicacion_Rubro_Descripcion = 'Audio / Video Profesional y DJ' THEN 'AUDI3'
+ELSE SUBSTRING(UPPER(Publicacion_Rubro_Descripcion),1,5)
+END AS Publicacion_Rubro_Descripcion
+FROM gd_esquema.Maestra m 
+WHERE Publicacion_Rubro_Descripcion IS NOT NULL
+ORDER BY 1 
+
+/*
+--MIGRO COMPRAS --
 --INSERTO COMPRAS --
 INSERT INTO GDD_15.COMPRAS
 (
@@ -613,14 +630,7 @@ INSERT INTO GDD_15.COMPRAS
   FROM gd_esquema.Maestra m
   WHERE Oferta_Monto IS NOT NULL
   ORDER BY Publicacion_Cod ASC , N_ID_CLIENTE ASC ;
- --MIGRO RUBROS--
-INSERT INTO GDD_15.RUBROS
-(D_DESCRED, D_DESCRIP)
-SELECT  DISTINCT Publicacion_Rubro_Descripcion,
-Publicacion_Rubro_Descripcion-- VER QUE PONER EN LA DESCRIO CORTA
-FROM gd_esquema.Maestra m 
-WHERE Publicacion_Rubro_Descripcion IS NOT NULL
-ORDER BY 1 
+
 --MIGRO FACTURAS--
 --INSERTO FACTURAS --
 SET IDENTITY_INSERT gdd_15.FACTURAS  oN
@@ -687,6 +697,4 @@ INSERT INTO #tmp_calificaciones
 SELECT DISTINCT C.N_ID_COMPRA,C.N_ID_CLIENTE 
  FROM GDD_15.COMPRAS C,#TMP_CALIFICACIONES T
 WHERE C.N_ID_PUBLICACION = T.N_ID_PUBLICACION*/
-
-
-
+*/
