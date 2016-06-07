@@ -22,6 +22,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             InitializeComponent();
             form = formPasada;
             usuario = usuarioPasado;
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT D_DESCRED FROM GDD_15.RUBROS");
+            comboBoxRubro.DataSource = dt.DefaultView;
+            comboBoxRubro.ValueMember = "D_DESCRED";
         }
 
         private void CrearEmpresa_Load(object sender, EventArgs e)
@@ -86,10 +89,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
             string usuarioID = dt.Rows[0][0].ToString();
 
-            string agregarCliente = "INSERT INTO GDD_15.EMPRESAS(N_ID_USUARIO, N_ID_DIRECCION, C_RAZON_SOCIAL, C_CIUDAD, N_CUIT, D_NOMBRE_CONTACTO, F_CREACION, N_TELEFONO, C_CORREO) VALUES ('" + usuarioID + "', '" + direccionID + "', '" + usuario.empRazonSocial + "', '" + usuario.empCiudad + "', '" + usuario.empCuit + "', '" + usuario.empNombreContacto + "', '" + usuario.empFechaCreacion + "', '" + usuario.telefono + "', '" + usuario.mail + "')";
-            (new ConexionSQL()).ejecutarComandoSQL(agregarCliente);
+            string query3 = "SELECT N_ID_RUBRO FROM GDD_15.RUBROS WHERE D_DESCRED = '" + comboBoxRubro.Text + "'";
+            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+            string rubroID = dt3.Rows[0][0].ToString();
 
-            //Falta agregarle el rubro
+            string agregarCliente = "INSERT INTO GDD_15.EMPRESAS(N_ID_USUARIO, N_ID_DIRECCION, C_RAZON_SOCIAL, C_CIUDAD, N_CUIT, D_NOMBRE_CONTACTO, F_CREACION, N_TELEFONO, C_CORREO, N_ID_RUBRO) VALUES ('" + usuarioID + "', '" + direccionID + "', '" + usuario.empRazonSocial + "', '" + usuario.empCiudad + "', '" + usuario.empCuit + "', '" + usuario.empNombreContacto + "', '" + usuario.empFechaCreacion + "', '" + usuario.telefono + "', '" + usuario.mail + "', '" + rubroID + "')";
+            (new ConexionSQL()).ejecutarComandoSQL(agregarCliente);
 
             MessageBox.Show("Empresa agregada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
             form.Close();

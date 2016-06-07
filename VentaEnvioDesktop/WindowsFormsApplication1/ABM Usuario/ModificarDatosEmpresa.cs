@@ -63,6 +63,16 @@ namespace WindowsFormsApplication1.ABM_Usuario
             txtDepto.Text = depto;
             string postal = dt3.Rows[0][5].ToString();
             txtCodPost.Text = postal;
+
+            DataTable dt4 = (new ConexionSQL()).cargarTablaSQL("SELECT D_DESCRED FROM GDD_15.RUBROS");
+            comboBoxRubro.DataSource = dt4.DefaultView;
+            comboBoxRubro.ValueMember = "D_DESCRED";
+
+            string query5 = "SELECT D_DESCRED FROM GDD_15.RUBROS WHERE N_ID_RUBRO = '" + idRubro + "'";
+            DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+            string rubroDescrip = dt5.Rows[0][0].ToString();
+
+            comboBoxRubro.SelectedIndex = comboBoxRubro.FindString(rubroDescrip);
         }
 
         private void ModificarDatosEmpresa_Load(object sender, EventArgs e)
@@ -124,7 +134,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
             string modifDireccion = "UPDATE GDD_15.DIRECCIONES SET C_CALLE = '" + usuario.calle + "', N_NUMERO = '" + usuario.numeroCalle + "', C_PISO ='" + usuario.piso + "', C_DEPTO = '" + usuario.depto + "', C_POSTAL = '" + usuario.codigoPostal + "' WHERE N_ID_DIRECCION = '" + direccionID + "'";
             (new ConexionSQL()).ejecutarComandoSQL(modifDireccion);
 
-            string modifCliente = "UPDATE GDD_15.EMPRESAS SET N_ID_USUARIO = '" + usuarioID + "', N_ID_DIRECCION = '" + direccionID + "', C_RAZON_SOCIAL = '" + usuario.empRazonSocial + "', C_CIUDAD = '" + usuario.empCiudad + "', N_CUIT = '" + usuario.empCuit + "', D_NOMBRE_CONTACTO = '" + usuario.empNombreContacto + "', F_CREACION = '" + usuario.empFechaCreacion + "', N_TELEFONO = '" + usuario.telefono + "', C_CORREO = '" + usuario.mail + "' WHERE N_ID_USUARIO = '" + usuarioID + "'";
+            string query3 = "SELECT N_ID_RUBRO FROM GDD_15.RUBROS WHERE D_DESCRED = '" + comboBoxRubro.Text + "'";
+            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+            string rubroID = dt3.Rows[0][0].ToString();
+
+            string modifCliente = "UPDATE GDD_15.EMPRESAS SET N_ID_USUARIO = '" + usuarioID + "', N_ID_DIRECCION = '" + direccionID + "', C_RAZON_SOCIAL = '" + usuario.empRazonSocial + "', C_CIUDAD = '" + usuario.empCiudad + "', N_CUIT = '" + usuario.empCuit + "', D_NOMBRE_CONTACTO = '" + usuario.empNombreContacto + "', F_CREACION = '" + usuario.empFechaCreacion + "', N_TELEFONO = '" + usuario.telefono + "', C_CORREO = '" + usuario.mail + "', N_ID_RUBRO = '" + rubroID + "' WHERE N_ID_USUARIO = '" + usuarioID + "'";
             (new ConexionSQL()).ejecutarComandoSQL(modifCliente);
         }
 

@@ -69,6 +69,7 @@
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonAtras = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label24
@@ -469,12 +470,24 @@
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click_1);
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Red;
+            this.label25.Location = new System.Drawing.Point(44, 339);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(21, 16);
+            this.label25.TabIndex = 144;
+            this.label25.Text = "(*)";
+            // 
             // CrearEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(995, 468);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonAtras);
             this.Controls.Add(this.buttonCancelar);
@@ -567,5 +580,6 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonAtras;
         private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.Label label25;
     }
 }
