@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Generar_Publicación
 {
-    public partial class Form1 : Form
+    public partial class MisPublicaciones : Form
     {
-        public Form1()
+        public MisPublicaciones(String nombreUsuarioPasado)
         {
             InitializeComponent();
+        }
+
+        private void MisPublicaciones_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -389,6 +389,7 @@
             this.comboBoxRubro.Name = "comboBoxRubro";
             this.comboBoxRubro.Size = new System.Drawing.Size(230, 28);
             this.comboBoxRubro.TabIndex = 134;
+            this.comboBoxRubro.SelectedIndexChanged += new System.EventHandler(this.comboBoxRubro_SelectedIndexChanged);
             // 
             // txtCalle
             // 

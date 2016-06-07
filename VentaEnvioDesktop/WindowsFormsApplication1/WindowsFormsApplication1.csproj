@@ -203,17 +203,35 @@
     <Compile Include="Facturas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generar Publicación\CrearPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicación\CrearPublicacion.Designer.cs">
+      <DependentUpon>CrearPublicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Publicación\MisBorradores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicación\MisBorradores.Designer.cs">
+      <DependentUpon>MisBorradores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Publicación\MisPublicaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicación\MisPublicaciones.Designer.cs">
+      <DependentUpon>MisPublicaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Publicación\Form1.cs">
+    <Compile Include="Generar Publicación\ElegirAccion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Publicación\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Generar Publicación\ElegirAccion.Designer.cs">
+      <DependentUpon>ElegirAccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Historial Cliente\Form1.cs">
       <SubType>Form</SubType>
@@ -297,6 +315,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elegir Rol\Elegir Rol.resx">
       <DependentUpon>Elegir Rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\CrearPublicacion.resx">
+      <DependentUpon>CrearPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\ElegirAccion.resx">
+      <DependentUpon>ElegirAccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\MisBorradores.resx">
+      <DependentUpon>MisBorradores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\MisPublicaciones.resx">
+      <DependentUpon>MisPublicaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

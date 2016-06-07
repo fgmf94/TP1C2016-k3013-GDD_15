@@ -280,5 +280,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             return true;
         }
+
+        private void comboBoxRubro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

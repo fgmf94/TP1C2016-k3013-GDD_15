@@ -78,7 +78,8 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     abmVis.Show();
                     break;
                 case "Generar Publicación":
-                    MessageBox.Show("Generar publicación");
+                    Generar_Publicación.ElegirAccion elegirAccion = new Generar_Publicación.ElegirAccion(nombreUsuario);
+                    elegirAccion.Show();
                     break;
                 case "Comprar/Ofertar":
                     MessageBox.Show("Comprar/Ofertar");
