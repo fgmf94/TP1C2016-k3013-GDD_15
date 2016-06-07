@@ -577,3 +577,116 @@ BEGIN
 	-- Liberar los recursos
 	DEALLOCATE cROLES
 END
+-MIGRO COMPRAS --
+--INSERTO COMPRAS --
+INSERT INTO GDD_15.COMPRAS
+(
+	N_ID_PUBLICACION,
+	N_ID_CLIENTE,
+	N_CANTIDAD,
+	F_ALTA
+)
+ SELECT DISTINCT M.Publicacion_Cod,
+ (SELECT C.N_ID_USUARIO 
+	 FROM GDD_15.CLIENTES C
+	 WHERE C.N_DOCUMENTO = M.Cli_Dni) N_ID_CLIENTE,
+ Compra_Cantidad,
+ Compra_Fecha
+  FROM gd_esquema.Maestra m
+  WHERE COMPRA_CANTIDAD IS NOT NULL
+  ORDER BY Publicacion_Cod ASC, N_ID_CLIENTE asc ;
+--MIGRO OFERTAS--
+  --INSERTO OFERTAS---
+  INSERT INTO GDD_15.OFERTAS
+(
+	N_ID_PUBLICACION,
+	N_ID_CLIENTE,
+	N_MONTO,
+	F_ALTA
+)
+	SELECT DISTINCT M.Publicacion_Cod,
+			(SELECT C.N_ID_USUARIO 
+				FROM GDD_15.CLIENTES C
+				WHERE C.N_DOCUMENTO = M.Cli_Dni) N_ID_CLIENTE,
+			Oferta_Monto,
+			Oferta_Fecha
+  FROM gd_esquema.Maestra m
+  WHERE Oferta_Monto IS NOT NULL
+  ORDER BY Publicacion_Cod ASC , N_ID_CLIENTE ASC ;
+ --MIGRO RUBROS--
+INSERT INTO GDD_15.RUBROS
+(D_DESCRED, D_DESCRIP)
+SELECT  DISTINCT Publicacion_Rubro_Descripcion,
+Publicacion_Rubro_Descripcion-- VER QUE PONER EN LA DESCRIO CORTA
+FROM gd_esquema.Maestra m 
+WHERE Publicacion_Rubro_Descripcion IS NOT NULL
+ORDER BY 1 
+--MIGRO FACTURAS--
+--INSERTO FACTURAS --
+SET IDENTITY_INSERT gdd_15.FACTURAS  oN
+INSERT INTO GDD_15.FACTURAS
+(
+	N_ID_FACTURA,
+	N_ID_PUBLICACION,
+	F_ALTA,
+	C_TIPO_PAGO
+ )
+select	DISTINCT factura_nro,
+		Publicacion_Cod,
+		Factura_Fecha,
+		--Factura_Total,
+		Forma_Pago_Desc
+from gd_esquema.Maestra
+where Factura_Nro is not null 
+ORDER BY 1,2
+SET IDENTITY_INSERT gdd_15.FACTURAS  oFF
+--MIGRO ITEMS DE LAS FACTURAS -- FALTA TERMINAR!!
+INSERT INTO GDD_15.FACTURAS_ITEMS
+(
+	N_ID_FACTURA,
+	C_VISIBILIDAD,
+	--N_ID_COMPRA
+	N_MONTO
+ )
+select	DISTINCT M.factura_nro,
+		M.Publicacion_Visibilidad_Cod,
+		Item_Factura_Monto
+from gd_esquema.Maestra M
+where M.Factura_Nro is not null 
+ORDER BY M.Factura_Nro ASC;
+
+--MIGRO CALIFICACIONES--
+/*CREO TMP DE CALIFICACIONES 
+CREATE TABLE GDD_15.#TMP_CALIFICACIONES (
+	N_ID_CALIFICACION BIGINT PRIMARY KEY ,
+	N_ID_PUBLICACION BIGINT,
+	N_ID_COMPRA BIGINT,
+	N_ID_CLIENTE BIGINT,
+	C_CALIFICACION SMALLINT,
+	D_DESCRIP VARCHAR(250)
+);
+GO
+
+INSERT INTO #tmp_calificaciones
+(	N_ID_PUBLICACION,
+	N_ID_CALIFICACION,
+	D_DESCRIP,
+	C_CALIFICACION 	
+)
+SELECT  DISTINCT Publicacion_Cod,
+Calificacion_Codigo,
+		Calificacion_Descripcion,
+		Calificacion_Cant_Estrellas
+FROM gd_esquema.Maestra m 
+WHERE M.Calificacion_Codigo IS NOT NULL
+
+ SELECT * FROM  #TMP_CALIFICACIONES
+
+INSERT INTO #tmp_calificaciones
+(N_ID_COMPRA,N_ID_CLIENTE)
+SELECT DISTINCT C.N_ID_COMPRA,C.N_ID_CLIENTE 
+ FROM GDD_15.COMPRAS C,#TMP_CALIFICACIONES T
+WHERE C.N_ID_PUBLICACION = T.N_ID_PUBLICACION*/
+
+
+
