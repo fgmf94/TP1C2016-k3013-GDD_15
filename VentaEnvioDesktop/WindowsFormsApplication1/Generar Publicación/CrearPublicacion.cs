@@ -113,9 +113,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return false;
             }
 
+            Int32 stock;
+
             try
             {
-                Int32 stock = Convert.ToInt32(txtStock.Text);
+                stock = Convert.ToInt32(txtStock.Text);
             }
             catch
             {
@@ -123,7 +125,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return false;
             }
 
-            if (numDoc < 1)
+            if (stock < 1)
             {
                 MessageBox.Show("El número de documento debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;

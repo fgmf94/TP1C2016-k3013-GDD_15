@@ -174,7 +174,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             catch
             {
-                MessageBox.Show("El número de documento debe ser un entero menor a 1000000000", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de documento debe ser un entero menor a 2147483647", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -209,7 +209,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             catch
             {
-                MessageBox.Show("El número de téléfono debe ser un entero menor a 100000000000000", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de téléfono debe ser un entero menor a 9223372036854775807", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -232,7 +232,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             catch
             {
-                MessageBox.Show("El número de calle debe ser un entero menor a 100000000000000", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de calle debe ser un entero menor a 9223372036854775807", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

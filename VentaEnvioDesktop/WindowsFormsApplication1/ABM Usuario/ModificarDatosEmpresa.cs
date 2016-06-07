@@ -217,7 +217,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             catch
             {
-                MessageBox.Show("El número de téléfono debe ser un entero menor a 100000000000000", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de téléfono debe ser un entero menor a 922337203685477580", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -240,7 +240,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             catch
             {
-                MessageBox.Show("El número de calle debe ser un entero menor a 100000000000000", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de calle debe ser un entero menor a 922337203685477580", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
