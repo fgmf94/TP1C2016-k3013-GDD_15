@@ -231,6 +231,7 @@
             this.button1.TabIndex = 151;
             this.button1.Text = "Guardar Borrador";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // buttonGuardar
             // 

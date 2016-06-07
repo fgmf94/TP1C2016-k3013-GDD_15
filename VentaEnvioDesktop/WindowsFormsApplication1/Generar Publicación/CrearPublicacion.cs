@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 txtStock.Text = "1";
             }
 
-            string query = "SELECT concat(D_DESCRIP, ' $', N_COMISION_PRECIO) AS VISI FROM GDD_15.VISIBILIDADES";
+            string query = "SELECT concat(D_DESCRIP, ' $', N_COMISION_PRECIO) AS VISI FROM GDD_15.VISIBILIDADES WHERE N_HABILITADO = 1";
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
             comboBoxVisi.DataSource = dt.DefaultView;
             comboBoxVisi.ValueMember = "VISI";
@@ -91,7 +91,62 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void buttonGuardar_Click_1(object sender, EventArgs e)
         {
+            //Generar Publicación
 
+            if (!validaciones())
+            {
+                return;
+            }
+        }
+
+        private bool validaciones()
+        {
+            if (txtDescrip.Text == "" || txtPrecio.Text == "" || txtStock.Text == "" || dateFechaVen.Value.ToString() == "")
+            {
+                MessageBox.Show("Debe completar todos los campos obligatorios", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtDescrip.Text.Length >= 100)
+            {
+                MessageBox.Show("La descripción debe tener menos de 100 caracteres", "Error Descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            try
+            {
+                Int32 stock = Convert.ToInt32(txtStock.Text);
+            }
+            catch
+            {
+                MessageBox.Show("El número de stock debe ser un entero menor a 2147483647", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (numDoc < 1)
+            {
+                MessageBox.Show("El número de documento debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            float precio = (new Validaciones()).validacionStringAFloat(txtPrecio.Text, "Error Precio");
+
+            if (precio == -1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //Generar Borrador
+
+            if (!validaciones())
+            {
+                return;
+            }
         }
     }
 }
