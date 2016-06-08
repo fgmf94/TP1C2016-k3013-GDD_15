@@ -145,6 +145,7 @@
             this.buttonPaginaAnt.TabIndex = 54;
             this.buttonPaginaAnt.Text = "<< Página anterior";
             this.buttonPaginaAnt.UseVisualStyleBackColor = true;
+            this.buttonPaginaAnt.Click += new System.EventHandler(this.buttonPaginaAnt_Click);
             // 
             // buttonPriPag
             // 
@@ -155,6 +156,7 @@
             this.buttonPriPag.TabIndex = 55;
             this.buttonPriPag.Text = "Primera página";
             this.buttonPriPag.UseVisualStyleBackColor = true;
+            this.buttonPriPag.Click += new System.EventHandler(this.buttonPriPag_Click);
             // 
             // buttonSigPag
             // 
@@ -165,6 +167,7 @@
             this.buttonSigPag.TabIndex = 56;
             this.buttonSigPag.Text = "Siguiente página >>";
             this.buttonSigPag.UseVisualStyleBackColor = true;
+            this.buttonSigPag.Click += new System.EventHandler(this.buttonSigPag_Click);
             // 
             // buttonElegirPub
             // 

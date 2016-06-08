@@ -29,6 +29,14 @@ namespace WindowsFormsApplication1.ABM_Usuario
             {
                 buttonHabilitar.Hide();
             }
+
+            string query2 = "SELECT COUNT(*) FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + username + "' AND N_HABILITADO = 1";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string habilitado = dt2.Rows[0][0].ToString();
+            if (habilitado == "1")
+            {
+                buttonHabilitar.Enabled = false;
+            }
         }
 
         private void ElegirModificar_Load(object sender, EventArgs e)
