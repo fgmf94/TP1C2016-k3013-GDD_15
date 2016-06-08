@@ -138,6 +138,11 @@ namespace WindowsFormsApplication1.ComprarOfertar
             int cantPublis = Convert.ToInt16(cantidadPublis);
             cantTotalPags = (cantPublis / 10) + 1;
 
+            if (pagina == cantTotalPags)
+            {
+                buttonSigPag.Enabled = false;
+            }
+
             if (pagina == 1)
             {
                 buttonPaginaAnt.Enabled = false;
@@ -152,6 +157,11 @@ namespace WindowsFormsApplication1.ComprarOfertar
                     buttonSigPag.Enabled = true;
                 }
             }
+            else
+            {
+                buttonPaginaAnt.Enabled = true;
+                buttonPriPag.Enabled = true;
+            }
 
             string campos = "";
 
@@ -165,12 +175,20 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 campos = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE 'Nombre Usuario', P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO 'Precio Inicio ($)', C_PERMITE_ENVIO 'Permite envio', F_INICIO 'Fecha Inicio', F_VENCIMIENTO 'Fecha Vencimiento'";
             }
 
-            CompletadorDeTablas.hacerQuery("SELECT TOP 10 " + campos + " FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres + " ORDER BY V.N_COMISION_PRECIO DESC, C_PERMITE_ENVIO DESC, N_PRECIO ASC", ref dataGridView1);
+
+            if (pagina == 1)
+            {
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 " + campos + " FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres + " ORDER BY V.N_COMISION_PRECIO DESC, C_PERMITE_ENVIO DESC, N_PRECIO ASC", ref dataGridView1);
+            }
+            else
+            {
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 * (SELECT TOP " + (cantPublis - (pagina - 1) * 10).ToString() + " " + campos + " FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres + " ORDER BY V.N_COMISION_PRECIO ASC, C_PERMITE_ENVIO ASC, N_PRECIO DESC) SQ ORDER BY V.N_COMISION_PRECIO DESC, C_PERMITE_ENVIO DESC, N_PRECIO ASC", ref dataGridView1);
+            }
         }
 
         private void buttonPaginaAnt_Click(object sender, EventArgs e)
         {
-
+            filtrarPag(numeroPagina - 1);
         }
 
         private void buttonPriPag_Click(object sender, EventArgs e)
