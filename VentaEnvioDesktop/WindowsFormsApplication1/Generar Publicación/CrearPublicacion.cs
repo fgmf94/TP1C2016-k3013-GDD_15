@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             if (dt3.Rows.Count == 0)
             {
                 txtCodPub.Text = "1";
+                numeroPub = 1;
             }
             else
             {
