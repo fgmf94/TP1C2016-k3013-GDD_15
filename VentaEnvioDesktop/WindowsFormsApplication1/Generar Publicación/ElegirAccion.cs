@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void crearButton_Click(object sender, EventArgs e)
         {
-            Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Compra",nombreUsuario);
+            Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Compra Inmediata",nombreUsuario);
             crearCompra.Show();
         }
 

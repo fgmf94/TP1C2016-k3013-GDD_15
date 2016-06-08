@@ -14,11 +14,12 @@ namespace WindowsFormsApplication1.Generar_Publicación
 {
     public partial class CrearPublicacion : Form
     {
-        String formato;
+        String tipo;
+        String nombreUsuario;
         public CrearPublicacion(String formatoPasado, String nombreUsuarioPasado)
         {
             InitializeComponent();
-            formato = formatoPasado;
+            tipo = formatoPasado;
 
             if (formatoPasado == "Subasta")
             {
@@ -37,6 +38,20 @@ namespace WindowsFormsApplication1.Generar_Publicación
             comboBoxRubro.DataSource = dt2.DefaultView;
             comboBoxRubro.ValueMember = "D_DESCRED";
 
+            string query3 = "SELECT TOP 1 N_ID_PUBLICACION FROM GDD_15.PUBLICACIONES ORDER BY N_ID_PUBLICACION";
+            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+            if (dt3.Rows.Count == 0)
+            {
+                txtCodPub.Text = "1";
+            }
+            else
+            {
+                string idText = dt3.Rows[0][0].ToString();
+                Int64 idPub = Convert.ToInt64(idText);
+                txtCodPub.Text = (idPub + 1).ToString();
+            }
+
+            nombreUsuario = nombreUsuarioPasado;
         }
 
         private void CrearCompra_Load(object sender, EventArgs e)
@@ -71,12 +86,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //generar un borrador
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            //guardar la publicación
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -97,13 +110,63 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 return;
             }
+
+            crearPublicacion("Borrador");
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //Generar Borrador
+
+            if (!validaciones())
+            {
+                return;
+            }
+
+            crearPublicacion("Activa");
+        }
+
+        public void crearPublicacion(String estado)
+        {
+            string query3 = "SELECT N_ID_ESTADO FROM GDD_15.ESTADOS WHERE C_ESTADO = '" + estado + "'";
+            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+            string estadoID = dt3.Rows[0][0].ToString();
+
+            string query = "SELECT N_ID_TIPO FROM GDD_15.TIPOS WHERE C_TIPO = '" + tipo + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            string tipoID = dt.Rows[0][0].ToString();
+
+            string query2 = "SELECT N_ID_RUBRO FROM GDD_15.RUBROS WHERE D_DESCRED = '" + comboBoxRubro.Text + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string rubroID = dt2.Rows[0][0].ToString();
+
+            string query4 = "SELECT C_VISIBILIDAD FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + comboBoxVisi.Text + "'";
+            DataTable dt4 = (new ConexionSQL()).cargarTablaSQL(query4);
+            string visiID = dt4.Rows[0][0].ToString();
+
+            string query5 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+            string usuarioID = dt5.Rows[0][0].ToString();
+
+            String envio;
+
+            if (chkEnvio.Checked == true)
+            {
+                envio = "SI";
+            } else 
+            {
+                envio = "NO";
+            }
+
+            string agregarPublicacion = "INSERT INTO GDD_15.PUBLICACIONES(N_ID_USUARIO, N_ID_RUBRO, C_VISIBILIDAD, N_ID_ESTADO, N_ID_TIPO, D_DESCRED, N_STOCK, F_INICIO, F_VENCIMIENTO, N_PRECIO, C_PERMITE_ENVIO) VALUES ('" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio + "', '" + envio + "')";
+            (new ConexionSQL()).ejecutarComandoSQL(agregarPublicacion);
         }
 
         private bool validaciones()
         {
             if (txtDescrip.Text == "" || txtPrecio.Text == "" || txtStock.Text == "" || dateFechaVen.Value.ToString() == "")
             {
-                MessageBox.Show("Debe completar todos los campos obligatorios", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe completar todos los campos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -138,17 +201,15 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return false;
             }
 
-            return true;
-        }
+            DateTime diaDeHoy = DateTime.Now;
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            //Generar Borrador
-
-            if (!validaciones())
+            if (diaDeHoy > DateTime.Parse(dateFechaVen.Text))
             {
-                return;
+                MessageBox.Show("La fecha de vencimiento tiene que ser posterior al día de hoy", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+
+            return true;
         }
     }
 }
