@@ -136,7 +136,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string cantidadPublis = dt2.Rows[0][0].ToString();
             int cantPublis = Convert.ToInt16(cantidadPublis);
-            cantTotalPags = (cantPublis / 10) + 1;
+            if((cantPublis % 10) == 0)
+            {
+                cantTotalPags = (cantPublis / 10);
+            } else 
+            {
+                cantTotalPags = (cantPublis / 10) + 1;
+            }
 
             if (pagina == cantTotalPags)
             {
@@ -194,7 +200,37 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void buttonPaginaAnt_Click(object sender, EventArgs e)
         {
-            filtrarPag(numeroPagina - 1);
+            if (chkListaRubros.CheckedIndices.Count == 0)
+            {
+                MessageBox.Show("Se debe elegir al menos un rubro", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            };
+
+            wheres = "";
+            armarWhere();
+
+            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string cantidadPublis = dt2.Rows[0][0].ToString();
+            int cantPublis = Convert.ToInt16(cantidadPublis);
+            if ((cantPublis % 10) == 0)
+            {
+                cantTotalPags = (cantPublis / 10);
+            }
+            else
+            {
+                cantTotalPags = (cantPublis / 10) + 1;
+            }
+
+            if (cantTotalPags >= numeroPagina - 1)
+            {
+                filtrarPag(numeroPagina - 1);
+            }
+            else 
+            {
+                MessageBox.Show("No hay página anterior para esa búsqueda (Muestro primera página)", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                filtrarPag(1);
+            }
         }
 
         private void buttonPriPag_Click(object sender, EventArgs e)
@@ -204,15 +240,36 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void buttonSigPag_Click(object sender, EventArgs e)
         {
-            filtrarPag(numeroPagina);
-            if (!buttonSigPag.Enabled)
+            if (chkListaRubros.CheckedIndices.Count == 0)
             {
-                MessageBox.Show("No hay siguiente página para esa búsqueda (Muestro primera página)", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Se debe elegir al menos un rubro", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            };
+
+            wheres = "";
+            armarWhere();
+
+            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string cantidadPublis = dt2.Rows[0][0].ToString();
+            int cantPublis = Convert.ToInt16(cantidadPublis);
+            if ((cantPublis % 10) == 0)
+            {
+                cantTotalPags = (cantPublis / 10);
             }
             else
             {
+                cantTotalPags = (cantPublis / 10) + 1;
+            }
+
+            if (cantTotalPags > numeroPagina)
+            {
                 filtrarPag(numeroPagina + 1);
+            }
+            else
+            {
+                MessageBox.Show("No hay siguiente página para esa búsqueda (Muestro primera página)", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                filtrarPag(1);
             }
         }
     }
