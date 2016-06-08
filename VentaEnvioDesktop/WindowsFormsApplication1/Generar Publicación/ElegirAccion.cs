@@ -28,25 +28,25 @@ namespace WindowsFormsApplication1.Generar_Publicación
         private void crearButton_Click(object sender, EventArgs e)
         {
             Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Compra Inmediata",nombreUsuario);
-            crearCompra.Show();
+            crearCompra.ShowDialog();
         }
 
         private void crearSubasta_Click(object sender, EventArgs e)
         {
             Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Subasta",nombreUsuario);
-            crearCompra.Show();
+            crearCompra.ShowDialog();
         }
 
         private void buttonBorradores_Click(object sender, EventArgs e)
         {
             Generar_Publicación.MisBorradores borradores = new Generar_Publicación.MisBorradores(nombreUsuario);
-            borradores.Show();
+            borradores.ShowDialog();
         }
 
         private void buttonPublicaciones_Click(object sender, EventArgs e)
         {
             Generar_Publicación.MisPublicaciones publis = new Generar_Publicación.MisPublicaciones(nombreUsuario);
-            publis.Show();
+            publis.ShowDialog();
         }
     }
 }

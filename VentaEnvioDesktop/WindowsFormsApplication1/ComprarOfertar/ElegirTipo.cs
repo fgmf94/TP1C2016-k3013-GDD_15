@@ -23,13 +23,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private void button2_Click(object sender, EventArgs e)
         {
             ComprarOfertar.ListadoPublicaciones listado = new ComprarOfertar.ListadoPublicaciones("Compra Inmediata",nombreUsuario);
-            listado.Show();
+            listado.ShowDialog();
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
             ComprarOfertar.ListadoPublicaciones listado = new ComprarOfertar.ListadoPublicaciones("Subasta",nombreUsuario);
-            listado.Show();
+            listado.ShowDialog();
         }
     }
 }

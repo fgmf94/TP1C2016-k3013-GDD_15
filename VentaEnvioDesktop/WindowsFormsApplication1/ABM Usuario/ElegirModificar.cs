@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void buttonModificar_Click_1(object sender, EventArgs e)
         {
             ABM_Usuario.ModificarContraseña modifContra = new ABM_Usuario.ModificarContraseña(username, this, form);
-            modifContra.Show();
+            modifContra.ShowDialog();
         }
 
         private void buttonCancelar_Click_1(object sender, EventArgs e)
@@ -62,12 +62,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 if (rol == "Cliente")
                 {
                     ABM_Usuario.ModificarDatosCliente modifCliente = new ABM_Usuario.ModificarDatosCliente(username,this,form);
-                    modifCliente.Show();
+                    modifCliente.ShowDialog();
                 }
                 else if (rol == "Empresa")
                 {
                     ABM_Usuario.ModificarDatosEmpresa modifEmpresa = new ABM_Usuario.ModificarDatosEmpresa(username,this,form);
-                    modifEmpresa.Show();
+                    modifEmpresa.ShowDialog();
                 }
             }
             else

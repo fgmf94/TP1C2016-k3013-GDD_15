@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void buttonModificar_Click(object sender, EventArgs e)
         {
             ABM_Usuario.ElegirModificar elegirModif = new ABM_Usuario.ElegirModificar(usuario, this,rol);
-            elegirModif.Show();
+            elegirModif.ShowDialog();
         }
     }
 }

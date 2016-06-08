@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void eliminarButton_Click(object sender, EventArgs e)
         {
             elegirUsuario = new ABM_Usuario.ElegirUsuario("Eliminar Usuario","");
-            elegirUsuario.ShowDialog();
+            elegirUsuario.Show();
         }
 
         private void modificarButton_Click(object sender, EventArgs e)
