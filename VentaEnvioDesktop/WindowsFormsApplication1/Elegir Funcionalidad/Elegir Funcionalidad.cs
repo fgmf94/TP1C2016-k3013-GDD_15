@@ -54,18 +54,18 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
             {
                 case "ABM de Rol":
                     abmRol = new ABM_Rol.ABMRol();
-                    abmRol.Show();
+                    abmRol.ShowDialog();
                     break;
                 case "ABM de Usuarios":
                     if (rol == "Administrativo")
                     {
                         abmUsuario = new ABM_Usuario.ABMUsuario();
-                        abmUsuario.Show();
+                        abmUsuario.ShowDialog();
                     }
                     else if (rol == "Empresa" || rol == "Cliente")
                     {
                         mUsuario = new ABM_Usuario.Modificar_Usuario(rol, nombreUsuario);
-                        mUsuario.Show();
+                        mUsuario.ShowDialog();
                     } else {
                         MessageBox.Show("No se puede modificar un usuario del rol: " + rol);
                     }
@@ -75,15 +75,15 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     break;
                 case "ABM de visibilidad de publicación":
                     abmVis = new ABM_Visibilidad.ABMVisibilidad();
-                    abmVis.Show();
+                    abmVis.ShowDialog();
                     break;
                 case "Generar Publicación":
                     Generar_Publicación.ElegirAccion elegirAccion = new Generar_Publicación.ElegirAccion(nombreUsuario);
-                    elegirAccion.Show();
+                    elegirAccion.ShowDialog();
                     break;
                 case "Comprar/Ofertar":
                     ComprarOfertar.ElegirTipo elegirTipo = new ComprarOfertar.ElegirTipo(nombreUsuario);
-                    elegirTipo.Show();
+                    elegirTipo.ShowDialog();
                     break;
                 case "Historial":
                     MessageBox.Show("Historial");

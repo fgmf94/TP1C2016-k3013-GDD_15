@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1.ABM_Rol
             else if (elegirFormato == "Modificar Rol")
             {
                 modificarRol = new ABM_Rol.ModificarRol(comboBoxRol.Text,this);
-                modificarRol.Show();
+                modificarRol.ShowDialog();
             }
         }
 

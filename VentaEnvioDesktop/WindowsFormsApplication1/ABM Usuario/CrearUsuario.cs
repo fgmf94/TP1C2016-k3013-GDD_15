@@ -46,12 +46,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
             if (comboBoxRoles.Text == "Cliente")
             {
                 crearCliente = new ABM_Usuario.CrearCliente(usuario,this);
-                crearCliente.Show();
+                crearCliente.ShowDialog();
             }
             else if (comboBoxRoles.Text == "Empresa")
             {
                 crearEmpresa = new ABM_Usuario.CrearEmpresa(usuario,this);
-                crearEmpresa.Show();
+                crearEmpresa.ShowDialog();
             }
 
         }

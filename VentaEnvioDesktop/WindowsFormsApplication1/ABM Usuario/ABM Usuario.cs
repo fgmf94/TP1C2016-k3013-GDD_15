@@ -23,13 +23,13 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void crearButton_Click(object sender, EventArgs e)
         {
             crearUsuario = new ABM_Usuario.CrearUsuario();
-            crearUsuario.Show();
+            crearUsuario.ShowDialog();
         }
 
         private void eliminarButton_Click(object sender, EventArgs e)
         {
             elegirUsuario = new ABM_Usuario.ElegirUsuario("Eliminar Usuario","");
-            elegirUsuario.Show();
+            elegirUsuario.ShowDialog();
         }
 
         private void modificarButton_Click(object sender, EventArgs e)

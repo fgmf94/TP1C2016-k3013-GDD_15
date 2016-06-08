@@ -57,7 +57,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             if (formato == "Modificar Usuario")
             {
                 modifElegir = new ABM_Usuario.ElegirModificar(txtNombreUsuario.Text,this,"Administrativo");
-                modifElegir.Show();
+                modifElegir.ShowDialog();
             }
             else if (formato == "Eliminar Usuario")
             {
@@ -82,16 +82,16 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
             filtroCliente = new ABM_Usuario.FiltroCliente(formato);
-            filtroCliente.Show();
+            filtroCliente.ShowDialog();
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
             filtroEmpresa = new ABM_Usuario.FiltroEmpresa(formato);
-            filtroEmpresa.Show();
+            filtroEmpresa.ShowDialog();
+            this.Close();
         }
     }
 }

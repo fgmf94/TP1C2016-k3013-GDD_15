@@ -43,10 +43,10 @@ namespace WindowsFormsApplication1.Elegir_Rol
             rol = comboBoxRoles.Text;
             if(rol == "Cliente" || rol == "Empresa" || rol == "Administrativo"){
                 funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol,nombreUsuario);
-                funcionalidades.Show();
+                funcionalidades.ShowDialog();
             } else {
                 funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol, nombreUsuario);
-                funcionalidades.Show();
+                funcionalidades.ShowDialog();
             }
         }
 

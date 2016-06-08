@@ -31,7 +31,7 @@ namespace MercadoEnvio.Utils
 
             if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("No se han encontrado resultados en la consulta", "Fallo la busqueda", MessageBoxButtons.OK);
+                MessageBox.Show("No se han encontrado resultados en la consulta", "Falló la busqueda", MessageBoxButtons.OK);
                 dataGrid.DataSource = null;
 
             }

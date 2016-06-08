@@ -75,7 +75,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             else if (formato == "Modificar Visibilidad")
             {
                 modificarVisi = new ABM_Visibilidad.ModificarVisibilidad(comboBoxVisi.Text, this);
-                modificarVisi.Show();
+                modificarVisi.ShowDialog();
             }
         }
 

@@ -93,7 +93,7 @@ namespace WindowsFormsApplication1
                                 DataTable dt3 = (new ConexionSQL()).cargarTablaSQL("SELECT R.C_ROL FROM GDD_15.ROLES_USUARIOS RU JOIN GDD_15.USUARIOS U ON (U.N_ID_USUARIO = RU.N_ID_USUARIO) JOIN GDD_15.ROLES R ON (R.N_ID_ROL = RU.N_ID_ROL) WHERE U.C_USUARIO_NOMBRE = '" + username + "' AND R.N_HABILITADO = 1 AND RU.N_HABILITADO = 1");
                                 string rol = dt3.Rows[0][0].ToString();
                                 funcionalidades = new Elegir_Funcionalidad.EleccionFuncionalidad(rol, username);
-                                funcionalidades.Show();
+                                funcionalidades.ShowDialog();
                             }
                             else if (cantidadRoles == "0")
                             {
@@ -102,7 +102,7 @@ namespace WindowsFormsApplication1
                             else
                             {
                                 eleccion = new Elegir_Rol.EleccionRol(username);
-                                eleccion.Show();
+                                eleccion.ShowDialog();
                             }
                         }
                         else
