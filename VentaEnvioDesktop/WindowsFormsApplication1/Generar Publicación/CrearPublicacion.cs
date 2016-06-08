@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
     {
         String tipo;
         String nombreUsuario;
+        Int64 numeroPub;
         public CrearPublicacion(String formatoPasado, String nombreUsuarioPasado)
         {
             InitializeComponent();
@@ -48,7 +49,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 string idText = dt3.Rows[0][0].ToString();
                 Int64 idPub = Convert.ToInt64(idText);
-                txtCodPub.Text = (idPub + 1).ToString();
+                numeroPub = idPub + 1;
+                txtCodPub.Text = numeroPub.ToString();
             }
 
             nombreUsuario = nombreUsuarioPasado;
@@ -113,8 +115,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             crearPublicacion("Activa");
 
-            MessageBox.Show("Publicación generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
-            this.Close();
+            if ((MessageBox.Show("¿Desea generar la publicación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+            {
+                MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                this.Close();
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -128,8 +133,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             crearPublicacion("Borrador");
 
-            MessageBox.Show("Borrador generado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
-            this.Close();
+            if ((MessageBox.Show("¿Desea generar el borrador?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+            {
+                MessageBox.Show("Borrador " + numeroPub + " generado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                this.Close();
+            }
         }
 
         public void crearPublicacion(String estado)

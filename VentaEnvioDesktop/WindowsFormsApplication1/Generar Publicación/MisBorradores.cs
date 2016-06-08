@@ -16,5 +16,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
         {
             InitializeComponent();
         }
+
+        private void MisBorradores_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

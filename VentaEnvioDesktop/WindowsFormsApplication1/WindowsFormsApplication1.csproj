@@ -158,7 +158,14 @@
     <Compile Include="ABM Visibilidad\ModificarVisibilidad.Designer.cs">
       <DependentUpon>ModificarVisibilidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarOfertar\ListadoPublicaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarOfertar\ListadoPublicaciones.Designer.cs">
+      <DependentUpon>ListadoPublicaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Funcionalidades.cs" />
+    <Compile Include="Dominio\Rubros.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Elegir Funcionalidad\Elegir Funcionalidad.cs">
       <SubType>Form</SubType>
@@ -191,11 +198,11 @@
     <Compile Include="Calificar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComprarOfertar\Form1.cs">
+    <Compile Include="ComprarOfertar\ElegirTipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComprarOfertar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ComprarOfertar\ElegirTipo.Designer.cs">
+      <DependentUpon>ElegirTipo.cs</DependentUpon>
     </Compile>
     <Compile Include="Facturas\Form1.cs">
       <SubType>Form</SubType>
@@ -309,6 +316,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\ModificarVisibilidad.resx">
       <DependentUpon>ModificarVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\ElegirTipo.resx">
+      <DependentUpon>ElegirTipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\ListadoPublicaciones.resx">
+      <DependentUpon>ListadoPublicaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elegir Funcionalidad\Elegir Funcionalidad.resx">
       <DependentUpon>Elegir Funcionalidad.cs</DependentUpon>

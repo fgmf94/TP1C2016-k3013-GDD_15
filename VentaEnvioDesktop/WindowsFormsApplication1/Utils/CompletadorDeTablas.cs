@@ -41,6 +41,8 @@ namespace MercadoEnvio.Utils
                 dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             }
+
+            dataGrid.AllowUserToAddRows = false;
         }
 
     }

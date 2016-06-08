@@ -82,7 +82,8 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     elegirAccion.Show();
                     break;
                 case "Comprar/Ofertar":
-                    MessageBox.Show("Comprar/Ofertar");
+                    ComprarOfertar.ElegirTipo elegirTipo = new ComprarOfertar.ElegirTipo(nombreUsuario);
+                    elegirTipo.Show();
                     break;
                 case "Historial":
                     MessageBox.Show("Historial");
