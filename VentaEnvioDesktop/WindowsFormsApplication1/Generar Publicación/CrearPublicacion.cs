@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             comboBoxRubro.DataSource = dt2.DefaultView;
             comboBoxRubro.ValueMember = "D_DESCRED";
 
-            string query3 = "SELECT TOP 1 N_ID_PUBLICACION FROM GDD_15.PUBLICACIONES ORDER BY N_ID_PUBLICACION";
+            string query3 = "SELECT TOP 1 N_ID_PUBLICACION FROM GDD_15.PUBLICACIONES ORDER BY N_ID_PUBLICACION DESC ";
             DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
             if (dt3.Rows.Count == 0)
             {
@@ -111,7 +111,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return;
             }
 
-            crearPublicacion("Borrador");
+            crearPublicacion("Activa");
+
+            MessageBox.Show("Publicación generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+            this.Close();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -123,7 +126,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return;
             }
 
-            crearPublicacion("Activa");
+            crearPublicacion("Borrador");
+
+            MessageBox.Show("Borrador generado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+            this.Close();
         }
 
         public void crearPublicacion(String estado)
@@ -140,7 +146,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string rubroID = dt2.Rows[0][0].ToString();
 
-            string query4 = "SELECT C_VISIBILIDAD FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + comboBoxVisi.Text + "'";
+            int index = comboBoxVisi.Text.IndexOf("$");
+            String visibilidad = comboBoxVisi.Text.Substring(0, index);
+
+            string query4 = "SELECT C_VISIBILIDAD FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + visibilidad + "'";
             DataTable dt4 = (new ConexionSQL()).cargarTablaSQL(query4);
             string visiID = dt4.Rows[0][0].ToString();
 
@@ -158,7 +167,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 envio = "NO";
             }
 
-            string agregarPublicacion = "INSERT INTO GDD_15.PUBLICACIONES(N_ID_USUARIO, N_ID_RUBRO, C_VISIBILIDAD, N_ID_ESTADO, N_ID_TIPO, D_DESCRED, N_STOCK, F_INICIO, F_VENCIMIENTO, N_PRECIO, C_PERMITE_ENVIO) VALUES ('" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio + "', '" + envio + "')";
+            string agregarPublicacion = "INSERT INTO GDD_15.PUBLICACIONES(N_ID_USUARIO, N_ID_RUBRO, C_VISIBILIDAD, N_ID_ESTADO, N_ID_TIPO, D_DESCRED, N_STOCK, F_INICIO, F_VENCIMIENTO, N_PRECIO, C_PERMITE_ENVIO) VALUES ('" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "')";
             (new ConexionSQL()).ejecutarComandoSQL(agregarPublicacion);
         }
 
