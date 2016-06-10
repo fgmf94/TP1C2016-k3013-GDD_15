@@ -105,6 +105,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void inicializar()
         {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
             CompletadorDeTablas.hacerQuery("SELECT C_USUARIO_NOMBRE Username, D_NOMBRES Nombres, D_APELLIDOS Apellidos, N_DOCUMENTO DNI, C_CORREO Mail FROM GDD_15.USUARIOS U JOIN GDD_15.CLIENTES C ON (U.N_ID_USUARIO = C.N_ID_USUARIO)", ref dataGridView1);
             txtApellido.Text = "";
             txtNumDoc.Text = "";

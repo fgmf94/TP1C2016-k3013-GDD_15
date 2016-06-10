@@ -23,6 +23,8 @@ namespace WindowsFormsApplication1.ComprarOfertar
         public ListadoPublicaciones(String formatoPasado, String nombreUsuarioPasado)
         {
             InitializeComponent();
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
             formato = formatoPasado;
             nombreUsuario = nombreUsuarioPasado;
 
