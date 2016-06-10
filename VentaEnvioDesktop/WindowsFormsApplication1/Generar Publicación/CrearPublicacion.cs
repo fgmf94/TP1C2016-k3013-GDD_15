@@ -230,6 +230,12 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return false;
             }
 
+            if (comboBoxVisi.Text == "Gratis $0" && chkEnvio.Checked == true)
+            {
+                MessageBox.Show("La visibilidad Gratis no puede tener envío", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
     }
