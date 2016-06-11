@@ -16,12 +16,14 @@ namespace WindowsFormsApplication1.ComprarOfertar
     {
         Int64 idPubli;
         String nombreUsuario;
-        public ComprarPubli(Int64 idPubliPasado, String nombreUsuarioPasado)
+        Form form;
+        public ComprarPubli(Int64 idPubliPasado, String nombreUsuarioPasado, Form formPasado)
         {
             InitializeComponent();
             idPubli = idPubliPasado;
             inicializar();
             nombreUsuario = nombreUsuarioPasado;
+            form = formPasado;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -43,6 +45,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             {
                 realizarCompra();
                 MessageBox.Show("Compra realizada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                form.Close();
                 this.Close();
             }
         }

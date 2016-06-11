@@ -99,12 +99,12 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 Int64 idPubli = Convert.ToInt64(value1);
                 if (formato == "Subasta")
                 {
-                    ComprarOfertar.OfertarPubli ofertar = new ComprarOfertar.OfertarPubli(idPubli,nombreUsuario);
+                    ComprarOfertar.OfertarPubli ofertar = new ComprarOfertar.OfertarPubli(idPubli,nombreUsuario,this);
                     ofertar.ShowDialog();
                 } 
                 else if (formato == "Compra Inmediata")
                 {
-                    ComprarOfertar.ComprarPubli comprar = new ComprarOfertar.ComprarPubli(idPubli,nombreUsuario);
+                    ComprarOfertar.ComprarPubli comprar = new ComprarOfertar.ComprarPubli(idPubli,nombreUsuario,this);
                     comprar.ShowDialog();
                 }
                

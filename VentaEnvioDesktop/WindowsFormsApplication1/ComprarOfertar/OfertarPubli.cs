@@ -12,9 +12,15 @@ namespace WindowsFormsApplication1.ComprarOfertar
 {
     public partial class OfertarPubli : Form
     {
-        public OfertarPubli(Int64 idPubliPasado, String nombreUsuario)
+        String nombreUsuario;
+        Int64 idPubli;
+        Form form;
+        public OfertarPubli(Int64 idPubliPasado, String nombreUsuarioPasado, Form formPasado)
         {
             InitializeComponent();
+            nombreUsuario = nombreUsuarioPasado;
+            idPubli = idPubliPasado;
+            form = formPasado;
         }
 
         private void OfertarPubli_Load(object sender, EventArgs e)
