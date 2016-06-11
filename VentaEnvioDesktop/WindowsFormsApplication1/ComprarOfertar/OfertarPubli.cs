@@ -117,6 +117,8 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 return;
             }
 
+            //Validar que no esta vencida
+
             if ((MessageBox.Show("¿Desea realizar la oferta?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
             {
                 ofertar();

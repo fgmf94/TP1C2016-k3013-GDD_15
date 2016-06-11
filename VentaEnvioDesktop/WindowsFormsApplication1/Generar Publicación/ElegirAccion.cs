@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MercadoEnvio.Utils;
+
 namespace WindowsFormsApplication1.Generar_Publicación
 {
     public partial class ElegirAccion : Form
@@ -39,14 +41,32 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void buttonBorradores_Click(object sender, EventArgs e)
         {
-            Generar_Publicación.MisBorradores borradores = new Generar_Publicación.MisBorradores(nombreUsuario);
-            borradores.ShowDialog();
+            string query = "SELECT N_ID_PUBLICACION FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) WHERE C_ESTADO IN ('Borrador') AND C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            if (dt.Rows.Count == 0)
+            {
+                MessageBox.Show("No tienes borradores", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Generar_Publicación.MisBorradores borradores = new Generar_Publicación.MisBorradores(nombreUsuario);
+                borradores.ShowDialog();
+            }
         }
 
         private void buttonPublicaciones_Click(object sender, EventArgs e)
         {
-            Generar_Publicación.MisPublicaciones publis = new Generar_Publicación.MisPublicaciones(nombreUsuario);
-            publis.ShowDialog();
+            string query = "SELECT N_ID_PUBLICACION FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) WHERE C_ESTADO IN ('Activa', 'Pausada', 'Finalizada') AND C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            if (dt.Rows.Count == 0)
+            {
+                MessageBox.Show("No tienes publicaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Generar_Publicación.MisPublicaciones publis = new Generar_Publicación.MisPublicaciones(nombreUsuario);
+                publis.ShowDialog();
+            }
         }
     }
 }
