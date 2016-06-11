@@ -92,7 +92,28 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void buttonElegirPub_Click(object sender, EventArgs e)
         {
-
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = this.dataGridView1.SelectedRows[0];
+                string value1 = row.Cells["Código"].Value.ToString();
+                Int64 idPubli = Convert.ToInt64(value1);
+                if (formato == "Subasta")
+                {
+                    ComprarOfertar.OfertarPubli ofertar = new ComprarOfertar.OfertarPubli(idPubli,nombreUsuario);
+                    ofertar.ShowDialog();
+                } 
+                else if (formato == "Compra Inmediata")
+                {
+                    ComprarOfertar.ComprarPubli comprar = new ComprarOfertar.ComprarPubli(idPubli,nombreUsuario);
+                    comprar.ShowDialog();
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("Por favor, elija una publicación", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private void buttonSeleccionarTodos_Click(object sender, EventArgs e)

@@ -158,11 +158,23 @@
     <Compile Include="ABM Visibilidad\ModificarVisibilidad.Designer.cs">
       <DependentUpon>ModificarVisibilidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarOfertar\ComprarPubli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarOfertar\ComprarPubli.Designer.cs">
+      <DependentUpon>ComprarPubli.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComprarOfertar\ListadoPublicaciones.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ComprarOfertar\ListadoPublicaciones.Designer.cs">
       <DependentUpon>ListadoPublicaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComprarOfertar\OfertarPubli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarOfertar\OfertarPubli.Designer.cs">
+      <DependentUpon>OfertarPubli.cs</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Funcionalidades.cs" />
     <Compile Include="Dominio\Rubros.cs" />
@@ -317,11 +329,17 @@
     <EmbeddedResource Include="ABM Visibilidad\ModificarVisibilidad.resx">
       <DependentUpon>ModificarVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\ComprarPubli.resx">
+      <DependentUpon>ComprarPubli.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\ElegirTipo.resx">
       <DependentUpon>ElegirTipo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\ListadoPublicaciones.resx">
       <DependentUpon>ListadoPublicaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\OfertarPubli.resx">
+      <DependentUpon>OfertarPubli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elegir Funcionalidad\Elegir Funcionalidad.resx">
       <DependentUpon>Elegir Funcionalidad.cs</DependentUpon>
