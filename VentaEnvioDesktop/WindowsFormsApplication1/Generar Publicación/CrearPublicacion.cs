@@ -114,10 +114,9 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return;
             }
 
-            crearPublicacion("Activa");
-
             if ((MessageBox.Show("¿Desea generar la publicación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
             {
+                crearPublicacion("Activa");
                 MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                 this.Close();
             }
@@ -237,6 +236,19 @@ namespace WindowsFormsApplication1.Generar_Publicación
             }
 
             return true;
+        }
+
+        private void comboBoxVisi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVisi.Text == "Gratis $0")
+            {
+                chkEnvio.Checked = false;
+                chkEnvio.Enabled = false;
+            }
+            else
+            {
+                chkEnvio.Enabled = true;
+            }
         }
     }
 }

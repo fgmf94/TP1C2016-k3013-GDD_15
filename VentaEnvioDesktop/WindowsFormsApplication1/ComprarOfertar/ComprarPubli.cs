@@ -15,11 +15,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
     public partial class ComprarPubli : Form
     {
         Int64 idPubli;
-        public ComprarPubli(Int64 idPubliPasado, String nombreUsuario)
+        String nombreUsuario;
+        public ComprarPubli(Int64 idPubliPasado, String nombreUsuarioPasado)
         {
             InitializeComponent();
             idPubli = idPubliPasado;
             inicializar();
+            nombreUsuario = nombreUsuarioPasado;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -34,6 +36,36 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 MessageBox.Show("La cantidad no puede ser 0", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            //Validación publi no vencida
+
+            if ((MessageBox.Show("¿Desea realizar la comprar?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+            {
+                realizarCompra();
+                MessageBox.Show("Compra realizada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                this.Close();
+            }
+        }
+
+        private void realizarCompra()
+        {
+            string query5 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+            string usuarioID = dt5.Rows[0][0].ToString();
+
+            String envio;
+
+            if (chkEnvio.Checked == true)
+            {
+                envio = "SI";
+            }
+            else
+            {
+                envio = "NO";
+            }
+
+            string comando = "execute GDD_15.COMPRAR '" + idPubli + "', '" + usuarioID + "', '" + DateTime.Now.ToString() + "', '" + Convert.ToInt16(txtStockCant.Text) + "', '" + envio + "'";
+            DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
         private void inicializar()

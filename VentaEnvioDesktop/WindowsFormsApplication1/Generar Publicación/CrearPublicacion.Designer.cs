@@ -161,6 +161,7 @@
             this.comboBoxVisi.Name = "comboBoxVisi";
             this.comboBoxVisi.Size = new System.Drawing.Size(230, 28);
             this.comboBoxVisi.TabIndex = 143;
+            this.comboBoxVisi.SelectedIndexChanged += new System.EventHandler(this.comboBoxVisi_SelectedIndexChanged);
             // 
             // txtDescrip
             // 
