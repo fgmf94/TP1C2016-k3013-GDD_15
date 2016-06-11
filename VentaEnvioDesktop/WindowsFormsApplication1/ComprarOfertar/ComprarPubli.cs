@@ -33,6 +33,12 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            if (txtStockCant.Text == "")
+            {
+                MessageBox.Show("Complete el campo cantidad", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtStockCant.Text == "0")
             {
                 MessageBox.Show("La cantidad no puede ser 0", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
