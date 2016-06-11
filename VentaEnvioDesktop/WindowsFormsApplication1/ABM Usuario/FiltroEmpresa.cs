@@ -38,6 +38,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
+            dataGridView1.ReadOnly = true;
             txtCuit.Text = "";
             txtEmail.Text = "";
             txtRazonSoc.Text = "";

@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             InitializeComponent();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
+            dataGridView1.ReadOnly = true;
             formato = formatoPasado;
             nombreUsuario = nombreUsuarioPasado;
 
@@ -155,7 +156,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             wheres = "";
             armarWhere();
 
-            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
+            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO IN ('Activa', 'Pausada') AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string cantidadPublis = dt2.Rows[0][0].ToString();
             int cantPublis = Convert.ToInt16(cantidadPublis);
@@ -198,24 +199,24 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
             if (formato == "Compra Inmediata")
             {
-                campos = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE 'Nombre Usuario', P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO 'Precio ($)', N_STOCK Stock, C_PERMITE_ENVIO 'Permite envio', F_VENCIMIENTO 'Fecha Vencimiento'";
-                campos2 = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE, P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO, N_STOCK Stock, C_PERMITE_ENVIO, F_VENCIMIENTO, N_COMISION_PRECIO";
-                campos3 = "Código, C_USUARIO_NOMBRE 'Nombre Usuario', Descripción, Rubro, N_PRECIO 'Precio ($)', Stock, C_PERMITE_ENVIO 'Permite envio', F_VENCIMIENTO 'Fecha Vencimiento'";
+                campos = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE 'Nombre Usuario', P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO 'Precio ($)', N_STOCK Stock, C_PERMITE_ENVIO 'Permite envio', F_VENCIMIENTO 'Fecha Vencimiento', C_ESTADO 'Estado'";
+                campos2 = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE, P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO, N_STOCK Stock, C_PERMITE_ENVIO, F_VENCIMIENTO, N_COMISION_PRECIO, C_ESTADO";
+                campos3 = "Código, C_USUARIO_NOMBRE 'Nombre Usuario', Descripción, Rubro, N_PRECIO 'Precio ($)', Stock, C_PERMITE_ENVIO 'Permite envio', F_VENCIMIENTO 'Fecha Vencimiento', C_ESTADO 'Estado'";
             }
             else if (formato == "Subasta")
             {
-                campos = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE 'Nombre Usuario', P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO 'Precio Inicio ($)', C_PERMITE_ENVIO 'Permite envio', F_INICIO 'Fecha Inicio', F_VENCIMIENTO 'Fecha Vencimiento'";
-                campos2 = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE, P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO, C_PERMITE_ENVIO, F_INICIO 'Fecha Inicio', F_VENCIMIENTO, N_COMISION_PRECIO";
-                campos3 = "Código, C_USUARIO_NOMBRE 'Nombre Usuario', Descripción, Rubro, N_PRECIO 'Precio Inicio ($)', C_PERMITE_ENVIO 'Permite envio', 'Fecha Inicio', F_VENCIMIENTO 'Fecha Vencimiento'";
+                campos = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE 'Nombre Usuario', P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO 'Precio Inicio ($)', C_PERMITE_ENVIO 'Permite envio', F_INICIO 'Fecha Inicio', F_VENCIMIENTO 'Fecha Vencimiento', C_ESTADO 'Estado'";
+                campos2 = "N_ID_PUBLICACION Código, C_USUARIO_NOMBRE, P.D_DESCRED Descripción, R.D_DESCRED Rubro, N_PRECIO, C_PERMITE_ENVIO, F_INICIO, F_VENCIMIENTO, N_COMISION_PRECIO, C_ESTADO";
+                campos3 = "Código, C_USUARIO_NOMBRE 'Nombre Usuario', Descripción, Rubro, N_PRECIO 'Precio Inicio ($)', C_PERMITE_ENVIO 'Permite envio',  F_INICIO 'Fecha Inicio', F_VENCIMIENTO 'Fecha Vencimiento', C_ESTADO 'Estado'";
             }
 
             if (pagina == 1)
             {
-                CompletadorDeTablas.hacerQuery("SELECT TOP 10 " + campos + " FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres + " ORDER BY V.N_COMISION_PRECIO DESC, C_PERMITE_ENVIO DESC, N_PRECIO ASC", ref dataGridView1);
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 " + campos + " FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO IN ('Activa', 'Pausada') AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres + " ORDER BY V.N_COMISION_PRECIO DESC, C_PERMITE_ENVIO DESC, N_PRECIO ASC", ref dataGridView1);
             }
             else
             {
-                CompletadorDeTablas.hacerQuery("SELECT TOP 10 " + campos3 + " FROM (SELECT TOP " + (cantPublis - (pagina - 1) * 10).ToString() + " " + campos2 + " FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres + " ORDER BY N_COMISION_PRECIO ASC, C_PERMITE_ENVIO ASC, N_PRECIO DESC) SQ ORDER BY N_COMISION_PRECIO DESC, C_PERMITE_ENVIO DESC, N_PRECIO ASC", ref dataGridView1);
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 " + campos3 + " FROM (SELECT TOP " + (cantPublis - (pagina - 1) * 10).ToString() + " " + campos2 + " FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO IN ('Activa', 'Pausada') AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres + " ORDER BY N_COMISION_PRECIO ASC, C_PERMITE_ENVIO ASC, N_PRECIO DESC) SQ ORDER BY N_COMISION_PRECIO DESC, C_PERMITE_ENVIO DESC, N_PRECIO ASC", ref dataGridView1);
             }
 
             dataGridView1.RowTemplate.MinimumHeight = 33;
@@ -232,7 +233,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             wheres = "";
             armarWhere();
 
-            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
+            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO IN ('Activa', 'Pausada') AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string cantidadPublis = dt2.Rows[0][0].ToString();
             int cantPublis = Convert.ToInt16(cantidadPublis);
@@ -272,7 +273,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             wheres = "";
             armarWhere();
 
-            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO = 'Activa' AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
+            string query2 = "SELECT COUNT(N_ID_PUBLICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.ESTADOS E ON (P.N_ID_ESTADO = E.N_ID_ESTADO) JOIN GDD_15.TIPOS T ON (P.N_ID_TIPO = T.N_ID_TIPO) JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.USUARIOS U ON (P.N_ID_USUARIO = U.N_ID_USUARIO) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE C_TIPO = '" + formato + "' AND C_ESTADO IN ('Activa', 'Pausada') AND C_USUARIO_NOMBRE != '" + nombreUsuario + "' AND R.D_DESCRED IN " + wheres;
             DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
             string cantidadPublis = dt2.Rows[0][0].ToString();
             int cantPublis = Convert.ToInt16(cantidadPublis);
