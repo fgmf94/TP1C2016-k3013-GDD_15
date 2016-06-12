@@ -92,7 +92,7 @@ CREATE TABLE GDD_15.CLIENTES (
 GO
 /*CREO LA TABLA DE PUBLICACIONES */
 CREATE TABLE GDD_15.PUBLICACIONES (
-	N_ID_PUBLICACION BIGINT IDENTITY(1,1) PRIMARY KEY,
+	N_ID_PUBLICACION BIGINT IDENTITY(71079,1) PRIMARY KEY,
 	C_VISIBILIDAD BIGINT,
 	N_ID_USUARIO BIGINT,
 	N_ID_RUBRO BIGINT,
@@ -154,7 +154,7 @@ CREATE TABLE GDD_15.OFERTAS (
 	F_ALTA DATETIME,
 	N_MONTO FLOAT(24),
 	C_GANADOR TINYINT,
-	C_ENVIO VARCHAR(2)
+	C_ENVIO VARCHAR(2) DEFAULT 'NO'
 );
 GO
 /*CREO LA TABLA DE COMPRAS */
@@ -164,7 +164,7 @@ CREATE TABLE GDD_15.COMPRAS (
 	N_ID_CLIENTE BIGINT,
 	F_ALTA DATETIME,
 	N_CANTIDAD INT,
-	C_ENVIO VARCHAR(2)
+	C_ENVIO VARCHAR(2) DEFAULT 'NO'
 );
 GO
 /*CREO LA TABLA DE CALIFICACIONES */
@@ -512,10 +512,15 @@ END;
 GO
 
 --MIGRO PUBLICACIONES--
+
 CREATE PROCEDURE GDD_15.MIGRO_PUBLICACIONES AS
 BEGIN
+
+	SET IDENTITY_INSERT GDD_15.PUBLICACIONES ON
+
 	INSERT INTO GDD_15.PUBLICACIONES
 	(
+		N_ID_PUBLICACION,
 		C_VISIBILIDAD,
 		N_ID_USUARIO,
 		N_ID_RUBRO,
@@ -527,7 +532,8 @@ BEGIN
 		F_VENCIMIENTO,
 		N_PRECIO
 	)
-	select distinct 
+	select distinct
+			M.Publicacion_Cod,
 			M.Publicacion_Visibilidad_Cod ,
 			case when m.publ_cli_dni is not null
 			 then(select c.n_id_usuario 
@@ -550,7 +556,10 @@ BEGIN
 			Publicacion_Fecha_Venc,
 			Publicacion_Precio
 	FROM gd_esquema.Maestra m
-	WHERE Publicacion_Cod IS NOT NULL;
+	WHERE Publicacion_Cod IS NOT NULL
+
+	SET IDENTITY_INSERT GDD_15.PUBLICACIONES OFF
+
 END;
 GO
 
@@ -656,31 +665,55 @@ BEGIN
 	(
 		N_ID_PUBLICACION,
 		N_ID_COMPRA,
-	--_ID_OFERTA,
+		N_ID_OFERTA,
 		N_ID_CLIENTE,
 		N_ID_CALIFICACION,
 		D_DESCRIP,
 		C_CALIFICACION 	
 	)
-	SELECT  DISTINCT PUBLICACION_COD,
+
+	SELECT DISTINCT PUBLICACION_COD,
 	C.N_ID_COMPRA,
-	case when m.publ_cli_dni is not null
-	then(select c.n_id_usuario 
-		from GDD_15.CLIENTES c
-		where c.N_DOCUMENTO = m.publ_cli_dni)
-	else
-	(select e.n_id_usuario
-	from GDD_15.EMPRESAS e 
-	where e.N_CUIT = m.Publ_Empresa_Cuit)
-	end N_ID_USUARIO,
+	NULL N_ID_OFERTA,
+	(select c.n_id_usuario 
+	from GDD_15.CLIENTES c
+	where c.N_DOCUMENTO = cli_dni)
+	N_ID_USUARIO,
 	Calificacion_Codigo,
 	Calificacion_Descripcion,
 	Calificacion_Cant_Estrellas
-	FROM gd_esquema.Maestra m ,GDD_15.COMPRAS C
+	FROM GDD_15.COMPRAS C JOIN gd_esquema.Maestra m  ON (M.Publicacion_Cod = C.N_ID_PUBLICACION)
 	WHERE M.Calificacion_Codigo IS NOT NULL
-	AND M.Publicacion_Cod = C.N_ID_PUBLICACION
 	AND M.Compra_Cantidad = C.N_CANTIDAD
-	AND M.Compra_Fecha = C.F_ALTA;
+	AND M.Compra_Fecha = C.F_ALTA
+	AND (select c.n_id_usuario  from GDD_15.CLIENTES c where c.N_DOCUMENTO = cli_dni) = C.N_ID_CLIENTE
+
+	INSERT INTO #tmp_calificaciones
+	(
+		N_ID_PUBLICACION,
+		N_ID_COMPRA,
+		N_ID_OFERTA,
+		N_ID_CLIENTE,
+		N_ID_CALIFICACION,
+		D_DESCRIP,
+		C_CALIFICACION 	
+	)
+
+	SELECT DISTINCT PUBLICACION_COD,
+	NULL N_ID_COMPRA,
+	F.N_ID_OFERTA,
+	(select c.n_id_usuario 
+	from GDD_15.CLIENTES c
+	where c.N_DOCUMENTO = cli_dni)
+	N_ID_USUARIO,
+	Calificacion_Codigo,
+	Calificacion_Descripcion,
+	Calificacion_Cant_Estrellas
+	FROM GDD_15.OFERTAS F JOIN gd_esquema.Maestra m  ON (M.Publicacion_Cod = F.N_ID_PUBLICACION)
+	WHERE M.Calificacion_Codigo IS NOT NULL
+	AND M.Compra_Fecha = F.F_ALTA
+	AND (select c.n_id_usuario  from GDD_15.CLIENTES c where c.N_DOCUMENTO = cli_dni) = F.N_ID_CLIENTE
+
 END;
 GO
 
