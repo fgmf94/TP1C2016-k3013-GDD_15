@@ -45,7 +45,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 string value1 = row.Cells["Código"].Value.ToString();
                 string tipo = row.Cells["Tipo"].Value.ToString();
                 Int64 idPubli = Convert.ToInt64(value1);
-                Generar_Publicación.CrearPublicacion crearPubli = new Generar_Publicación.CrearPublicacion(tipo, nombreUsuario, idPubli);
+                Generar_Publicación.CrearPublicacion crearPubli = new Generar_Publicación.CrearPublicacion(tipo, nombreUsuario, idPubli,this);
                 crearPubli.Show();
             }
             else

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Historial_Cliente
 {
-    public partial class Form1 : Form
+    public partial class Historial : Form
     {
-        public Form1()
+        public Historial()
         {
             InitializeComponent();
         }

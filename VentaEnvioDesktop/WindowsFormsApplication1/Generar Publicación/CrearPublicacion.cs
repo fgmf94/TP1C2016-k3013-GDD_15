@@ -18,11 +18,13 @@ namespace WindowsFormsApplication1.Generar_Publicación
         String nombreUsuario;
         Int64 numeroPub;
         Int64 idPublicacion;
-        public CrearPublicacion(String formatoPasado, String nombreUsuarioPasado, Int64 numero)
+        Form form;
+        public CrearPublicacion(String formatoPasado, String nombreUsuarioPasado, Int64 numero, Form formPasado)
         {
             InitializeComponent();
             tipo = formatoPasado;
             idPublicacion = numero;
+            form = formPasado;
 
             if (formatoPasado == "Subasta")
             {
@@ -163,6 +165,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                     modifPublicacion("Activa");
                     MessageBox.Show("Publicación " + idPublicacion + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
+                    form.Close();
                 }
             }
         }
@@ -192,6 +195,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                     modifPublicacion("Borrador");
                     MessageBox.Show("Borrador " + idPublicacion + " modificado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
+                    form.Close();
                 }
             }
         }

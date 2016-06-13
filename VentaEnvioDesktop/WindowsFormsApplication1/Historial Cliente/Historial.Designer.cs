@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Historial_Cliente
 {
-    partial class Form1
+    partial class Historial
     {
         /// <summary>
         /// Required designer variable.

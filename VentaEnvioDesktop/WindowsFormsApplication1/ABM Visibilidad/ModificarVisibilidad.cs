@@ -34,6 +34,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             if (habilitado == "1")
             {
                estadoAnterior = chkHabilitado.Checked = true;
+               chkHabilitado.Enabled = false;
             }
             else
             {

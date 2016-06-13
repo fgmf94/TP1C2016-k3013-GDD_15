@@ -96,19 +96,28 @@ namespace WindowsFormsApplication1.ComprarOfertar
             if (dataGridView1.SelectedRows.Count != 0)
             {
                 DataGridViewRow row = this.dataGridView1.SelectedRows[0];
-                string value1 = row.Cells["Código"].Value.ToString();
-                Int64 idPubli = Convert.ToInt64(value1);
-                if (formato == "Subasta")
+                string estado = row.Cells["Estado"].Value.ToString();
+                if (estado != "Pausada")
                 {
-                    ComprarOfertar.OfertarPubli ofertar = new ComprarOfertar.OfertarPubli(idPubli,nombreUsuario,this);
-                    ofertar.ShowDialog();
-                } 
-                else if (formato == "Compra Inmediata")
-                {
-                    ComprarOfertar.ComprarPubli comprar = new ComprarOfertar.ComprarPubli(idPubli,nombreUsuario,this);
-                    comprar.ShowDialog();
+                    DataGridViewRow row2 = this.dataGridView1.SelectedRows[0];
+                    string value1 = row2.Cells["Código"].Value.ToString();
+                    Int64 idPubli = Convert.ToInt64(value1);
+                    if (formato == "Subasta")
+                    {
+                        ComprarOfertar.OfertarPubli ofertar = new ComprarOfertar.OfertarPubli(idPubli, nombreUsuario, this);
+                        ofertar.ShowDialog();
+                    }
+                    else if (formato == "Compra Inmediata")
+                    {
+                        ComprarOfertar.ComprarPubli comprar = new ComprarOfertar.ComprarPubli(idPubli, nombreUsuario, this);
+                        comprar.ShowDialog();
+                    }
                 }
-               
+                else
+                {
+                    MessageBox.Show("No se pueden realizar operaciones sobre una publicación pausada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             else
             {

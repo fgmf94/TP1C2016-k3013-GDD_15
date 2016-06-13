@@ -54,14 +54,18 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 chkEnvio.Enabled = false;
             }
 
+            string  idClienteOfertaAnerior = "";
+
             string query = "SELECT MAX(N_MONTO) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.OFERTAS O ON (P.N_ID_PUBLICACION = O.N_ID_PUBLICACION) WHERE P.N_ID_PUBLICACION = '" + idPubliText + "'";
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
             string ofertaAnterior = dt.Rows[0][0].ToString();
 
             string query3 = "SELECT N_ID_CLIENTE FROM GDD_15.PUBLICACIONES P JOIN GDD_15.OFERTAS O ON (P.N_ID_PUBLICACION = O.N_ID_PUBLICACION) WHERE P.N_ID_PUBLICACION = '" + idPubliText + "' AND N_MONTO = '" + ofertaAnterior + "'";
             DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
-            string idClienteOfertaAnerior = dt3.Rows[0][0].ToString();
-
+            if (dt3.Rows.Count != 0)
+            {
+                idClienteOfertaAnerior = dt3.Rows[0][0].ToString();
+            }
             string query5 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
             DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
             string usuarioID = dt5.Rows[0][0].ToString();

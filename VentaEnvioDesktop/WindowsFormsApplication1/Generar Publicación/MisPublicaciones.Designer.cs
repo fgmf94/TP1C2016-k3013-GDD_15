@@ -46,6 +46,7 @@
             this.buttonPausar.TabIndex = 69;
             this.buttonPausar.Text = "Pausar";
             this.buttonPausar.UseVisualStyleBackColor = true;
+            this.buttonPausar.Click += new System.EventHandler(this.buttonPausar_Click);
             // 
             // buttonFinalizar
             // 
@@ -56,6 +57,7 @@
             this.buttonFinalizar.TabIndex = 68;
             this.buttonFinalizar.Text = "Finalizar";
             this.buttonFinalizar.UseVisualStyleBackColor = true;
+            this.buttonFinalizar.Click += new System.EventHandler(this.buttonFinalizar_Click);
             // 
             // buttonCancelar
             // 
@@ -76,6 +78,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1148, 257);
             this.dataGridView1.TabIndex = 66;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label1
             // 

@@ -29,13 +29,13 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void crearButton_Click(object sender, EventArgs e)
         {
-            Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Compra Inmediata",nombreUsuario,0);
+            Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Compra Inmediata",nombreUsuario,0,this);
             crearCompra.ShowDialog();
         }
 
         private void crearSubasta_Click(object sender, EventArgs e)
         {
-            Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Subasta",nombreUsuario,0);
+            Generar_Publicación.CrearPublicacion crearCompra = new Generar_Publicación.CrearPublicacion("Subasta",nombreUsuario,0,this);
             crearCompra.ShowDialog();
         }
 
