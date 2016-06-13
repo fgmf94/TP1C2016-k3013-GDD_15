@@ -150,7 +150,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 envio = "NO";
             }
 
-            string agregarOferta = "INSERT INTO GDD_15.OFERTAS (N_ID_PUBLICACION, N_ID_CLIENTE, F_ALTA, N_MONTO, C_GANADOR, C_ENVIO) VALUES ('" + idPubli + "', '" + usuarioID + "', '" + DateTime.Now.ToString() + "', '" + txtOferta.Text + "', '0', '" + envio + "') ";
+            string agregarOferta = "INSERT INTO GDD_15.OFERTAS (N_ID_PUBLICACION, N_ID_CLIENTE, F_ALTA, N_MONTO, C_ENVIO) VALUES ('" + idPubli + "', '" + usuarioID + "', '" + DateTime.Now.ToString() + "', '" + txtOferta.Text + "', '" + envio + "') ";
             (new ConexionSQL()).ejecutarComandoSQL(agregarOferta);
         }
 
