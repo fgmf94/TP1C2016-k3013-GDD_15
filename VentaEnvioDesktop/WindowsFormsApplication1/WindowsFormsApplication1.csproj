@@ -216,11 +216,11 @@
     <Compile Include="ComprarOfertar\ElegirTipo.Designer.cs">
       <DependentUpon>ElegirTipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Facturas\Form1.cs">
+    <Compile Include="Facturas\Facturas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Facturas\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Facturas\Facturas.Designer.cs">
+      <DependentUpon>Facturas.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Publicación\CrearPublicacion.cs">
       <SubType>Form</SubType>
@@ -346,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elegir Rol\Elegir Rol.resx">
       <DependentUpon>Elegir Rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturas\Facturas.resx">
+      <DependentUpon>Facturas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicación\CrearPublicacion.resx">
       <DependentUpon>CrearPublicacion.cs</DependentUpon>

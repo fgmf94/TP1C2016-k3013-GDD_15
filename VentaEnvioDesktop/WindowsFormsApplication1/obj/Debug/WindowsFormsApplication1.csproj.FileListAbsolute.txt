@@ -101,3 +101,4 @@ C:\Users\ABM\Desktop\TP\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\Win
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.ComprarPubli.resources
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.OfertarPubli.resources
 C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Historial_Cliente.Historial.resources
+C:\Users\ABM\Desktop\TP1C2016 k3013 GDD_15\VentaEnvioDesktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Facturas.Facturas.resources

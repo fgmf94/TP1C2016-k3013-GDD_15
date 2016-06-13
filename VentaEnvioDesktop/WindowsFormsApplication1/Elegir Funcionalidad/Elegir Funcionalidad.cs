@@ -50,6 +50,11 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
         private void button1_Click(object sender, EventArgs e)
         {
             funcionalidad = comboBoxFuncionalidad.Text;
+            string query2 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string idCliente = dt2.Rows[0][0].ToString();
+            Int64 idCli = Convert.ToInt64(idCliente);
+
             switch (funcionalidad)
             {
                 case "ABM de Rol":
@@ -86,14 +91,11 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     elegirTipo.ShowDialog();
                     break;
                 case "Historial":
-                    string query2 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
-                    DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
-                    string idCliente = dt2.Rows[0][0].ToString();
-                    Int64 idCli = Convert.ToInt64(idCliente);
+                    
                     string query3 = "SELECT (SELECT COUNT(*) CUENTA FROM GDD_15.CLIENTES CL JOIN GDD_15.COMPRAS CO ON (CL.N_ID_USUARIO = CO.N_ID_CLIENTE) WHERE CL.N_ID_USUARIO = '" + idCli + "') + (SELECT COUNT(*) CUENTA FROM GDD_15.CLIENTES CL JOIN GDD_15.OFERTAS O ON (CL.N_ID_USUARIO = O.N_ID_CLIENTE) WHERE CL.N_ID_USUARIO = '" + idCli + "')";
                     DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
-                    string cantidadPublis = dt3.Rows[0][0].ToString();
-                    if (cantidadPublis != "0")
+                    string cantidadOperaciones = dt3.Rows[0][0].ToString();
+                    if (cantidadOperaciones != "0")
                     {
                         Historial_Cliente.Historial historial = new Historial_Cliente.Historial(nombreUsuario);
                         historial.ShowDialog();
@@ -107,7 +109,8 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     MessageBox.Show("Calificar al Vendedor");
                     break;
                 case "Consulta de facturas":
-                    MessageBox.Show("Consulta de facturas");
+                    Facturas.Facturas facturas = new Facturas.Facturas();
+                    facturas.ShowDialog();
                     break;
                 case "Listado Estadístico":
                     MessageBox.Show("Listado Estadístico");
