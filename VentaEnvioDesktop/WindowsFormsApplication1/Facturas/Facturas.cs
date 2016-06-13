@@ -23,5 +23,10 @@ namespace WindowsFormsApplication1.Facturas
         {
 
         }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

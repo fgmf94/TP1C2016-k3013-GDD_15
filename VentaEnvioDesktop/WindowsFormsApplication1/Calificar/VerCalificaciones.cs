@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Calificar
 {
-    public partial class Form1 : Form
+    public partial class VerCalificaciones : Form
     {
-        public Form1()
+        Int64 idCli;
+        public VerCalificaciones(Int64 idCliPasado)
         {
             InitializeComponent();
+            idCli = idCliPasado;
         }
     }
 }

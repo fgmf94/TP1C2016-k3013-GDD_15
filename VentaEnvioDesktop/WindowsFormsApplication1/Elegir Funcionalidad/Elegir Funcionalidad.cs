@@ -106,7 +106,8 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     }
                     break;
                 case "Calificar al Vendedor":
-                    MessageBox.Show("Calificar al Vendedor");
+                    Calificar.ElegirRealizar realizar = new Calificar.ElegirRealizar(idCli);
+                    realizar.ShowDialog();
                     break;
                 case "Consulta de facturas":
                     Facturas.Facturas facturas = new Facturas.Facturas(idCli);

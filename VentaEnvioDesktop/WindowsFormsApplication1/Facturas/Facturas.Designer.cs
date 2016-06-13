@@ -57,6 +57,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +83,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(31, 504);
+            this.button1.Location = new System.Drawing.Point(219, 504);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 38);
             this.button1.TabIndex = 76;
@@ -92,7 +93,7 @@
             // buttonFiltrar
             // 
             this.buttonFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonFiltrar.Location = new System.Drawing.Point(385, 504);
+            this.buttonFiltrar.Location = new System.Drawing.Point(1047, 504);
             this.buttonFiltrar.Name = "buttonFiltrar";
             this.buttonFiltrar.Size = new System.Drawing.Size(172, 38);
             this.buttonFiltrar.TabIndex = 75;
@@ -339,12 +340,24 @@
             this.label10.TabIndex = 166;
             this.label10.Text = "Comisión por envío";
             // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.buttonCancelar.Location = new System.Drawing.Point(31, 504);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(98, 38);
+            this.buttonCancelar.TabIndex = 168;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            // 
             // Facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1246, 554);
+            this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.checkBox3);
@@ -413,5 +426,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button buttonCancelar;
     }
 }

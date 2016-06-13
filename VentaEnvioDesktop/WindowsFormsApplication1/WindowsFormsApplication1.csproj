@@ -158,6 +158,24 @@
     <Compile Include="ABM Visibilidad\ModificarVisibilidad.Designer.cs">
       <DependentUpon>ModificarVisibilidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calificar\Calificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calificar\Calificar.Designer.cs">
+      <DependentUpon>Calificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calificar\CalificarOperacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calificar\CalificarOperacion.Designer.cs">
+      <DependentUpon>CalificarOperacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calificar\VerCalificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calificar\VerCalificaciones.Designer.cs">
+      <DependentUpon>VerCalificaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComprarOfertar\ComprarPubli.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,11 +222,11 @@
       <DependentUpon>ABM Visibilidad.cs</DependentUpon>
     </Compile>
     <Compile Include="BDComun.cs" />
-    <Compile Include="Calificar\Form1.cs">
+    <Compile Include="Calificar\ElegirRealizar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calificar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Calificar\ElegirRealizar.Designer.cs">
+      <DependentUpon>ElegirRealizar.cs</DependentUpon>
     </Compile>
     <Compile Include="ComprarOfertar\ElegirTipo.cs">
       <SubType>Form</SubType>
@@ -328,6 +346,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\ModificarVisibilidad.resx">
       <DependentUpon>ModificarVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\Calificar.resx">
+      <DependentUpon>Calificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\CalificarOperacion.resx">
+      <DependentUpon>CalificarOperacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\ElegirRealizar.resx">
+      <DependentUpon>ElegirRealizar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\VerCalificaciones.resx">
+      <DependentUpon>VerCalificaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\ComprarPubli.resx">
       <DependentUpon>ComprarPubli.cs</DependentUpon>
