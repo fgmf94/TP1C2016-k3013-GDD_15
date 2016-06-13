@@ -17,10 +17,12 @@ namespace WindowsFormsApplication1.Generar_Publicación
         String tipo;
         String nombreUsuario;
         Int64 numeroPub;
-        public CrearPublicacion(String formatoPasado, String nombreUsuarioPasado)
+        Int64 idPublicacion;
+        public CrearPublicacion(String formatoPasado, String nombreUsuarioPasado, Int64 numero)
         {
             InitializeComponent();
             tipo = formatoPasado;
+            idPublicacion = numero;
 
             if (formatoPasado == "Subasta")
             {
@@ -39,19 +41,49 @@ namespace WindowsFormsApplication1.Generar_Publicación
             comboBoxRubro.DataSource = dt2.DefaultView;
             comboBoxRubro.ValueMember = "D_DESCRED";
 
-            string query3 = "SELECT TOP 1 N_ID_PUBLICACION FROM GDD_15.PUBLICACIONES ORDER BY N_ID_PUBLICACION DESC ";
-            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
-            if (dt3.Rows.Count == 0)
+            if (idPublicacion == 0)
             {
-                txtCodPub.Text = "1";
-                numeroPub = 1;
+                string query3 = "SELECT TOP 1 N_ID_PUBLICACION FROM GDD_15.PUBLICACIONES ORDER BY N_ID_PUBLICACION DESC ";
+                DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+                if (dt3.Rows.Count == 0)
+                {
+                    txtCodPub.Text = "1";
+                    numeroPub = 1;
+                }
+                else
+                {
+                    string idText = dt3.Rows[0][0].ToString();
+                    Int64 idPub = Convert.ToInt64(idText);
+                    numeroPub = idPub + 1;
+                    txtCodPub.Text = numeroPub.ToString();
+                }
             }
             else
             {
-                string idText = dt3.Rows[0][0].ToString();
-                Int64 idPub = Convert.ToInt64(idText);
-                numeroPub = idPub + 1;
-                txtCodPub.Text = numeroPub.ToString();
+                txtCodPub.Text = idPublicacion.ToString();
+                string query3 = "SELECT concat(V.D_DESCRIP, ' $', N_COMISION_PRECIO), P.D_DESCRED, N_STOCK, N_PRECIO, R.D_DESCRED, P.F_VENCIMIENTO, C_PERMITE_ENVIO FROM GDD_15.PUBLICACIONES P JOIN GDD_15.VISIBILIDADES V ON (P.C_VISIBILIDAD = V.C_VISIBILIDAD) JOIN GDD_15.RUBROS R ON (P.N_ID_RUBRO = R.N_ID_RUBRO) WHERE N_ID_PUBLICACION = '" + idPublicacion + "'";
+                DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+                string visibilidad = dt3.Rows[0][0].ToString();
+                comboBoxVisi.Text = visibilidad;
+                string descripcion = dt3.Rows[0][1].ToString();
+                txtDescrip.Text = descripcion;
+                string stock = dt3.Rows[0][2].ToString();
+                txtStock.Text = stock;
+                string precio = dt3.Rows[0][3].ToString();
+                txtPrecio.Text = precio;
+                string rubro = dt3.Rows[0][4].ToString();
+                comboBoxRubro.Text = rubro;
+                string fechaVen = dt3.Rows[0][5].ToString();
+                dateFechaVen.Text = fechaVen;
+                string envio = dt3.Rows[0][6].ToString();
+                if (envio == "SI")
+                {
+                    chkEnvio.Checked = true;
+                }
+                else
+                {
+                    chkEnvio.Checked = false;
+                }
             }
 
             nombreUsuario = nombreUsuarioPasado;
@@ -131,10 +163,9 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return;
             }
 
-            crearPublicacion("Borrador");
-
             if ((MessageBox.Show("¿Desea generar el borrador?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
             {
+                crearPublicacion("Borrador");
                 MessageBox.Show("Borrador " + numeroPub + " generado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                 this.Close();
             }

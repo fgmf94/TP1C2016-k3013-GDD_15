@@ -14,10 +14,12 @@ namespace WindowsFormsApplication1.Generar_Publicación
 {
     public partial class MisBorradores : Form
     {
+        String nombreUsuario;
         public MisBorradores(String nombreUsuarioPasado)
         {
             InitializeComponent();
 
+            nombreUsuario = nombreUsuarioPasado;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
@@ -37,7 +39,20 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = this.dataGridView1.SelectedRows[0];
+                string value1 = row.Cells["Código"].Value.ToString();
+                string tipo = row.Cells["Tipo"].Value.ToString();
+                Int64 idPubli = Convert.ToInt64(value1);
+                Generar_Publicación.CrearPublicacion crearPubli = new Generar_Publicación.CrearPublicacion(tipo, nombreUsuario, idPubli);
+                crearPubli.Show();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, elija una publicación", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
