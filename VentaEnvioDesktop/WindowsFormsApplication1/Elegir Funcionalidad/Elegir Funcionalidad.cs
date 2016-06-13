@@ -109,7 +109,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     MessageBox.Show("Calificar al Vendedor");
                     break;
                 case "Consulta de facturas":
-                    Facturas.Facturas facturas = new Facturas.Facturas();
+                    Facturas.Facturas facturas = new Facturas.Facturas(idCli);
                     facturas.ShowDialog();
                     break;
                 case "Listado Estadístico":
