@@ -111,5 +111,10 @@ namespace WindowsFormsApplication1.Historial_Cliente
         {
             filtrarPag(numeroPagina + 1);
         }
+
+        private void labelTitulo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

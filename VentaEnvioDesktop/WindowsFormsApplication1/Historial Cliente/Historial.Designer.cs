@@ -113,6 +113,7 @@
             this.labelTitulo.Size = new System.Drawing.Size(178, 25);
             this.labelTitulo.TabIndex = 64;
             this.labelTitulo.Text = "Historial del Cliente";
+            this.labelTitulo.Click += new System.EventHandler(this.labelTitulo_Click);
             // 
             // label2
             // 

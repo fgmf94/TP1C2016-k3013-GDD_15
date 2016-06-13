@@ -8,15 +8,113 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MercadoEnvio.Utils;
+
 namespace WindowsFormsApplication1.Calificar
 {
     public partial class CalificarOperacion : Form
     {
         Int64 idCli;
-        public CalificarOperacion(Int64 idCliPasado)
+        Int64 idOpe;
+        String tipo;
+        Form listadoSinCalif;
+        public CalificarOperacion(Int64 idCliPasado, Int64 idOperacionPasado, String tipoPasado, Form formPasado)
         {
             InitializeComponent();
             idCli = idCliPasado;
+            idOpe = idOperacionPasado;
+            tipo = tipoPasado;
+            listadoSinCalif = formPasado;
+
+            comboBoxDetalle.SelectedIndex = 0;
+            comboBoxEstrellas.SelectedIndex = 0;
+
+            txtCodOpe.Text = idOpe.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void comboBoxDetalle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxDetalle.Text == "Texto libre")
+            {
+                txtTextoLibre.ReadOnly = false;
+            }
+            else
+            {
+                txtTextoLibre.ReadOnly = true;
+                txtTextoLibre.Text = "";
+            }
+        }
+
+        private void buttonGuardar_Click(object sender, EventArgs e)
+        {
+            if (!validaciones())
+            {
+                return;
+            }
+
+            if ((MessageBox.Show("¿Realmente desea calificar la Operación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+            {
+                calificarOperacion();
+                MessageBox.Show("Operación calificada");
+                this.Close();
+                listadoSinCalif.Close();
+            }
+        }
+
+        private void calificarOperacion()
+        {
+            string agregarCalif = "";
+            string detalle;
+
+            if (comboBoxDetalle.SelectedIndex == 0)
+            {
+                detalle = txtTextoLibre.Text;
+            }
+            else
+            {
+                detalle = comboBoxDetalle.Text;
+            }
+
+            if (tipo == "Compra Inmediata")
+            {
+                agregarCalif = "INSERT INTO GDD_15.CALIFICACIONES(N_ID_COMPRA, N_ID_CLIENTE, C_CALIFICACION, D_DESCRIP) VALUES ('" + idOpe + "', '" + idCli + "', '" + (comboBoxEstrellas.SelectedIndex + 1) + "', '" + detalle + "')";
+            }
+            else if (tipo == "Subasta")
+            {
+                agregarCalif = "INSERT INTO GDD_15.CALIFICACIONES(N_ID_OFERTA, N_ID_CLIENTE, C_CALIFICACION, D_DESCRIP) VALUES ('" + idOpe + "', '" + idCli + "', '" + (comboBoxEstrellas.SelectedIndex + 1) + "', '" + detalle + "')";
+            }
+
+            (new ConexionSQL()).ejecutarComandoSQL(agregarCalif);
+        }
+
+        private bool validaciones()
+        {
+            if (txtTextoLibre.TextLength > 250)
+            {
+                MessageBox.Show("El detalle no debe superar los 250 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (comboBoxDetalle.SelectedIndex == 0)
+            {
+                if (txtTextoLibre.Text == "")
+                {
+                    MessageBox.Show("Por favor, escribir detalle de calificación", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void comboBoxEstrellas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
