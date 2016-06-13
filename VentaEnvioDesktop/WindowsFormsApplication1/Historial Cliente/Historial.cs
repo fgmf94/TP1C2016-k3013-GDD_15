@@ -81,8 +81,14 @@ namespace WindowsFormsApplication1.Historial_Cliente
 
             if (pagina == 1)
             {
-                CompletadorDeTablas.hacerQuery("SELECT TOP 10 CO.N_ID_PUBLICACION 'Código Publicación', 'Compra Inmediata', P.D_DESCRED Descripción, N_CANTIDAD*N_PRECIO 'Monto ($)', N_CANTIDAD Cantidad, C_ENVIO Envío, 'No aplica' Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.COMPRAS CO ON (CL.N_ID_USUARIO = CO.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (CO.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "' UNION ALL SELECT O.N_ID_PUBLICACION 'Código Publicación', 'Subasta', P.D_DESCRED Descripción, N_MONTO 'Monto ($)', '1' Cantidad, C_ENVIO Envío, C_GANADOR Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.OFERTAS O ON (CL.N_ID_USUARIO = O.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (O.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "' ORDER BY F_ALTA", ref dataGridView1);
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 [Código Publicación], Tipo, Descripción, [Monto ($)], Cantidad, Envío, Ganador, [Fecha Operación]  FROM (SELECT CO.N_ID_PUBLICACION 'Código Publicación', 'Compra Inmediata' Tipo, P.D_DESCRED Descripción, N_CANTIDAD*N_PRECIO 'Monto ($)', N_CANTIDAD Cantidad, C_ENVIO Envío, 'No aplica' Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.COMPRAS CO ON (CL.N_ID_USUARIO = CO.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (CO.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "' UNION ALL SELECT O.N_ID_PUBLICACION 'Código Publicación', 'Subasta' Tipo, P.D_DESCRED Descripción, N_MONTO 'Monto ($)', '1' Cantidad, C_ENVIO Envío, C_GANADOR Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.OFERTAS O ON (CL.N_ID_USUARIO = O.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (O.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "') SQ ORDER BY [Fecha Operación]", ref dataGridView1);
             }
+            else
+            {
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 [Código Publicación], Tipo, Descripción, [Monto ($)], Cantidad, Envío, Ganador, [Fecha Operación] FROM (SELECT TOP " + (cantPublis - (pagina - 1) * 10).ToString() + " [Código Publicación], Tipo, Descripción, [Monto ($)], Cantidad, Envío, Ganador, [Fecha Operación] FROM (SELECT CO.N_ID_PUBLICACION 'Código Publicación', 'Compra Inmediata' Tipo, P.D_DESCRED Descripción, N_CANTIDAD*N_PRECIO 'Monto ($)', N_CANTIDAD Cantidad, C_ENVIO Envío, 'No aplica' Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.COMPRAS CO ON (CL.N_ID_USUARIO = CO.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (CO.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "' UNION ALL SELECT O.N_ID_PUBLICACION 'Código Publicación', 'Subasta' Tipo, P.D_DESCRED Descripción, N_MONTO 'Monto ($)', '1' Cantidad, C_ENVIO Envío, C_GANADOR Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.OFERTAS O ON (CL.N_ID_USUARIO = O.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (O.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "' ) SQ ORDER BY [Fecha Operación] DESC) SQ2 ORDER BY [Fecha Operación]", ref dataGridView1);
+            }
+
+            dataGridView1.RowTemplate.MinimumHeight = 33;
 
         }
 
@@ -93,17 +99,17 @@ namespace WindowsFormsApplication1.Historial_Cliente
 
         private void buttonPaginaAnt_Click(object sender, EventArgs e)
         {
-
+            filtrarPag(numeroPagina - 1);
         }
 
         private void buttonPriPag_Click(object sender, EventArgs e)
         {
-
+            filtrarPag(1);
         }
 
         private void buttonSigPag_Click(object sender, EventArgs e)
         {
-
+            filtrarPag(numeroPagina + 1);
         }
     }
 }

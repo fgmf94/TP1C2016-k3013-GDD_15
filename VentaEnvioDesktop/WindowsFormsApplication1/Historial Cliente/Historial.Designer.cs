@@ -46,7 +46,7 @@
             // 
             this.labelNumPag.AutoSize = true;
             this.labelNumPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumPag.Location = new System.Drawing.Point(1188, 445);
+            this.labelNumPag.Location = new System.Drawing.Point(1186, 432);
             this.labelNumPag.Name = "labelNumPag";
             this.labelNumPag.Size = new System.Drawing.Size(0, 20);
             this.labelNumPag.TabIndex = 78;
@@ -55,7 +55,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1109, 445);
+            this.label1.Location = new System.Drawing.Point(1107, 432);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 77;
@@ -64,7 +64,7 @@
             // buttonSigPag
             // 
             this.buttonSigPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSigPag.Location = new System.Drawing.Point(299, 442);
+            this.buttonSigPag.Location = new System.Drawing.Point(297, 429);
             this.buttonSigPag.Name = "buttonSigPag";
             this.buttonSigPag.Size = new System.Drawing.Size(137, 31);
             this.buttonSigPag.TabIndex = 73;
@@ -75,7 +75,7 @@
             // buttonPriPag
             // 
             this.buttonPriPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPriPag.Location = new System.Drawing.Point(156, 442);
+            this.buttonPriPag.Location = new System.Drawing.Point(154, 429);
             this.buttonPriPag.Name = "buttonPriPag";
             this.buttonPriPag.Size = new System.Drawing.Size(137, 31);
             this.buttonPriPag.TabIndex = 72;
@@ -86,7 +86,7 @@
             // buttonPaginaAnt
             // 
             this.buttonPaginaAnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPaginaAnt.Location = new System.Drawing.Point(13, 442);
+            this.buttonPaginaAnt.Location = new System.Drawing.Point(11, 429);
             this.buttonPaginaAnt.Name = "buttonPaginaAnt";
             this.buttonPaginaAnt.Size = new System.Drawing.Size(137, 31);
             this.buttonPaginaAnt.TabIndex = 71;
@@ -100,7 +100,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 62);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1227, 368);
+            this.dataGridView1.Size = new System.Drawing.Size(1227, 353);
             this.dataGridView1.TabIndex = 69;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -118,7 +118,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(442, 445);
+            this.label2.Location = new System.Drawing.Point(440, 432);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(187, 20);
             this.label2.TabIndex = 79;
@@ -128,7 +128,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(773, 445);
+            this.label3.Location = new System.Drawing.Point(771, 432);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 20);
             this.label3.TabIndex = 80;
@@ -138,7 +138,7 @@
             // 
             this.labelEstrellas.AutoSize = true;
             this.labelEstrellas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEstrellas.Location = new System.Drawing.Point(892, 445);
+            this.labelEstrellas.Location = new System.Drawing.Point(890, 432);
             this.labelEstrellas.Name = "labelEstrellas";
             this.labelEstrellas.Size = new System.Drawing.Size(0, 20);
             this.labelEstrellas.TabIndex = 81;
@@ -147,7 +147,7 @@
             // 
             this.labelOperaciones.AutoSize = true;
             this.labelOperaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOperaciones.Location = new System.Drawing.Point(622, 445);
+            this.labelOperaciones.Location = new System.Drawing.Point(620, 432);
             this.labelOperaciones.Name = "labelOperaciones";
             this.labelOperaciones.Size = new System.Drawing.Size(0, 20);
             this.labelOperaciones.TabIndex = 82;
@@ -157,7 +157,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1251, 485);
+            this.ClientSize = new System.Drawing.Size(1251, 466);
             this.Controls.Add(this.labelOperaciones);
             this.Controls.Add(this.labelEstrellas);
             this.Controls.Add(this.label3);
