@@ -302,7 +302,7 @@ begin
 SET IDENTITY_INSERT gdd_15.USUARIOS  ON
   
 	insert into  GDD_15.USUARIOS
-	(n_id_usuario,c_usuario_nombre , C_PASSWORD )
+	(n_id_usuario,c_usuario_nombre , C_PASSWORD)
 	select N_ID_USUARIO, N_DOCUMENTO,(SELECT SUBSTRING(master.dbo.fn_varbintohexstr(HASHBYTES('SHA2_256',N_DOCUMENTO)),3,250))
 	from inserted
 	
@@ -795,11 +795,23 @@ INSERT INTO GDD_15.USUARIOS(C_USUARIO_NOMBRE,C_PASSWORD)
 VALUES ('admin',(SELECT SUBSTRING(master.dbo.fn_varbintohexstr(HASHBYTES('SHA2_256','w23e')),3,250) ))
 GO
 
-/* Se le asignan todos los roles al usuario admin */
+/* Se le asigna el rol administrativo al usuario admin */
 
 INSERT INTO GDD_15.ROLES_USUARIOS(N_ID_USUARIO, N_ID_ROL)
 SELECT tablaUsuarios.N_ID_USUARIO, tablaRoles.N_ID_ROL FROM GDD_15.USUARIOS tablaUsuarios, GDD_15.ROLES tablaRoles
-WHERE tablaUsuarios.C_USUARIO_NOMBRE = 'admin'
+WHERE tablaUsuarios.C_USUARIO_NOMBRE = 'admin' AND tablaRoles.C_ROL = 'Administrativo'
+GO
+
+/* Se asignan los roles de empresa y cliente a los usuarios creados */
+
+INSERT INTO GDD_15.ROLES_USUARIOS(N_ID_USUARIO, N_ID_ROL)
+SELECT C.N_ID_USUARIO, R.N_ID_ROL FROM GDD_15.CLIENTES C, GDD_15.ROLES R
+WHERE R.C_ROL = 'Cliente'
+GO
+
+INSERT INTO GDD_15.ROLES_USUARIOS(N_ID_USUARIO, N_ID_ROL)
+SELECT E.N_ID_USUARIO, R.N_ID_ROL FROM GDD_15.EMPRESAS E, GDD_15.ROLES R
+WHERE R.C_ROL = 'Empresa'
 GO
 
 -- FIN MIGRACION --
@@ -822,6 +834,27 @@ BEGIN
 		INSERT INTO GDD_15.PUBLICACIONES(N_ID_USUARIO, N_ID_RUBRO, C_VISIBILIDAD, N_ID_ESTADO, N_ID_TIPO, D_DESCRED, N_STOCK, F_INICIO, F_VENCIMIENTO, N_PRECIO, C_PERMITE_ENVIO) VALUES (@usuarioID , @rubroID, + @visiID, @estadoID, @tipoID, @descrip, @stock, @fecha_inicio, @fecha_ven, @precio, @permite_envio)
 		SELECT @publiID = SCOPE_IDENTITY()
 		INSERT INTO GDD_15.FACTURAS(N_ID_PUBLICACION, F_ALTA) VALUES (@publiID,@fecha_inicio)
+		SELECT @facturaID = SCOPE_IDENTITY()
+		INSERT INTO GDD_15.FACTURAS_ITEMS(N_ID_FACTURA, C_VISIBILIDAD, N_MONTO) VALUES (@facturaID, @visiID, @precioVisi)
+	END
+END;
+GO
+
+CREATE PROCEDURE GDD_15.BORRADOR_A_ACTIVA @usuarioID BIGINT, @rubroID BIGINT, @visiID BIGINT, @estadoID BIGINT, @tipoID BIGINT, @descrip VARCHAR(100), @stock INT, @fecha_inicio DATETIME, @fecha_ven DATETIME, @precio FLOAT(24), @permite_envio VARCHAR(2), @idPubli BIGINT
+AS
+BEGIN
+	DECLARE @visiDesc VARCHAR(50), @precioVisi FLOAT(24), @estado VARCHAR(50)
+	SELECT @visiDesc = D_DESCRIP, @precioVisi = N_COMISION_PRECIO FROM GDD_15.VISIBILIDADES WHERE C_VISIBILIDAD = @visiID
+	SELECT @estado = C_ESTADO FROM GDD_15.ESTADOS WHERE N_ID_ESTADO = @estadoID
+	IF (@estado = 'Borrador')
+	BEGIN
+		UPDATE GDD_15.PUBLICACIONES SET N_ID_USUARIO = @usuarioID, N_ID_RUBRO = @rubroID, C_VISIBILIDAD = @visiID, N_ID_ESTADO = @estadoID, N_ID_TIPO = @tipoID, D_DESCRED = @descrip, N_STOCK = @stock, F_INICIO = @fecha_inicio, F_VENCIMIENTO = @fecha_ven, N_PRECIO = @precio, C_PERMITE_ENVIO = @permite_envio WHERE N_ID_PUBLICACION = @idPubli
+	END
+	ELSE IF  (@estado = 'Activa')
+	BEGIN
+		DECLARE @facturaID BIGINT
+		UPDATE GDD_15.PUBLICACIONES SET N_ID_USUARIO = @usuarioID, N_ID_RUBRO = @rubroID, C_VISIBILIDAD = @visiID, N_ID_ESTADO = @estadoID, N_ID_TIPO = @tipoID, D_DESCRED = @descrip, N_STOCK = @stock, F_INICIO = @fecha_inicio, F_VENCIMIENTO = @fecha_ven, N_PRECIO = @precio, C_PERMITE_ENVIO = @permite_envio WHERE N_ID_PUBLICACION = @idPubli
+		INSERT INTO GDD_15.FACTURAS(N_ID_PUBLICACION, F_ALTA) VALUES (@idPubli,@fecha_inicio)
 		SELECT @facturaID = SCOPE_IDENTITY()
 		INSERT INTO GDD_15.FACTURAS_ITEMS(N_ID_FACTURA, C_VISIBILIDAD, N_MONTO) VALUES (@facturaID, @visiID, @precioVisi)
 	END

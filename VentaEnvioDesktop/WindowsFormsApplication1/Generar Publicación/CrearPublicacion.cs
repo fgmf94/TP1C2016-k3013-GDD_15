@@ -84,6 +84,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 {
                     chkEnvio.Checked = false;
                 }
+                button1.Text = "Modificar borrador";
             }
 
             nombreUsuario = nombreUsuarioPasado;
@@ -146,11 +147,23 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return;
             }
 
-            if ((MessageBox.Show("¿Desea generar la publicación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+            if (idPublicacion == 0)
             {
-                crearPublicacion("Activa");
-                MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
-                this.Close();
+                if ((MessageBox.Show("¿Desea generar la publicación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+                {
+                    crearPublicacion("Activa");
+                    MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                    this.Close();
+                }
+            }
+            else
+            {
+                if ((MessageBox.Show("¿Desea generar la publicación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+                {
+                    modifPublicacion("Activa");
+                    MessageBox.Show("Publicación " + idPublicacion + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                    this.Close();
+                }
             }
         }
 
@@ -163,12 +176,64 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return;
             }
 
-            if ((MessageBox.Show("¿Desea generar el borrador?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+            if (idPublicacion == 0)
             {
-                crearPublicacion("Borrador");
-                MessageBox.Show("Borrador " + numeroPub + " generado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
-                this.Close();
+                if ((MessageBox.Show("¿Desea generar el borrador?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+                {
+                    crearPublicacion("Borrador");
+                    MessageBox.Show("Borrador " + numeroPub + " generado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                    this.Close();
+                }
             }
+            else
+            {
+                if ((MessageBox.Show("¿Desea modificar el borrador?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
+                {
+                    modifPublicacion("Borrador");
+                    MessageBox.Show("Borrador " + idPublicacion + " modificado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                    this.Close();
+                }
+            }
+        }
+
+        public void modifPublicacion(String estado)
+        {
+            string query3 = "SELECT N_ID_ESTADO FROM GDD_15.ESTADOS WHERE C_ESTADO = '" + estado + "'";
+            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+            string estadoID = dt3.Rows[0][0].ToString();
+
+            string query = "SELECT N_ID_TIPO FROM GDD_15.TIPOS WHERE C_TIPO = '" + tipo + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            string tipoID = dt.Rows[0][0].ToString();
+
+            string query2 = "SELECT N_ID_RUBRO FROM GDD_15.RUBROS WHERE D_DESCRED = '" + comboBoxRubro.Text + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string rubroID = dt2.Rows[0][0].ToString();
+
+            int index = comboBoxVisi.Text.IndexOf("$");
+            String visibilidad = comboBoxVisi.Text.Substring(0, index);
+
+            string query4 = "SELECT C_VISIBILIDAD FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + visibilidad + "'";
+            DataTable dt4 = (new ConexionSQL()).cargarTablaSQL(query4);
+            string visiID = dt4.Rows[0][0].ToString();
+
+            string query5 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+            string usuarioID = dt5.Rows[0][0].ToString();
+
+            String envio;
+
+            if (chkEnvio.Checked == true)
+            {
+                envio = "SI";
+            }
+            else
+            {
+                envio = "NO";
+            }
+
+            string comando = "execute GDD_15.BORRADOR_A_ACTIVA '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + idPublicacion + "'";
+            DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
         public void crearPublicacion(String estado)
