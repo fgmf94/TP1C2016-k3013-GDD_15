@@ -816,7 +816,42 @@ GO
 
 -- FIN MIGRACION --
 
-/* PROCEDURES DEL DOMINIO */
+/* PROCEDURES Y TRIGGERS DEL DOMINIO */
+
+CREATE TRIGGER  BAJA_ROL ON GDD_15.ROLES 
+AFTER UPDATE AS
+BEGIN
+	-- Declaracion de variables para el cursor
+	DECLARE	@N_ID_ROL BIGINT,
+			@C_ROL varchar(100),
+			@N_HABILITADO TINYINT
+	-- Declaración del cursor
+	DECLARE cROLES CURSOR FOR
+	SELECT N_ID_ROL, C_ROL, N_HABILITADO
+	FROM INSERTED
+	-- Apertura del cursor
+	OPEN cROLES
+	-- Lectura de la primera fila del cursor
+	FETCH cROLES INTO @N_ID_ROL, @C_ROL, @N_HABILITADO
+	WHILE (@@FETCH_STATUS = 0 )
+	BEGIN
+		-- Si el rol queda deshabilitado, actualiza la tabla de roles_usuarios
+		IF @N_HABILITADO = 0
+		BEGIN
+			UPDATE ROLES_USUARIOS
+			SET N_HABILITADO = 0
+			WHERE N_ID_ROL = @N_ID_ROL
+		END
+		
+		-- Lectura de la siguiente fila del cursor
+		FETCH cROLES INTO @N_ID_ROL, @C_ROL, @N_HABILITADO
+	END
+	-- Cierre del cursor
+	CLOSE cROLES
+	-- Liberar los recursos
+	DEALLOCATE cROLES
+END
+GO
 
 CREATE PROCEDURE GDD_15.AGREGARPUBLICACION @usuarioID BIGINT, @rubroID BIGINT, @visiID BIGINT, @estadoID BIGINT, @tipoID BIGINT, @descrip VARCHAR(100), @stock INT, @fecha_inicio DATETIME, @fecha_ven DATETIME, @precio FLOAT(24), @permite_envio VARCHAR(2)
 AS
