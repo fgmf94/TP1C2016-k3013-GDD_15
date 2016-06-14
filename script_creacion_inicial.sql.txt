@@ -1,15 +1,4 @@
-/*CREO NUEVO ESQUEMA */
-CREATE SCHEMA [GDD_15] AUTHORIZATION [gd];
-GO
-/*CREO LAS  19 TABLAS DEL DER.
-LOS CAMPOS QUE EMPIEZAN CON N_ID SON IDS
-N_ NUMEROS
-C_ CODIGOS
-D_ DESCRIPCIONES 
-D_DESCRED DESCRIPCION 
-D_DESCRIP DESCRIPCION CORTA
-*/
-/*CREO LA TABLA DE USUARIOS */
+
 CREATE TABLE GDD_15.USUARIOS (
 	N_ID_USUARIO BIGINT IDENTITY(1,1) PRIMARY KEY,
 	C_USUARIO_NOMBRE VARCHAR(250) UNIQUE,
@@ -589,6 +578,40 @@ BEGIN
 	  ORDER BY Publicacion_Cod ASC, N_ID_CLIENTE asc ;
 END;
 GO
+-- PRC QUE SIRVE PARA ACUALIZAR EL GANADOR DE LA OFERTA , QUE ES QUIEN TIENE EL MONTO MAXIMO --
+CREATE PROCEDURE GDD_15.ACTUALIZO_OFERTAS AS
+BEGIN
+DECLARE @v_n_id_publicacion BIGINT,@v_monto REAL
+-- Declaro un cursor para el manejo de las ofertas migradas--
+DECLARE ofertas CURSOR FOR
+	SELECT  n_id_publicacion, max(n_monto) monto
+	from GDD_15.ofertas
+	group by N_ID_PUBLICACION
+	order by N_ID_PUBLICACION;
+
+OPEN ofertas
+
+	-- Inserto lo que obtiene el cursor en las variables
+	FETCH NEXT FROM ofertas
+	INTO @v_n_id_publicacion,@v_monto
+	
+	  WHILE @@FETCH_STATUS = 0
+		BEGIN 
+			-- Actualizo AL GANADOR DE LA OFERTA --
+			UPDATE GDD_15.ofertas
+			set c_ganador = 'SI'
+			WHERE N_ID_PUBLICACION =@v_n_id_publicacion
+			AND N_MONTO = @v_monto
+					
+			-- Inserto lo que obtiene el cursor en las variables
+			FETCH NEXT FROM ofertas
+			INTO @v_n_id_publicacion,@v_monto
+
+END
+CLOSE ofertas
+DEALLOCATE ofertas
+END;
+GO
 --MIGRO OFERTAS--
 CREATE PROCEDURE GDD_15.MIGRO_OFERTAS AS 
 BEGIN
@@ -611,7 +634,11 @@ alter TABLE GDD_15.OFERTAS
 	  FROM gd_esquema.Maestra m
 	  WHERE Oferta_Monto IS NOT NULL
 	  ORDER BY Publicacion_Cod ASC , N_ID_CLIENTE ASC ;
+	  
+	  EXEC  GDD_15.ACTUALIZO_OFERTAS;
 END;
+
+
 GO
 --MIGRO FACTURAS--
 CREATE PROCEDURE GDD_15.MIGRO_FACTURAS AS
@@ -914,3 +941,4 @@ BEGIN
 	END
 END;
 GO
+
