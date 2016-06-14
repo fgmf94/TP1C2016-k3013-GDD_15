@@ -662,11 +662,11 @@ BEGIN
 	from gd_esquema.Maestra
 	where Factura_Nro is not null 
 	ORDER BY 1,2
-
+	---58726 facturas
 SET IDENTITY_INSERT gdd_15.FACTURAS  oFF
 
 
-/*-MIGRO ITEMS DE LAS FACTURAS --
+---MIGRO ITEMS DE LAS FACTURAS --
 	INSERT INTO GDD_15.FACTURAS_ITEMS
 	(
 		N_ID_FACTURA,
@@ -674,13 +674,14 @@ SET IDENTITY_INSERT gdd_15.FACTURAS  oFF
 		--N_ID_COMPRA
 		N_MONTO
 	 )
-	select	DISTINCT M.factura_nro,
-			M.Publicacion_Visibilidad_Cod,
-DEV_COMPRA( M.Publicacion_Cod)N_ID_COMPRA,
+	select 	(SELECT N_ID_FACTURA
+			 FROM GDD_15.FACTURAS
+			 WHERE N_ID_PUBLICACION = Publicacion_Cod)N_ID_FACTURA,
+			Publicacion_Visibilidad_Cod,
 			Item_Factura_Monto
 	from gd_esquema.Maestra M
-	where M.Factura_Nro is not null 
-	ORDER BY M.Factura_Nro ASC;*/
+	where M.Item_Factura_Monto is not null 
+	ORDER BY M.Factura_Nro ASC;
 
 END;
 GO
@@ -803,7 +804,7 @@ EXEC GDD_15.CARGO_ESTADO_TIPO_VISI;
 EXEC GDD_15.MIGRO_PUBLICACIONES;
 EXEC GDD_15.MIGRO_COMPRAS;
 EXEC GDD_15.MIGRO_OFERTAS;
-EXEC GDD_15.MIGRO_FACTURAS --MIGRA FACTURAS Y NO ITEMS TODAVIA 
+EXEC GDD_15.MIGRO_FACTURAS;
 ;--EXEC GDD_15.MIGRO_CALIFICACIONES;--FALTA TERMINARLO 
 GO
 
@@ -941,4 +942,5 @@ BEGIN
 	END
 END;
 GO
+
 
