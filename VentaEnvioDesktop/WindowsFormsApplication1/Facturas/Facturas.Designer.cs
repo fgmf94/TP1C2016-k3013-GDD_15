@@ -40,10 +40,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dateFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.label32 = new System.Windows.Forms.Label();
-            this.dateTimeFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dateFechaFin = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.chkEnvio = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkFechas = new System.Windows.Forms.CheckBox();
+            this.chkImportes = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPrecioInicio = new System.Windows.Forms.TextBox();
@@ -51,11 +51,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtPrecioFin = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chkCVentas = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.chkCTipo = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.chkCEnvio = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@
             // 
             this.labelNumPag.AutoSize = true;
             this.labelNumPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumPag.Location = new System.Drawing.Point(1186, 447);
+            this.labelNumPag.Location = new System.Drawing.Point(1187, 423);
             this.labelNumPag.Name = "labelNumPag";
             this.labelNumPag.Size = new System.Drawing.Size(0, 20);
             this.labelNumPag.TabIndex = 78;
@@ -75,7 +75,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1101, 447);
+            this.label1.Location = new System.Drawing.Point(1102, 423);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 77;
@@ -84,17 +84,18 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(219, 504);
+            this.button1.Location = new System.Drawing.Point(219, 470);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 38);
             this.button1.TabIndex = 76;
             this.button1.Text = "Reestablecer todo";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonFiltrar
             // 
             this.buttonFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonFiltrar.Location = new System.Drawing.Point(1047, 504);
+            this.buttonFiltrar.Location = new System.Drawing.Point(1047, 470);
             this.buttonFiltrar.Name = "buttonFiltrar";
             this.buttonFiltrar.Size = new System.Drawing.Size(172, 38);
             this.buttonFiltrar.TabIndex = 75;
@@ -105,7 +106,7 @@
             // buttonSigPag
             // 
             this.buttonSigPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSigPag.Location = new System.Drawing.Point(671, 447);
+            this.buttonSigPag.Location = new System.Drawing.Point(672, 423);
             this.buttonSigPag.Name = "buttonSigPag";
             this.buttonSigPag.Size = new System.Drawing.Size(137, 31);
             this.buttonSigPag.TabIndex = 73;
@@ -115,22 +116,24 @@
             // buttonPriPag
             // 
             this.buttonPriPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPriPag.Location = new System.Drawing.Point(528, 447);
+            this.buttonPriPag.Location = new System.Drawing.Point(529, 423);
             this.buttonPriPag.Name = "buttonPriPag";
             this.buttonPriPag.Size = new System.Drawing.Size(137, 31);
             this.buttonPriPag.TabIndex = 72;
             this.buttonPriPag.Text = "Primera página";
             this.buttonPriPag.UseVisualStyleBackColor = true;
+            this.buttonPriPag.Click += new System.EventHandler(this.buttonPriPag_Click);
             // 
             // buttonPaginaAnt
             // 
             this.buttonPaginaAnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPaginaAnt.Location = new System.Drawing.Point(385, 447);
+            this.buttonPaginaAnt.Location = new System.Drawing.Point(386, 423);
             this.buttonPaginaAnt.Name = "buttonPaginaAnt";
             this.buttonPaginaAnt.Size = new System.Drawing.Size(137, 31);
             this.buttonPaginaAnt.TabIndex = 71;
             this.buttonPaginaAnt.Text = "<< Página anterior";
             this.buttonPaginaAnt.UseVisualStyleBackColor = true;
+            this.buttonPaginaAnt.Click += new System.EventHandler(this.buttonPaginaAnt_Click);
             // 
             // dataGridView1
             // 
@@ -138,7 +141,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(385, 64);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(834, 368);
+            this.dataGridView1.Size = new System.Drawing.Size(834, 353);
             this.dataGridView1.TabIndex = 69;
             // 
             // labelTitulo
@@ -178,12 +181,12 @@
             this.label32.TabIndex = 149;
             this.label32.Text = "Fecha Inicio:";
             // 
-            // dateTimeFechaFin
+            // dateFechaFin
             // 
-            this.dateTimeFechaFin.Location = new System.Drawing.Point(149, 141);
-            this.dateTimeFechaFin.Name = "dateTimeFechaFin";
-            this.dateTimeFechaFin.Size = new System.Drawing.Size(230, 20);
-            this.dateTimeFechaFin.TabIndex = 152;
+            this.dateFechaFin.Location = new System.Drawing.Point(149, 141);
+            this.dateFechaFin.Name = "dateFechaFin";
+            this.dateFechaFin.Size = new System.Drawing.Size(230, 20);
+            this.dateFechaFin.TabIndex = 152;
             // 
             // label3
             // 
@@ -195,26 +198,27 @@
             this.label3.TabIndex = 151;
             this.label3.Text = "Fecha Fin:";
             // 
-            // chkEnvio
+            // chkFechas
             // 
-            this.chkEnvio.AutoSize = true;
-            this.chkEnvio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkEnvio.Location = new System.Drawing.Point(240, 73);
-            this.chkEnvio.Name = "chkEnvio";
-            this.chkEnvio.Size = new System.Drawing.Size(15, 14);
-            this.chkEnvio.TabIndex = 153;
-            this.chkEnvio.UseVisualStyleBackColor = true;
-            this.chkEnvio.CheckedChanged += new System.EventHandler(this.chkEnvio_CheckedChanged);
+            this.chkFechas.AutoSize = true;
+            this.chkFechas.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFechas.Location = new System.Drawing.Point(240, 73);
+            this.chkFechas.Name = "chkFechas";
+            this.chkFechas.Size = new System.Drawing.Size(15, 14);
+            this.chkFechas.TabIndex = 153;
+            this.chkFechas.UseVisualStyleBackColor = true;
+            this.chkFechas.CheckedChanged += new System.EventHandler(this.chkEnvio_CheckedChanged);
             // 
-            // checkBox1
+            // chkImportes
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(240, 186);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 155;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkImportes.AutoSize = true;
+            this.chkImportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkImportes.Location = new System.Drawing.Point(240, 186);
+            this.chkImportes.Name = "chkImportes";
+            this.chkImportes.Size = new System.Drawing.Size(15, 14);
+            this.chkImportes.TabIndex = 155;
+            this.chkImportes.UseVisualStyleBackColor = true;
+            this.chkImportes.CheckedChanged += new System.EventHandler(this.chkImportes_CheckedChanged);
             // 
             // label4
             // 
@@ -282,55 +286,55 @@
             this.label7.TabIndex = 159;
             this.label7.Text = "Precio Fin";
             // 
-            // checkBox2
+            // chkCVentas
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(240, 313);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 163;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkCVentas.AutoSize = true;
+            this.chkCVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCVentas.Location = new System.Drawing.Point(240, 350);
+            this.chkCVentas.Name = "chkCVentas";
+            this.chkCVentas.Size = new System.Drawing.Size(15, 14);
+            this.chkCVentas.TabIndex = 163;
+            this.chkCVentas.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(27, 307);
+            this.label8.Location = new System.Drawing.Point(27, 344);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 20);
             this.label8.TabIndex = 162;
             this.label8.Text = "Comisión por venta";
             // 
-            // checkBox3
+            // chkCTipo
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.Location = new System.Drawing.Point(240, 349);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(15, 14);
-            this.checkBox3.TabIndex = 165;
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.chkCTipo.AutoSize = true;
+            this.chkCTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCTipo.Location = new System.Drawing.Point(240, 311);
+            this.chkCTipo.Name = "chkCTipo";
+            this.chkCTipo.Size = new System.Drawing.Size(15, 14);
+            this.chkCTipo.TabIndex = 165;
+            this.chkCTipo.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(27, 343);
+            this.label9.Location = new System.Drawing.Point(27, 305);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(209, 20);
             this.label9.TabIndex = 164;
             this.label9.Text = "Comisión tipo de publicación";
             // 
-            // checkBox4
+            // chkCEnvio
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.Location = new System.Drawing.Point(240, 386);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(15, 14);
-            this.checkBox4.TabIndex = 167;
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.chkCEnvio.AutoSize = true;
+            this.chkCEnvio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCEnvio.Location = new System.Drawing.Point(240, 386);
+            this.chkCEnvio.Name = "chkCEnvio";
+            this.chkCEnvio.Size = new System.Drawing.Size(15, 14);
+            this.chkCEnvio.TabIndex = 167;
+            this.chkCEnvio.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -345,7 +349,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonCancelar.Location = new System.Drawing.Point(31, 504);
+            this.buttonCancelar.Location = new System.Drawing.Point(31, 470);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(98, 38);
             this.buttonCancelar.TabIndex = 168;
@@ -368,14 +372,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1246, 554);
+            this.ClientSize = new System.Drawing.Size(1246, 520);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.buttonCancelar);
-            this.Controls.Add(this.checkBox4);
+            this.Controls.Add(this.chkCEnvio);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.chkCTipo);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.chkCVentas);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtPrecioFin);
@@ -383,10 +387,10 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPrecioInicio);
             this.Controls.Add(this.labelPrecio);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkImportes);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.chkEnvio);
-            this.Controls.Add(this.dateTimeFechaFin);
+            this.Controls.Add(this.chkFechas);
+            this.Controls.Add(this.dateFechaFin);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateFechaInicio);
             this.Controls.Add(this.label32);
@@ -422,10 +426,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateFechaInicio;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.DateTimePicker dateTimeFechaFin;
+        private System.Windows.Forms.DateTimePicker dateFechaFin;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chkEnvio;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkFechas;
+        private System.Windows.Forms.CheckBox chkImportes;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPrecioInicio;
@@ -433,11 +437,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPrecioFin;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chkCVentas;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox chkCTipo;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox chkCEnvio;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Label label11;
