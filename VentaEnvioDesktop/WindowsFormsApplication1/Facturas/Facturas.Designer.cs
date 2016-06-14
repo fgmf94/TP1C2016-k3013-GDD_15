@@ -58,6 +58,7 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,7 +145,7 @@
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.labelTitulo.Location = new System.Drawing.Point(577, 23);
+            this.labelTitulo.Location = new System.Drawing.Point(731, 23);
             this.labelTitulo.Name = "labelTitulo";
             this.labelTitulo.Size = new System.Drawing.Size(88, 25);
             this.labelTitulo.TabIndex = 64;
@@ -203,6 +204,7 @@
             this.chkEnvio.Size = new System.Drawing.Size(15, 14);
             this.chkEnvio.TabIndex = 153;
             this.chkEnvio.UseVisualStyleBackColor = true;
+            this.chkEnvio.CheckedChanged += new System.EventHandler(this.chkEnvio_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -351,12 +353,23 @@
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label11.Location = new System.Drawing.Point(148, 23);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 25);
+            this.label11.TabIndex = 169;
+            this.label11.Text = "Filtros";
+            // 
             // Facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1246, 554);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.label10);
@@ -427,5 +440,6 @@
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Label label11;
     }
 }
