@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelEstrellas = new System.Windows.Forms.Label();
             this.labelOperaciones = new System.Windows.Forms.Label();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,12 +154,24 @@
             this.labelOperaciones.Size = new System.Drawing.Size(0, 20);
             this.labelOperaciones.TabIndex = 82;
             // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.buttonCancelar.Location = new System.Drawing.Point(12, 466);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(97, 38);
+            this.buttonCancelar.TabIndex = 83;
+            this.buttonCancelar.Text = "Atrás";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            // 
             // Historial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1251, 466);
+            this.ClientSize = new System.Drawing.Size(1251, 509);
+            this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.labelOperaciones);
             this.Controls.Add(this.labelEstrellas);
             this.Controls.Add(this.label3);
@@ -191,5 +204,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelEstrellas;
         private System.Windows.Forms.Label labelOperaciones;
+        private System.Windows.Forms.Button buttonCancelar;
     }
 }

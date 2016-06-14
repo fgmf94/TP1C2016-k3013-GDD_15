@@ -102,7 +102,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     }
                     else
                     {
-                        MessageBox.Show("No hay operaciones en el historial");
+                        MessageBox.Show("No hay operaciones en el historial", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
                 case "Calificar al Vendedor":

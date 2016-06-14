@@ -41,7 +41,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 62);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1227, 353);
+            this.dataGridView1.Size = new System.Drawing.Size(1013, 251);
             this.dataGridView1.TabIndex = 71;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -49,7 +49,7 @@
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.labelTitulo.Location = new System.Drawing.Point(507, 19);
+            this.labelTitulo.Location = new System.Drawing.Point(403, 20);
             this.labelTitulo.Name = "labelTitulo";
             this.labelTitulo.Size = new System.Drawing.Size(229, 25);
             this.labelTitulo.TabIndex = 70;
@@ -58,7 +58,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 421);
+            this.button1.Location = new System.Drawing.Point(12, 319);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 58);
             this.button1.TabIndex = 73;
@@ -69,7 +69,7 @@
             // buttonGuardar
             // 
             this.buttonGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonGuardar.Location = new System.Drawing.Point(1122, 421);
+            this.buttonGuardar.Location = new System.Drawing.Point(908, 319);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(117, 58);
             this.buttonGuardar.TabIndex = 72;
@@ -82,7 +82,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1251, 488);
+            this.ClientSize = new System.Drawing.Size(1039, 388);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.dataGridView1);

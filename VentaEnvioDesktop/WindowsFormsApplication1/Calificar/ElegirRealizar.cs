@@ -28,8 +28,18 @@ namespace WindowsFormsApplication1.Calificar
 
         private void button2_Click(object sender, EventArgs e)
         {
-            VerCalificaciones verCalif = new VerCalificaciones(idCli);
-            verCalif.ShowDialog();
+            string query = "SELECT COUNT([Código Compra u Oferta]) FROM (SELECT N_ID_COMPRA 'Código Compra u Oferta', C_CALIFICACION 'Estrellas', D_DESCRIP 'Detalle' FROM GDD_15.CALIFICACIONES WHERE N_ID_COMPRA IS NOT NULL AND N_ID_CLIENTE = '" + idCli + "' UNION ALL SELECT N_ID_OFERTA 'Código Compra u Oferta', C_CALIFICACION 'Estrellas', D_DESCRIP 'Detalle' FROM GDD_15.CALIFICACIONES WHERE N_ID_OFERTA IS NOT NULL AND N_ID_CLIENTE = '" + idCli + "' ) SQ";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            string cantidad = dt.Rows[0][0].ToString();
+            if (cantidad == "0")
+            {
+                MessageBox.Show("No hay operaciones calificadas", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                VerCalificaciones verCalif = new VerCalificaciones(idCli);
+                verCalif.ShowDialog();
+            }
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
