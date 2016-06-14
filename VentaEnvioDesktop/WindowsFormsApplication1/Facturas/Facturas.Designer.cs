@@ -95,7 +95,7 @@
             // buttonFiltrar
             // 
             this.buttonFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonFiltrar.Location = new System.Drawing.Point(1047, 470);
+            this.buttonFiltrar.Location = new System.Drawing.Point(386, 470);
             this.buttonFiltrar.Name = "buttonFiltrar";
             this.buttonFiltrar.Size = new System.Drawing.Size(172, 38);
             this.buttonFiltrar.TabIndex = 75;
@@ -112,6 +112,7 @@
             this.buttonSigPag.TabIndex = 73;
             this.buttonSigPag.Text = "Siguiente página >>";
             this.buttonSigPag.UseVisualStyleBackColor = true;
+            this.buttonSigPag.Click += new System.EventHandler(this.buttonSigPag_Click);
             // 
             // buttonPriPag
             // 

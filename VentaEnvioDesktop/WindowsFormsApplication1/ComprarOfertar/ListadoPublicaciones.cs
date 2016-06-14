@@ -268,6 +268,12 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void buttonPriPag_Click(object sender, EventArgs e)
         {
+            if (chkListaRubros.CheckedIndices.Count == 0)
+            {
+                MessageBox.Show("Se debe elegir al menos un rubro", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            };
+
             filtrarPag(1);
         }
 

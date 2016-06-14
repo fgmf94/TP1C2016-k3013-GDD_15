@@ -31,8 +31,6 @@ namespace WindowsFormsApplication1.Facturas
             dataGridView1.RowTemplate.MinimumHeight = 33;
 
             inicializar();
-
-            filtrarPagina(1);
         }
 
         private void inicializar()
@@ -60,7 +58,35 @@ namespace WindowsFormsApplication1.Facturas
         {
             wheres = "";
 
-            
+            wheres = wheres + "WHERE [Detalle] IN (";
+
+            if (chkCTipo.Checked == true)
+            {
+                wheres = wheres + " 'Comisión por tipo de visibilidad',";
+            }
+
+            if (chkCVentas.Checked == true)
+            {
+                wheres = wheres + " 'Comisión por venta',";
+            }
+
+            if (chkCEnvio.Checked == true)
+            {
+                wheres = wheres + " 'Comisión por envío',";
+            }
+
+            wheres = wheres.Substring(0, wheres.Length - 1);
+            wheres = wheres + ")";
+
+            if (chkImportes.Checked == true)
+            {
+                wheres = wheres + " AND [Monto Item ($)] BETWEEN " + txtPrecioInicio.Text + " AND " + txtPrecioFin.Text;
+            }
+
+            if (chkFechas.Checked == true)
+            {
+                wheres = wheres + " AND [Fecha Alta] BETWEEN '" + DateTime.Parse(dateFechaInicio.Text) + "' AND '" + DateTime.Parse(dateFechaFin.Text) + "'";
+            }
         }
 
         private void filtrarPagina(int pagina)
@@ -70,13 +96,51 @@ namespace WindowsFormsApplication1.Facturas
 
             armarWheres();
 
-            if (pagina == 1)
+            string query2 = "SELECT COUNT([Código Factura]) FROM (SELECT F.N_ID_FACTURA 'Código Factura', N_ID_ITEM 'Código Item', CASE WHEN FI.N_ID_OFERTA IS NULL AND FI.N_ID_COMPRA IS NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por tipo de visibilidad' WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NULL THEN 'Comisión por venta'  WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por envío' END AS 'Detalle', N_MONTO 'Monto Item ($)', F.F_ALTA 'Fecha Alta' FROM GDD_15.PUBLICACIONES P JOIN GDD_15.FACTURAS F ON (P.N_ID_PUBLICACION = F.N_ID_PUBLICACION) JOIN GDD_15.FACTURAS_ITEMS FI ON (F.N_ID_FACTURA = FI.N_ID_FACTURA) WHERE N_ID_USUARIO = '" + idCli + "') SQ " + wheres;
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string cantidadPublis = dt2.Rows[0][0].ToString();
+            int cantPublis = Convert.ToInt16(cantidadPublis);
+            if ((cantPublis % 10) == 0)
             {
-                CompletadorDeTablas.hacerQuery("SELECT TOP 10 F.N_ID_FACTURA 'Código Factura', N_ID_ITEM 'Código Item', (CASE WHEN FI.N_ID_OFERTA IS NULL AND FI.N_ID_COMPRA IS NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por tipo de visibilidad' WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NULL THEN 'Comisión por venta'  WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por envío' END) 'Detalle', N_MONTO 'Monto Item ($)', F.F_ALTA 'Fecha Alta' FROM GDD_15.PUBLICACIONES P JOIN GDD_15.FACTURAS F ON (P.N_ID_PUBLICACION = F.N_ID_PUBLICACION) JOIN GDD_15.FACTURAS_ITEMS FI ON (F.N_ID_FACTURA = FI.N_ID_FACTURA) WHERE N_ID_USUARIO = '" + idCli + "' ORDER BY F.F_ALTA", ref dataGridView1);
+                cantTotalPags = (cantPublis / 10);
             }
             else
             {
-                //CompletadorDeTablas.hacerQuery("SELECT TOP 10 [Código Publicación], Tipo, Descripción, [Monto ($)], Cantidad, Envío, Ganador, [Fecha Operación] FROM (SELECT TOP " + (cantPublis - (pagina - 1) * 10).ToString() + " [Código Publicación], Tipo, Descripción, [Monto ($)], Cantidad, Envío, Ganador, [Fecha Operación] FROM (SELECT CO.N_ID_PUBLICACION 'Código Publicación', 'Compra Inmediata' Tipo, P.D_DESCRED Descripción, N_CANTIDAD*N_PRECIO 'Monto ($)', N_CANTIDAD Cantidad, C_ENVIO Envío, 'No aplica' Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.COMPRAS CO ON (CL.N_ID_USUARIO = CO.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (CO.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "' UNION ALL SELECT O.N_ID_PUBLICACION 'Código Publicación', 'Subasta' Tipo, P.D_DESCRED Descripción, N_MONTO 'Monto ($)', '1' Cantidad, C_ENVIO Envío, C_GANADOR Ganador, F_ALTA 'Fecha Operación' FROM GDD_15.CLIENTES CL JOIN GDD_15.OFERTAS O ON (CL.N_ID_USUARIO = O.N_ID_CLIENTE) JOIN GDD_15.PUBLICACIONES P ON (O.N_ID_PUBLICACION = P.N_ID_PUBLICACION) WHERE CL.N_ID_USUARIO = '" + idCli + "' ) SQ ORDER BY [Fecha Operación] DESC) SQ2 ORDER BY [Fecha Operación]", ref dataGridView1);
+                cantTotalPags = (cantPublis / 10) + 1;
+            }
+
+            if (pagina == cantTotalPags)
+            {
+                buttonSigPag.Enabled = false;
+            }
+
+            if (pagina == 1)
+            {
+                buttonPaginaAnt.Enabled = false;
+                buttonPriPag.Enabled = false;
+
+                if (cantTotalPags == 1)
+                {
+                    buttonSigPag.Enabled = false;
+                }
+                else
+                {
+                    buttonSigPag.Enabled = true;
+                }
+            }
+            else
+            {
+                buttonPaginaAnt.Enabled = true;
+                buttonPriPag.Enabled = true;
+            }
+
+            if (pagina == 1)
+            {
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 [Código Factura], [Código Item], [Detalle], [Monto Item ($)], [Fecha Alta] FROM (SELECT F.N_ID_FACTURA 'Código Factura', N_ID_ITEM 'Código Item', CASE WHEN FI.N_ID_OFERTA IS NULL AND FI.N_ID_COMPRA IS NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por tipo de visibilidad' WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NULL THEN 'Comisión por venta'  WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por envío' END AS 'Detalle', N_MONTO 'Monto Item ($)', F.F_ALTA 'Fecha Alta' FROM GDD_15.PUBLICACIONES P JOIN GDD_15.FACTURAS F ON (P.N_ID_PUBLICACION = F.N_ID_PUBLICACION) JOIN GDD_15.FACTURAS_ITEMS FI ON (F.N_ID_FACTURA = FI.N_ID_FACTURA) WHERE N_ID_USUARIO = '" + idCli + "') SQ " + wheres + " ORDER BY [Fecha Alta]", ref dataGridView1);
+            }
+            else
+            {
+                CompletadorDeTablas.hacerQuery("SELECT TOP 10 [Código Factura], [Código Item], [Detalle], [Monto Item ($)], [Fecha Alta] FROM (SELECT TOP " + (cantPublis - (pagina - 1) * 10).ToString() + " [Código Factura], [Código Item], [Detalle], [Monto Item ($)], [Fecha Alta] FROM (SELECT F.N_ID_FACTURA 'Código Factura', N_ID_ITEM 'Código Item', CASE WHEN FI.N_ID_OFERTA IS NULL AND FI.N_ID_COMPRA IS NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por tipo de visibilidad' WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NULL THEN 'Comisión por venta'  WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por envío' END AS 'Detalle', N_MONTO 'Monto Item ($)', F.F_ALTA 'Fecha Alta' FROM GDD_15.PUBLICACIONES P JOIN GDD_15.FACTURAS F ON (P.N_ID_PUBLICACION = F.N_ID_PUBLICACION) JOIN GDD_15.FACTURAS_ITEMS FI ON (F.N_ID_FACTURA = FI.N_ID_FACTURA) WHERE N_ID_USUARIO = '" + idCli + "') SQ " + wheres + " ORDER BY [Fecha Alta] DESC) SQ2 ORDER BY [Fecha Alta]", ref dataGridView1);
             }
         }
 
@@ -119,7 +183,35 @@ namespace WindowsFormsApplication1.Facturas
 
             if (chkImportes.Checked == true)
             {
+                int ini;
 
+                try
+                {
+                    ini = Convert.ToInt32(txtPrecioInicio.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("El precio de inicio debe ser un entero menor a 2147483647", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                int fin;
+
+                try
+                {
+                    fin = Convert.ToInt32(txtPrecioFin.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("El precio de fin debe ser un entero menor a 2147483647", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (ini >= fin)
+                {
+                    MessageBox.Show("El precio de fin debe ser mayor al precio de inicio", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
 
             return true;
@@ -136,11 +228,15 @@ namespace WindowsFormsApplication1.Facturas
             {
                 dateFechaInicio.Enabled = true;
                 dateFechaFin.Enabled = true;
+                dateFechaFin.Text = DateTime.Today.ToString();
+                dateFechaInicio.Text = DateTime.Today.ToString();
             } 
             else if(chkFechas.Checked == false)
             {
                 dateFechaInicio.Enabled = false;
                 dateFechaFin.Enabled = false;
+                dateFechaFin.Text = DateTime.Today.ToString();
+                dateFechaInicio.Text = DateTime.Today.ToString();
             }
         }
 
@@ -150,11 +246,15 @@ namespace WindowsFormsApplication1.Facturas
             {
                 txtPrecioInicio.ReadOnly = false;
                 txtPrecioFin.ReadOnly = false;
+                txtPrecioFin.Text = "";
+                txtPrecioInicio.Text = "";
             }
             else if (chkImportes.Checked == false)
             {
                 txtPrecioInicio.ReadOnly = true;
                 txtPrecioFin.ReadOnly = true;
+                txtPrecioFin.Text = "";
+                txtPrecioInicio.Text = "";
             }
         }
 
@@ -165,12 +265,78 @@ namespace WindowsFormsApplication1.Facturas
 
         private void buttonPaginaAnt_Click(object sender, EventArgs e)
         {
+            if (!validaciones())
+            {
+                return;
+            }
 
+            armarWheres();
+
+            string query2 = "SELECT COUNT([Código Factura]) FROM (SELECT F.N_ID_FACTURA 'Código Factura', N_ID_ITEM 'Código Item', CASE WHEN FI.N_ID_OFERTA IS NULL AND FI.N_ID_COMPRA IS NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por tipo de visibilidad' WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NULL THEN 'Comisión por venta'  WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por envío' END AS 'Detalle', N_MONTO 'Monto Item ($)', F.F_ALTA 'Fecha Alta' FROM GDD_15.PUBLICACIONES P JOIN GDD_15.FACTURAS F ON (P.N_ID_PUBLICACION = F.N_ID_PUBLICACION) JOIN GDD_15.FACTURAS_ITEMS FI ON (F.N_ID_FACTURA = FI.N_ID_FACTURA) WHERE N_ID_USUARIO = '" + idCli + "') SQ " + wheres;
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string cantidadPublis = dt2.Rows[0][0].ToString();
+            int cantPublis = Convert.ToInt16(cantidadPublis);
+            if ((cantPublis % 10) == 0)
+            {
+                cantTotalPags = (cantPublis / 10);
+            }
+            else
+            {
+                cantTotalPags = (cantPublis / 10) + 1;
+            }
+
+            if (cantTotalPags >= numeroPagina - 1)
+            {
+                filtrarPagina(numeroPagina - 1);
+            }
+            else
+            {
+                MessageBox.Show("No hay página anterior para esa búsqueda (Muestro primera página)", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                filtrarPagina(1);
+            }
         }
 
         private void buttonPriPag_Click(object sender, EventArgs e)
         {
+            if (!validaciones())
+            {
+                return;
+            }
+
             filtrarPagina(1);
+        }
+
+        private void buttonSigPag_Click(object sender, EventArgs e)
+        {
+            if (!validaciones())
+            {
+                return;
+            }
+
+            armarWheres();
+
+            string query2 = "SELECT COUNT([Código Factura]) FROM (SELECT F.N_ID_FACTURA 'Código Factura', N_ID_ITEM 'Código Item', CASE WHEN FI.N_ID_OFERTA IS NULL AND FI.N_ID_COMPRA IS NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por tipo de visibilidad' WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NULL THEN 'Comisión por venta'  WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por envío' END AS 'Detalle', N_MONTO 'Monto Item ($)', F.F_ALTA 'Fecha Alta' FROM GDD_15.PUBLICACIONES P JOIN GDD_15.FACTURAS F ON (P.N_ID_PUBLICACION = F.N_ID_PUBLICACION) JOIN GDD_15.FACTURAS_ITEMS FI ON (F.N_ID_FACTURA = FI.N_ID_FACTURA) WHERE N_ID_USUARIO = '" + idCli + "') SQ " + wheres;
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string cantidadPublis = dt2.Rows[0][0].ToString();
+            int cantPublis = Convert.ToInt16(cantidadPublis);
+            if ((cantPublis % 10) == 0)
+            {
+                cantTotalPags = (cantPublis / 10);
+            }
+            else
+            {
+                cantTotalPags = (cantPublis / 10) + 1;
+            }
+
+            if (cantTotalPags > numeroPagina)
+            {
+                filtrarPagina(numeroPagina + 1);
+            }
+            else
+            {
+                MessageBox.Show("No hay siguiente página para esa búsqueda (Muestro primera página)", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                filtrarPagina(1);
+            }
         }
     }
 }
