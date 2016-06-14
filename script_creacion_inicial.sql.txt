@@ -565,7 +565,7 @@ BEGIN
 	 Compra_Fecha
 	  FROM gd_esquema.Maestra m
 	  WHERE COMPRA_CANTIDAD IS NOT NULL
-	  ORDER BY Publicacion_Cod ASC, N_ID_CLIENTE asc, Compra_Fecha ASC;
+	  ORDER BY Publicacion_Cod ASC, N_ID_CLIENTE asc, Compra_Fecha ASC, Compra_Cantidad ASC, Calificacion_Cant_Estrellas ASC;
 
 	  DELETE FROM GDD_15.#TMP_COMPRAS WHERE (N_ID_COMPRA  % 2) = 1
 
@@ -702,8 +702,8 @@ GO
 
 /*CREO TMP DE CALIFICACIONES */
 CREATE TABLE GDD_15.#TMP_CALIFICACIONES (
-N_ID_PUBLICACION BIGINT,
-	N_ID_CALIFICACION BIGINT PRIMARY KEY,
+	N_ID_PUBLICACION BIGINT,
+	N_ID_CALIFICACION BIGINT,
 	N_ID_COMPRA BIGINT,
 	N_ID_OFERTA	BIGINT,
 	N_ID_CLIENTE BIGINT,
@@ -715,8 +715,6 @@ GO
 CREATE PROCEDURE GDD_15.MIGRO_CALIFICACIONES AS
 BEGIN
 --- cuando hago la parte de n_id_compra me trae varias rows y no se como hacer para que me traiga una 
-SELECT COUNT(*), N_ID_COMPRA FROM GDD_15.#TMP_CALIFICACIONES GROUP BY N_ID_COMPRA HAVING COUNT(*)>1
-SELECT * FROM GDD_15.#TMP_CALIFICACIONES
 
 	INSERT INTO #tmp_calificaciones
 	(
@@ -729,7 +727,7 @@ SELECT * FROM GDD_15.#TMP_CALIFICACIONES
 		C_CALIFICACION 	
 	)
 
-	SELECT DISTINCT PUBLICACION_COD,
+	SELECT PUBLICACION_COD,
 	C.N_ID_COMPRA,
 	NULL N_ID_OFERTA,
 	(select c.n_id_usuario 
@@ -738,13 +736,27 @@ SELECT * FROM GDD_15.#TMP_CALIFICACIONES
 	N_ID_USUARIO,
 	Calificacion_Codigo,
 	Calificacion_Descripcion,
-	FLOOR((Calificacion_Cant_Estrellas + 1) / 2)
+	FLOOR((Calificacion_Cant_Estrellas + 1) / 2) Calificacion
 	FROM GDD_15.COMPRAS C JOIN gd_esquema.Maestra m  ON (M.Publicacion_Cod = C.N_ID_PUBLICACION)
 	WHERE M.Calificacion_Codigo IS NOT NULL
 	AND M.Compra_Cantidad = C.N_CANTIDAD
 	AND M.Compra_Fecha = C.F_ALTA
 	AND (select c.n_id_usuario  from GDD_15.CLIENTES c where c.N_DOCUMENTO = cli_dni) = C.N_ID_CLIENTE
 	AND PUBLICACION_COD IN (SELECT N_ID_PUBLICACION FROM GDD_15.COMPRAS) 
+	AND Publicacion_Cod = 13538
+
+	/*WITH CTE AS(
+    SELECT C_CALIFICACION,
+    RN = ROW_NUMBER() OVER(PARTITION BY N_ID_CALIFICACION ORDER BY N_ID_CALIFICACION)
+    FROM #tmp_calificaciones
+    )
+	DELETE FROM CTE WHERE RN > 1*/
+
+	SELECT * FROM GDD_15.#tmp_calificaciones
+
+	DELETE FROM #tmp_calificaciones WHERE N_ID_COMPRA IN (SELECT N_ID_COMPRA FROM GDD_15.#TMP_CALIFICACIONES GROUP BY N_ID_COMPRA HAVING COUNT(*)>1 ORDER BY N_ID_COMPRA ASC)
+
+	SELECT N_ID_CALIFICACION FROM GDD_15.#TMP_CALIFICACIONES GROUP BY N_ID_CALIFICACION HAVING COUNT(*)>1 ORDER BY N_ID_CALIFICACION ASC
 
 	INSERT INTO #tmp_calificaciones
 	(
@@ -766,7 +778,7 @@ SELECT * FROM GDD_15.#TMP_CALIFICACIONES
 	N_ID_USUARIO,
 	Calificacion_Codigo,
 	Calificacion_Descripcion,
-	FLOOR((Calificacion_Cant_Estrellas + 1) / 2)
+	FLOOR((Calificacion_Cant_Estrellas + 1) / 2) Calificacion
 	FROM GDD_15.OFERTAS F JOIN gd_esquema.Maestra m  ON (M.Publicacion_Cod = F.N_ID_PUBLICACION)
 	WHERE M.Calificacion_Codigo IS NOT NULL
 	AND M.Compra_Fecha = F.F_ALTA
