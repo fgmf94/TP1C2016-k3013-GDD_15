@@ -156,10 +156,15 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private bool validaciones()
         {
-            oferta = (new Validaciones()).validacionStringAFloat(txtOferta.Text, "Error Oferta");
+            int oferta;
 
-            if (oferta == -1)
+            try
             {
+                oferta = Convert.ToInt32(txtOferta.Text);
+            }
+            catch
+            {
+                MessageBox.Show("La oferta debe ser un entero menor a 2147483647", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
