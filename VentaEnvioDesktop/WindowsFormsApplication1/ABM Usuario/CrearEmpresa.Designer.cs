@@ -437,6 +437,7 @@
             this.dateFechaNac.Name = "dateFechaNac";
             this.dateFechaNac.Size = new System.Drawing.Size(230, 20);
             this.dateFechaNac.TabIndex = 140;
+            this.dateFechaNac.ValueChanged += new System.EventHandler(this.dateFechaNac_ValueChanged);
             // 
             // buttonCancelar
             // 

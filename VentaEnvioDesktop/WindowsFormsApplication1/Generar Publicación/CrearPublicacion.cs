@@ -34,6 +34,9 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 txtStock.Text = "1";
             }
 
+            DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
+            dateFechaVen.Text = diaDeHoy.ToString();
+
             string query = "SELECT concat(D_DESCRIP, ' $', N_COMISION_PRECIO) AS VISI FROM GDD_15.VISIBILIDADES WHERE N_HABILITADO = 1";
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
             comboBoxVisi.DataSource = dt.DefaultView;
@@ -278,7 +281,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             //string agregarPublicacion = "INSERT INTO GDD_15.PUBLICACIONES(N_ID_USUARIO, N_ID_RUBRO, C_VISIBILIDAD, N_ID_ESTADO, N_ID_TIPO, D_DESCRED, N_STOCK, F_INICIO, F_VENCIMIENTO, N_PRECIO, C_PERMITE_ENVIO) VALUES ('" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "')";
             //(new ConexionSQL()).ejecutarComandoSQL(agregarPublicacion);
 
-            string comando = "execute GDD_15.AGREGARPUBLICACION '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "'";
+            string comando = "execute GDD_15.AGREGARPUBLICACION '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
@@ -321,7 +324,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return false;
             }
 
-            DateTime diaDeHoy = DateTime.Now;
+            DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
 
             if (diaDeHoy > DateTime.Parse(dateFechaVen.Text))
             {

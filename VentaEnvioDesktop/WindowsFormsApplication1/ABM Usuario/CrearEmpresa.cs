@@ -25,6 +25,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
             DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT D_DESCRED FROM GDD_15.RUBROS");
             comboBoxRubro.DataSource = dt.DefaultView;
             comboBoxRubro.ValueMember = "D_DESCRED";
+            DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
+            dateFechaNac.Text = diaDeHoy.ToString();
         }
 
         private void CrearEmpresa_Load(object sender, EventArgs e)
@@ -215,7 +217,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 return false;
             }
 
-            DateTime diaDeHoy = DateTime.Now;
+            DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
 
             if (diaDeHoy < DateTime.Parse(dateFechaNac.Text))
             {
@@ -282,6 +284,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
         }
 
         private void comboBoxRubro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateFechaNac_ValueChanged(object sender, EventArgs e)
         {
 
         }

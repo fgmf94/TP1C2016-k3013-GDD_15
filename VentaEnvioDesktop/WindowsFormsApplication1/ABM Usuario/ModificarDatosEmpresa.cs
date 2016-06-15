@@ -26,6 +26,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             form2 = formPasado2;
             usuario = new Usuario();
 
+            DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
+            dateFechaNac.Text = diaDeHoy.ToString();
+
             usuario.username = usuarioPasado;
 
             string query = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + usuarioPasado + "'";

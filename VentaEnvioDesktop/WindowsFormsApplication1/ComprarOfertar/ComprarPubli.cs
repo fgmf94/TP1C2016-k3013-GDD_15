@@ -73,7 +73,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 envio = "NO";
             }
 
-            string comando = "execute GDD_15.COMPRAR '" + idPubli + "', '" + usuarioID + "', '" + DateTime.Now.ToString() + "', '" + Convert.ToInt16(txtStockCant.Text) + "', '" + envio + "'";
+            string comando = "execute GDD_15.COMPRAR '" + idPubli + "', '" + usuarioID + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + Convert.ToInt16(txtStockCant.Text) + "', '" + envio + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 

@@ -40,8 +40,8 @@ namespace WindowsFormsApplication1.Facturas
             txtPrecioInicio.ReadOnly = true;
             txtPrecioFin.ReadOnly = true;
 
-            dateFechaFin.Text = DateTime.Today.ToString();
-            dateFechaInicio.Text = DateTime.Today.ToString();
+            dateFechaFin.Text = DateTime.Parse(Program.nuevaFechaSistema()).ToString();
+            dateFechaInicio.Text = DateTime.Parse(Program.nuevaFechaSistema()).ToString();
             txtPrecioFin.Text = "";
             txtPrecioInicio.Text = "";
 
@@ -166,7 +166,7 @@ namespace WindowsFormsApplication1.Facturas
             {
                 DateTime ini = DateTime.Parse(dateFechaInicio.Text);
                 DateTime fin = DateTime.Parse(dateFechaFin.Text);
-                DateTime today = DateTime.Today;
+                DateTime today = DateTime.Parse(Program.nuevaFechaSistema());
 
                 if (ini >= fin)
                 {

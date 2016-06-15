@@ -24,11 +24,9 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
 
-            DateTime fecha;
-            fecha = DateTime.Parse(Program.nuevaFechaSistema());
+            DateTime fecha = DateTime.Parse(Program.nuevaFechaSistema());
             labelDia.Text = fecha.Day.ToString() + "/" + fecha.Month + "/" + fecha.Year;    
 
-            //labelDia.Text = DateTime.Today.ToString();
         }
 
         private void Inicio_Load(object sender, EventArgs e)

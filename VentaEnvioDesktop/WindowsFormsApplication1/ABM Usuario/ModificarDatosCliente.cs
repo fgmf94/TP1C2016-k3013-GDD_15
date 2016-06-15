@@ -24,6 +24,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             form1 = formPasada1;
             form2 = formPasada2;
 
+            DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
+            dateFechaNac.Text = diaDeHoy.ToString();
+
             usuario = new Usuario();
             usuario.username = usuarioPasado;
 
