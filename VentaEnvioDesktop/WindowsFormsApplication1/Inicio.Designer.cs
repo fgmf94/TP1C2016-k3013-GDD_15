@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1
             this.txtPass = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.BotonLogin = new System.Windows.Forms.Button();
+            this.labelDia = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -109,12 +110,22 @@ namespace WindowsFormsApplication1
             this.BotonLogin.UseVisualStyleBackColor = true;
             this.BotonLogin.Click += new System.EventHandler(this.BotonLogin_Click);
             // 
+            // labelDia
+            // 
+            this.labelDia.AutoSize = true;
+            this.labelDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.labelDia.Location = new System.Drawing.Point(12, 9);
+            this.labelDia.Name = "labelDia";
+            this.labelDia.Size = new System.Drawing.Size(0, 20);
+            this.labelDia.TabIndex = 4;
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(543, 272);
+            this.Controls.Add(this.labelDia);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.BotonLogin);
@@ -137,6 +148,7 @@ namespace WindowsFormsApplication1
         private TextBox txtPass;
         private TextBox txtNombre;
         private Button BotonLogin;
+        private Label labelDia;
 
     }
 }
