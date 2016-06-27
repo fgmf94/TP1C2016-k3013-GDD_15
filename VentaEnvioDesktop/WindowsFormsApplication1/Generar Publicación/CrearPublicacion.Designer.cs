@@ -178,6 +178,7 @@
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(230, 26);
             this.txtStock.TabIndex = 145;
+            this.txtStock.TextChanged += new System.EventHandler(this.txtStock_TextChanged);
             // 
             // txtPrecio
             // 

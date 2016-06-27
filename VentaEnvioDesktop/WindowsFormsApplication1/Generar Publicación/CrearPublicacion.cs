@@ -313,7 +313,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             if (stock < 1)
             {
-                MessageBox.Show("El número de documento debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de stock debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -352,6 +352,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 chkEnvio.Enabled = true;
             }
+        }
+
+        private void txtStock_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
