@@ -228,15 +228,15 @@ namespace WindowsFormsApplication1.Facturas
             {
                 dateFechaInicio.Enabled = true;
                 dateFechaFin.Enabled = true;
-                dateFechaFin.Text = DateTime.Today.ToString();
-                dateFechaInicio.Text = DateTime.Today.ToString();
+                dateFechaFin.Text = DateTime.Parse(Program.nuevaFechaSistema()).ToString();
+                dateFechaInicio.Text = DateTime.Parse(Program.nuevaFechaSistema()).ToString();
             } 
             else if(chkFechas.Checked == false)
             {
                 dateFechaInicio.Enabled = false;
                 dateFechaFin.Enabled = false;
-                dateFechaFin.Text = DateTime.Today.ToString();
-                dateFechaInicio.Text = DateTime.Today.ToString();
+                dateFechaFin.Text = DateTime.Parse(Program.nuevaFechaSistema()).ToString();
+                dateFechaInicio.Text = DateTime.Parse(Program.nuevaFechaSistema()).ToString();
             }
         }
 
