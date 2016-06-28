@@ -90,8 +90,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     ComprarOfertar.ElegirTipo elegirTipo = new ComprarOfertar.ElegirTipo(nombreUsuario);
                     elegirTipo.ShowDialog();
                     break;
-                case "Historial":
-                    
+                case "Historial":    
                     string query3 = "SELECT (SELECT COUNT(*) CUENTA FROM GDD_15.CLIENTES CL JOIN GDD_15.COMPRAS CO ON (CL.N_ID_USUARIO = CO.N_ID_CLIENTE) WHERE CL.N_ID_USUARIO = '" + idCli + "') + (SELECT COUNT(*) CUENTA FROM GDD_15.CLIENTES CL JOIN GDD_15.OFERTAS O ON (CL.N_ID_USUARIO = O.N_ID_CLIENTE) WHERE CL.N_ID_USUARIO = '" + idCli + "')";
                     DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
                     string cantidadOperaciones = dt3.Rows[0][0].ToString();
@@ -110,8 +109,18 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     realizar.ShowDialog();
                     break;
                 case "Consulta de facturas":
-                    Facturas.Facturas facturas = new Facturas.Facturas(idCli);
-                    facturas.ShowDialog();
+                    string query4 = "SELECT COUNT([Código Factura]) FROM (SELECT F.N_ID_FACTURA 'Código Factura', N_ID_ITEM 'Código Item', CASE WHEN FI.N_ID_OFERTA IS NULL AND FI.N_ID_COMPRA IS NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por tipo de visibilidad' WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NULL THEN 'Comisión por venta'  WHEN FI.N_ID_OFERTA IS NOT NULL OR FI.N_ID_COMPRA IS NOT NULL AND FI.C_VISIBILIDAD IS NOT NULL THEN 'Comisión por envío' END AS 'Detalle', N_MONTO 'Monto Item ($)', F.F_ALTA 'Fecha Alta' FROM GDD_15.PUBLICACIONES P JOIN GDD_15.FACTURAS F ON (P.N_ID_PUBLICACION = F.N_ID_PUBLICACION) JOIN GDD_15.FACTURAS_ITEMS FI ON (F.N_ID_FACTURA = FI.N_ID_FACTURA) WHERE N_ID_USUARIO = '" + idCli + "') SQ ";
+                    DataTable dt4 = (new ConexionSQL()).cargarTablaSQL(query4);
+                    string cantidadFacturas = dt4.Rows[0][0].ToString();
+                    if (cantidadFacturas != "0")
+                    {
+                        Facturas.Facturas facturas = new Facturas.Facturas(idCli);
+                        facturas.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay facturas para mostrar", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     break;
                 case "Listado Estadístico":
                     MessageBox.Show("Listado Estadístico");
