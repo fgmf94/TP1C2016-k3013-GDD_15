@@ -25,8 +25,10 @@ namespace WindowsFormsApplication1
             InitializeComponent();
 
             DateTime fecha = DateTime.Parse(Program.nuevaFechaSistema());
-            labelDia.Text = fecha.Day.ToString() + "/" + fecha.Month + "/" + fecha.Year;    
+            labelDia.Text = fecha.Day.ToString() + "/" + fecha.Month + "/" + fecha.Year;
 
+            string comando = "execute GDD_15.FINALIZAR_PUBLIS '" + fecha + "'";
+            DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
         private void Inicio_Load(object sender, EventArgs e)
