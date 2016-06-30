@@ -224,7 +224,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
             DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
            
-            if (diaDeHoy < DateTime.Parse(dateFechaNac.Text))
+            if (diaDeHoy <= DateTime.Parse(dateFechaNac.Text))
             {
                 MessageBox.Show("La fecha de nacimiento tiene que ser anterior al día de hoy", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
