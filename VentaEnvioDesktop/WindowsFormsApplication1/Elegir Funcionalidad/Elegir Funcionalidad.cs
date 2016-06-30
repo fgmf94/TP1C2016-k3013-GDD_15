@@ -87,8 +87,32 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     elegirAccion.ShowDialog();
                     break;
                 case "Comprar/Ofertar":
-                    ComprarOfertar.ElegirTipo elegirTipo = new ComprarOfertar.ElegirTipo(nombreUsuario);
-                    elegirTipo.ShowDialog();
+                    string query6 = "SELECT N_COMPRA_HABILITADA FROM GDD_15.CLIENTES WHERE N_ID_USUARIO = '" + idCli + "'";
+                    DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(query6);
+                    string compraHabilitada = dt6.Rows[0][0].ToString();
+                    if (compraHabilitada == "1")
+                    {
+                        string query5 = "SELECT (SELECT COUNT(*) FROM GDD_15.OFERTAS WHERE N_ID_CLIENTE = '" + idCli + "' AND C_GANADOR = 'SI') + (SELECT COUNT(*) FROM GDD_15.COMPRAS WHERE N_ID_CLIENTE = '" + idCli + "') - (SELECT COUNT(*) FROM GDD_15.CALIFICACIONES WHERE N_ID_CLIENTE = '" + idCli + "')";
+                        DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+                        string comprasSinCalif = dt5.Rows[0][0].ToString();
+                        Int32 cantComprasSinCalif = Convert.ToInt32(comprasSinCalif);
+                        if (cantComprasSinCalif < 4)
+                        {
+                            ComprarOfertar.ElegirTipo elegirTipo = new ComprarOfertar.ElegirTipo(nombreUsuario);
+                            elegirTipo.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras hasta que califique todas sus publiaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
+                            DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe calificar todas sus publicaciones para realizar una compra u oferta", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     break;
                 case "Historial":    
                     string query3 = "SELECT (SELECT COUNT(*) CUENTA FROM GDD_15.CLIENTES CL JOIN GDD_15.COMPRAS CO ON (CL.N_ID_USUARIO = CO.N_ID_CLIENTE) WHERE CL.N_ID_USUARIO = '" + idCli + "') + (SELECT COUNT(*) CUENTA FROM GDD_15.CLIENTES CL JOIN GDD_15.OFERTAS O ON (CL.N_ID_USUARIO = O.N_ID_CLIENTE) WHERE CL.N_ID_USUARIO = '" + idCli + "')";
