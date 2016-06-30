@@ -34,6 +34,23 @@ namespace WindowsFormsApplication1.Historial_Cliente
             dataGridView1.ReadOnly = true;
 
             dataGridView1.RowTemplate.MinimumHeight = 33;
+
+            string query5 = "SELECT (SELECT COUNT(*) FROM GDD_15.OFERTAS WHERE N_ID_CLIENTE = '" + idCli + "' AND C_GANADOR = 'SI') + (SELECT COUNT(*) FROM GDD_15.COMPRAS WHERE N_ID_CLIENTE = '" + idCli + "') - (SELECT COUNT(*) FROM GDD_15.CALIFICACIONES WHERE N_ID_CLIENTE = '" + idCli + "')";
+            DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+            string comprasSinCalif = dt5.Rows[0][0].ToString();
+            labelOperaciones.Text = comprasSinCalif;
+
+            string query6 = "SELECT SUM(C_CALIFICACION) FROM GDD_15.CALIFICACIONES WHERE N_ID_CLIENTE = '" + idCli + "'";
+            DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(query6);
+            string estrellasDadas = dt6.Rows[0][0].ToString();
+            if (estrellasDadas == "")
+            {
+                labelEstrellas.Text = "0";
+            }
+            else
+            {
+                labelEstrellas.Text = estrellasDadas;
+            }
             filtrarPag(1);
         }
 
