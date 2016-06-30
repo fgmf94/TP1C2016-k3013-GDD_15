@@ -172,6 +172,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
                         crearPublicacion("Activa", publiGratis);
                         MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                         this.Close();
+
+                        Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                        fact.ShowDialog();
+
                         return;
                     }
                     else
@@ -180,6 +184,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
                         MessageBox.Show("Publicación " + idPublicacion + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                         this.Close();
                         form.Close();
+
+                        Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                        fact.ShowDialog();
+
                         return;
                     }
                 }
@@ -192,6 +200,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
                     crearPublicacion("Activa", "NO");
                     MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
+
+                    Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                    fact.ShowDialog();
+
+                    return;
                 }
             }
             else
@@ -202,6 +215,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
                     MessageBox.Show("Publicación " + idPublicacion + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                     form.Close();
+
+                    Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                    fact.ShowDialog();
+
+                    return;
                 }
             }
         }
