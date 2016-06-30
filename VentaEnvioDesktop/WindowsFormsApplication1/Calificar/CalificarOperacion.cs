@@ -60,7 +60,20 @@ namespace WindowsFormsApplication1.Calificar
             if ((MessageBox.Show("¿Realmente desea calificar la Operación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
             {
                 calificarOperacion();
+                string query5 = "SELECT (SELECT COUNT(*) FROM GDD_15.OFERTAS WHERE N_ID_CLIENTE = '" + idCli + "' AND C_GANADOR = 'SI') + (SELECT COUNT(*) FROM GDD_15.COMPRAS WHERE N_ID_CLIENTE = '" + idCli + "') - (SELECT COUNT(*) FROM GDD_15.CALIFICACIONES WHERE N_ID_CLIENTE = '" + idCli + "')";
+                DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+                string comprasSinCalif = dt5.Rows[0][0].ToString();
+                Int32 cantComprasSinCalif = Convert.ToInt32(comprasSinCalif);
+                string query6 = "SELECT N_COMPRA_HABILITADA FROM GDD_15.CLIENTES WHERE N_ID_USUARIO = '" + idCli + "'";
+                DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(query6);
+                string compraHabilitada = dt6.Rows[0][0].ToString();
                 MessageBox.Show("Operación calificada");
+                if (cantComprasSinCalif == 0 && compraHabilitada == "0")
+                {
+                    string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '1' WHERE N_ID_USUARIO = '" + idCli + "'";
+                    DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
+                    MessageBox.Show("Ahora puede volver a realizar compras u ofertas");
+                }
                 this.Close();
                 listadoSinCalif.Close();
             }

@@ -103,9 +103,9 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                         }
                         else
                         {
-                            MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras hasta que califique todas sus publiaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
                             DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
+                            MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publiaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else

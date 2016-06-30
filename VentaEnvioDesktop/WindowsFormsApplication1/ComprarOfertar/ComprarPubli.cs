@@ -73,7 +73,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 envio = "NO";
             }
 
-            string comando = "execute GDD_15.COMPRAR '" + idPubli + "', '" + usuarioID + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + Convert.ToInt16(txtStockCant.Text) + "', '" + envio + "'";
+            string comando = "execute GDD_15.COMPRAR '" + idPubli + "', '" + usuarioID + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + Convert.ToInt32(txtStockCant.Text) + "', '" + envio + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
@@ -115,20 +115,20 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 return;
             }
 
-            int stockInt;
+            Int32 stockInt;
 
             try
             {
-                stockInt = Convert.ToInt16(txtStockCant.Text);
+                stockInt = Convert.ToInt32(txtStockCant.Text);
             }
             catch
             {
-                MessageBox.Show("El número de stock debe ser un entero menor a 32767", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de stock debe ser un entero menor a 2147483647", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtStockCant.Text = "1";
                 return;
             }
 
-            if (stockInt > Convert.ToInt16(txtStockDisp.Text))
+            if (stockInt > Convert.ToInt32(txtStockDisp.Text))
             {
                 MessageBox.Show("La cantidad no puede ser mayor al stock disponible", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtStockCant.Text = "1";
