@@ -152,11 +152,44 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return;
             }
 
+            string query3 = "SELECT N_PUBLICACION_GRATIS FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+            string publiGratis = dt3.Rows[0][0].ToString();
+
+            int index = comboBoxVisi.Text.IndexOf("$");
+            String visibilidad = comboBoxVisi.Text.Substring(0, index-1);
+
+            if (publiGratis == "SI" && visibilidad != "Gratis")
+            {
+                if ((MessageBox.Show("Posee el beneficio de una publicación sin costo de comisión de visibilidad por ser un nuevo usuario ¿Desea utilizarlo?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No))
+                {
+                    return;
+                }
+                else
+                {
+                    if (idPublicacion == 0)
+                    {
+                        crearPublicacion("Activa", publiGratis);
+                        MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                        this.Close();
+                        return;
+                    }
+                    else
+                    {
+                        modifPublicacion("Activa", publiGratis);
+                        MessageBox.Show("Publicación " + idPublicacion + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                        this.Close();
+                        form.Close();
+                        return;
+                    }
+                }
+            }
+
             if (idPublicacion == 0)
             {
                 if ((MessageBox.Show("¿Desea generar la publicación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
-                    crearPublicacion("Activa");
+                    crearPublicacion("Activa", "NO");
                     MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                 }
@@ -165,7 +198,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 if ((MessageBox.Show("¿Desea generar la publicación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
-                    modifPublicacion("Activa");
+                    modifPublicacion("Activa", "NO");
                     MessageBox.Show("Publicación " + idPublicacion + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                     form.Close();
@@ -186,7 +219,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 if ((MessageBox.Show("¿Desea generar el borrador?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
-                    crearPublicacion("Borrador");
+                    crearPublicacion("Borrador", "NO");
                     MessageBox.Show("Borrador " + numeroPub + " generado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                 }
@@ -195,7 +228,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 if ((MessageBox.Show("¿Desea modificar el borrador?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
-                    modifPublicacion("Borrador");
+                    modifPublicacion("Borrador", "NO");
                     MessageBox.Show("Borrador " + idPublicacion + " modificado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
                     form.Close();
@@ -203,7 +236,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             }
         }
 
-        public void modifPublicacion(String estado)
+        public void modifPublicacion(String estado, String beneficioGratis)
         {
             string query3 = "SELECT N_ID_ESTADO FROM GDD_15.ESTADOS WHERE C_ESTADO = '" + estado + "'";
             DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
@@ -218,7 +251,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             string rubroID = dt2.Rows[0][0].ToString();
 
             int index = comboBoxVisi.Text.IndexOf("$");
-            String visibilidad = comboBoxVisi.Text.Substring(0, index);
+            String visibilidad = comboBoxVisi.Text.Substring(0, index-1);
 
             string query4 = "SELECT C_VISIBILIDAD FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + visibilidad + "'";
             DataTable dt4 = (new ConexionSQL()).cargarTablaSQL(query4);
@@ -239,11 +272,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 envio = "NO";
             }
 
-            string comando = "execute GDD_15.BORRADOR_A_ACTIVA '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + idPublicacion + "'";
+            string comando = "execute GDD_15.BORRADOR_A_ACTIVA '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + idPublicacion + "', '" + beneficioGratis + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
-        public void crearPublicacion(String estado)
+        public void crearPublicacion(String estado, String beneficioGratis)
         {
             string query3 = "SELECT N_ID_ESTADO FROM GDD_15.ESTADOS WHERE C_ESTADO = '" + estado + "'";
             DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
@@ -258,7 +291,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             string rubroID = dt2.Rows[0][0].ToString();
 
             int index = comboBoxVisi.Text.IndexOf("$");
-            String visibilidad = comboBoxVisi.Text.Substring(0, index);
+            String visibilidad = comboBoxVisi.Text.Substring(0, index-1);
 
             string query4 = "SELECT C_VISIBILIDAD FROM GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + visibilidad + "'";
             DataTable dt4 = (new ConexionSQL()).cargarTablaSQL(query4);
@@ -281,7 +314,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             //string agregarPublicacion = "INSERT INTO GDD_15.PUBLICACIONES(N_ID_USUARIO, N_ID_RUBRO, C_VISIBILIDAD, N_ID_ESTADO, N_ID_TIPO, D_DESCRED, N_STOCK, F_INICIO, F_VENCIMIENTO, N_PRECIO, C_PERMITE_ENVIO) VALUES ('" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "')";
             //(new ConexionSQL()).ejecutarComandoSQL(agregarPublicacion);
 
-            string comando = "execute GDD_15.AGREGARPUBLICACION '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "'";
+            string comando = "execute GDD_15.AGREGARPUBLICACION '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + beneficioGratis + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
