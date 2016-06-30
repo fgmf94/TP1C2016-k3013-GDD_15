@@ -272,7 +272,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 envio = "NO";
             }
 
-            string comando = "execute GDD_15.BORRADOR_A_ACTIVA '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + idPublicacion + "', '" + beneficioGratis + "'";
+            string comando = "execute GDD_15.BORRADOR_A_ACTIVA '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + idPublicacion + "', '" + beneficioGratis + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
