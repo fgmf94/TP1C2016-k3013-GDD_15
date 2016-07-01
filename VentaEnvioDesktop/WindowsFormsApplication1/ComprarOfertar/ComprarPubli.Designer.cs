@@ -53,6 +53,7 @@
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.txtRubro = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.labelSobre100 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -210,6 +211,7 @@
             this.txtReputacion.ReadOnly = true;
             this.txtReputacion.Size = new System.Drawing.Size(230, 26);
             this.txtReputacion.TabIndex = 179;
+            this.txtReputacion.TextChanged += new System.EventHandler(this.txtReputacion_TextChanged);
             // 
             // label3
             // 
@@ -298,12 +300,25 @@
             this.label10.TabIndex = 187;
             this.label10.Text = "Rubro";
             // 
+            // labelSobre100
+            // 
+            this.labelSobre100.AutoSize = true;
+            this.labelSobre100.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.labelSobre100.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSobre100.Location = new System.Drawing.Point(395, 331);
+            this.labelSobre100.Name = "labelSobre100";
+            this.labelSobre100.Size = new System.Drawing.Size(40, 20);
+            this.labelSobre100.TabIndex = 189;
+            this.labelSobre100.Text = "/100";
+            this.labelSobre100.Click += new System.EventHandler(this.label11_Click);
+            // 
             // ComprarPubli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(511, 552);
+            this.Controls.Add(this.labelSobre100);
             this.Controls.Add(this.txtRubro);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -363,5 +378,6 @@
         private System.Windows.Forms.TextBox txtNombreUsuario;
         private System.Windows.Forms.TextBox txtRubro;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelSobre100;
     }
 }

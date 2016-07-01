@@ -24,6 +24,75 @@ namespace WindowsFormsApplication1.ComprarOfertar
             inicializar();
             nombreUsuario = nombreUsuarioPasado;
             form = formPasado;
+
+            calcularReputacion();
+        }
+
+        private void calcularReputacion()
+        {
+            string query5 = "SELECT N_ID_USUARIO FROM GDD_15.PUBLICACIONES WHERE N_ID_PUBLICACION = '" + idPubli + "'";
+            DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+            string usuarioID = dt5.Rows[0][0].ToString();
+
+            string query = "SELECT COUNT(*), SUM(C_CALIFICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.OFERTAS O ON (O.N_ID_PUBLICACION = P.N_ID_PUBLICACION) JOIN GDD_15.CALIFICACIONES C ON (C.N_ID_OFERTA = O.N_ID_OFERTA) WHERE P.N_ID_USUARIO = '" + usuarioID + "'";
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
+            Int64 cantOfertasCalif = Convert.ToInt64(dt.Rows[0][0].ToString());
+            Int64 estrellasOfertas;
+            if (cantOfertasCalif != 0)
+            {
+                estrellasOfertas = Convert.ToInt64(dt.Rows[0][1].ToString());
+            }
+            else
+            {
+                estrellasOfertas = 0;
+            }
+
+            string query2 = "SELECT COUNT(*), SUM(C_CALIFICACION) FROM GDD_15.PUBLICACIONES P JOIN GDD_15.COMPRAS CO ON (CO.N_ID_PUBLICACION = P.N_ID_PUBLICACION) JOIN GDD_15.CALIFICACIONES CA ON (CA.N_ID_COMPRA = CO.N_ID_COMPRA) WHERE P.N_ID_USUARIO = '" + usuarioID + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            Int64 cantComprasCalif = Convert.ToInt64(dt2.Rows[0][0].ToString());
+            Int64 estrellasCompras;
+            if(cantComprasCalif != 0)
+            {
+                estrellasCompras = Convert.ToInt64(dt2.Rows[0][1].ToString());
+            } 
+            else
+            {
+                estrellasCompras = 0;
+            }
+
+            if (cantComprasCalif + cantOfertasCalif == 0)
+            {
+                txtReputacion.Text = "No tiene calificaciones";
+                labelSobre100.Hide();
+                return;
+            }
+
+            float promedio = (estrellasOfertas + estrellasCompras) / (cantComprasCalif + cantOfertasCalif);
+
+            float factor = factorDeAjuste(cantComprasCalif + cantOfertasCalif);
+
+            float reputacion = (promedio - 1) * 25 * factor;
+
+            if (reputacion > 100)
+            {
+                reputacion = 100;
+            }
+
+            txtReputacion.Text = reputacion.ToString();
+        }
+
+        private float factorDeAjuste(Int64 cantidadCalif)
+        {
+            Int64 i = 0;
+            float factor = 0.5F;
+
+            while (i < cantidadCalif - 1)
+            {
+                factor = factor + ((float)1 / (float)Convert.ToInt64(Math.Pow(2, i + 2)));
+                i++;
+            }
+
+            return factor + 0.1F;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -137,6 +206,16 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
             float precioFloat = float.Parse(txtPrecio.Text.Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
             txtTotal.Text = (precioFloat * stockInt).ToString();
+        }
+
+        private void txtReputacion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

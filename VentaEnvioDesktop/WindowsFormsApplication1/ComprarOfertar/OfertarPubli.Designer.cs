@@ -54,6 +54,7 @@
             this.dateFechaVen = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.txtReputacion = new System.Windows.Forms.TextBox();
+            this.labelSobre100 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtRubro
@@ -310,12 +311,24 @@
             this.txtReputacion.Size = new System.Drawing.Size(230, 26);
             this.txtReputacion.TabIndex = 219;
             // 
+            // labelSobre100
+            // 
+            this.labelSobre100.AutoSize = true;
+            this.labelSobre100.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.labelSobre100.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSobre100.Location = new System.Drawing.Point(397, 340);
+            this.labelSobre100.Name = "labelSobre100";
+            this.labelSobre100.Size = new System.Drawing.Size(40, 20);
+            this.labelSobre100.TabIndex = 221;
+            this.labelSobre100.Text = "/100";
+            // 
             // OfertarPubli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(517, 558);
+            this.Controls.Add(this.labelSobre100);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtReputacion);
             this.Controls.Add(this.label13);
@@ -378,5 +391,6 @@
         private System.Windows.Forms.DateTimePicker dateFechaVen;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtReputacion;
+        private System.Windows.Forms.Label labelSobre100;
     }
 }
