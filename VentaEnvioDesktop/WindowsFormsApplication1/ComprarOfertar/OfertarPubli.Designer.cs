@@ -52,6 +52,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.dateFechaVen = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtReputacion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtRubro
@@ -155,7 +157,7 @@
             // buttonGuardar
             // 
             this.buttonGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonGuardar.Location = new System.Drawing.Point(368, 450);
+            this.buttonGuardar.Location = new System.Drawing.Point(368, 492);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(117, 58);
             this.buttonGuardar.TabIndex = 198;
@@ -166,7 +168,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(30, 450);
+            this.button2.Location = new System.Drawing.Point(30, 492);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(117, 58);
             this.button2.TabIndex = 197;
@@ -178,7 +180,7 @@
             // 
             this.chkEnvio.AutoSize = true;
             this.chkEnvio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkEnvio.Location = new System.Drawing.Point(226, 421);
+            this.chkEnvio.Location = new System.Drawing.Point(226, 463);
             this.chkEnvio.Name = "chkEnvio";
             this.chkEnvio.Size = new System.Drawing.Size(15, 14);
             this.chkEnvio.TabIndex = 196;
@@ -188,7 +190,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(59, 415);
+            this.label8.Location = new System.Drawing.Point(59, 457);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 20);
             this.label8.TabIndex = 195;
@@ -247,7 +249,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(59, 380);
+            this.label4.Location = new System.Drawing.Point(59, 422);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 20);
             this.label4.TabIndex = 215;
@@ -256,7 +258,7 @@
             // txtOferta
             // 
             this.txtOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOferta.Location = new System.Drawing.Point(226, 377);
+            this.txtOferta.Location = new System.Drawing.Point(226, 419);
             this.txtOferta.Name = "txtOferta";
             this.txtOferta.Size = new System.Drawing.Size(230, 26);
             this.txtOferta.TabIndex = 214;
@@ -265,7 +267,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(202, 380);
+            this.label11.Location = new System.Drawing.Point(202, 422);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(18, 20);
             this.label11.TabIndex = 216;
@@ -275,7 +277,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(59, 339);
+            this.label13.Location = new System.Drawing.Point(59, 381);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(146, 20);
             this.label13.TabIndex = 218;
@@ -284,17 +286,38 @@
             // dateFechaVen
             // 
             this.dateFechaVen.Enabled = false;
-            this.dateFechaVen.Location = new System.Drawing.Point(226, 338);
+            this.dateFechaVen.Location = new System.Drawing.Point(226, 380);
             this.dateFechaVen.Name = "dateFechaVen";
             this.dateFechaVen.Size = new System.Drawing.Size(230, 20);
             this.dateFechaVen.TabIndex = 217;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(59, 340);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(165, 20);
+            this.label3.TabIndex = 220;
+            this.label3.Text = "Reputación Vendedor";
+            // 
+            // txtReputacion
+            // 
+            this.txtReputacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReputacion.Location = new System.Drawing.Point(226, 337);
+            this.txtReputacion.Name = "txtReputacion";
+            this.txtReputacion.ReadOnly = true;
+            this.txtReputacion.Size = new System.Drawing.Size(230, 26);
+            this.txtReputacion.TabIndex = 219;
             // 
             // OfertarPubli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(517, 520);
+            this.ClientSize = new System.Drawing.Size(517, 558);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtReputacion);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.dateFechaVen);
             this.Controls.Add(this.label11);
@@ -353,5 +376,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DateTimePicker dateFechaVen;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtReputacion;
     }
 }

@@ -43,7 +43,7 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtDescrip = new System.Windows.Forms.TextBox();
             this.txtStockCant = new System.Windows.Forms.TextBox();
-            this.txtCalif = new System.Windows.Forms.TextBox();
+            this.txtReputacion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
@@ -202,14 +202,14 @@
             this.txtStockCant.TabIndex = 178;
             this.txtStockCant.TextChanged += new System.EventHandler(this.txtStockCant_TextChanged);
             // 
-            // txtCalif
+            // txtReputacion
             // 
-            this.txtCalif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCalif.Location = new System.Drawing.Point(226, 328);
-            this.txtCalif.Name = "txtCalif";
-            this.txtCalif.ReadOnly = true;
-            this.txtCalif.Size = new System.Drawing.Size(230, 26);
-            this.txtCalif.TabIndex = 179;
+            this.txtReputacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReputacion.Location = new System.Drawing.Point(226, 328);
+            this.txtReputacion.Name = "txtReputacion";
+            this.txtReputacion.ReadOnly = true;
+            this.txtReputacion.Size = new System.Drawing.Size(230, 26);
+            this.txtReputacion.TabIndex = 179;
             // 
             // label3
             // 
@@ -217,9 +217,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(59, 331);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 20);
+            this.label3.Size = new System.Drawing.Size(165, 20);
             this.label3.TabIndex = 180;
-            this.label3.Text = "Calificación";
+            this.label3.Text = "Reputación Vendedor";
             // 
             // label4
             // 
@@ -313,7 +313,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtCalif);
+            this.Controls.Add(this.txtReputacion);
             this.Controls.Add(this.txtStockCant);
             this.Controls.Add(this.txtDescrip);
             this.Controls.Add(this.txtPrecio);
@@ -353,7 +353,7 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtDescrip;
         private System.Windows.Forms.TextBox txtStockCant;
-        private System.Windows.Forms.TextBox txtCalif;
+        private System.Windows.Forms.TextBox txtReputacion;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtTotal;
