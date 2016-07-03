@@ -147,7 +147,9 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                     }
                     break;
                 case "Listado Estadístico":
-                    MessageBox.Show("Listado Estadístico");
+
+                    Listado_Estadistico.Seleccionar selec = new Listado_Estadistico.Seleccionar();
+                    selec.ShowDialog();
                     break;
                 default:
                     MessageBox.Show("Elija una funcionalidad de las indicadas",this.Text,MessageBoxButtons.OK,MessageBoxIcon.Warning);
