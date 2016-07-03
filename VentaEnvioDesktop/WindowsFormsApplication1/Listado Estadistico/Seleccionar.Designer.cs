@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Listado_Estadistico
 {
-    partial class Form1
+    partial class Seleccionar
     {
         /// <summary>
         /// Required designer variable.
