@@ -115,8 +115,16 @@ namespace WindowsFormsApplication1.ABM_Rol
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(comando);
             if (dt.Rows.Count != 0)
             {
-                MessageBox.Show("El nombre de rol ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
+                if (dt.Rows[0][2].ToString() == "0")
+                {
+                    MessageBox.Show("Existe un rol deshabilitado con ese nombre", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("El nombre de rol ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
             }
             return false;
         }

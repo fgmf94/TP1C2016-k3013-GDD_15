@@ -14,10 +14,12 @@ namespace WindowsFormsApplication1.ABM_Rol
     {
         ABM_Rol.CrearRol crearRol;
         ABM_Rol.ElegirRol elegirRol;
+        string rol;
 
-        public ABMRol()
+        public ABMRol(string rolPasado)
         {
             InitializeComponent();
+            rol = rolPasado;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -38,14 +40,14 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void modificarButton_Click(object sender, EventArgs e)
         {
-            elegirRol = new ABM_Rol.ElegirRol("Modificar Rol");
+            elegirRol = new ABM_Rol.ElegirRol("Modificar Rol",rol);
             elegirRol.ShowDialog();
         }
 
         private void eliminarButton_Click(object sender, EventArgs e)
         {
             //Ver si hay roles para eliminar
-            elegirRol = new ABM_Rol.ElegirRol("Eliminar Rol");
+            elegirRol = new ABM_Rol.ElegirRol("Eliminar Rol",rol);
             elegirRol.ShowDialog();
         }
     }

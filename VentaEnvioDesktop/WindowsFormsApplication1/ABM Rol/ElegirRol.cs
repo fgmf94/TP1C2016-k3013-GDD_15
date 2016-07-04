@@ -16,13 +16,15 @@ namespace WindowsFormsApplication1.ABM_Rol
     {
         String elegirFormato;
         ABM_Rol.ModificarRol modificarRol;
+        string rol;
 
-        public ElegirRol(String formato)
+        public ElegirRol(String formato, string rolPasado)
         {
             elegirFormato = formato;
             InitializeComponent();
             label1.Text = formato;
             buttonGuardar.Text = formato;
+            rol = rolPasado;
 
             if (elegirFormato == "Eliminar Rol")
             {
@@ -47,6 +49,12 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            if (rol == comboBoxRol.Text)
+            {
+                MessageBox.Show("No se puede modificar o eliminar el rol utilizado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (elegirFormato == "Eliminar Rol")
             {
                 if ((MessageBox.Show("¿Realmente desea dar de baja el rol " + comboBoxRol.Text + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))

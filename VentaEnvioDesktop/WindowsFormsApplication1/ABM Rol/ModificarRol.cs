@@ -42,6 +42,7 @@ namespace WindowsFormsApplication1.ABM_Rol
             string habilitado = dt2.Rows[0][0].ToString();
             if(habilitado == "1"){
                 estadoAnterior = chkHabilitado.Checked = true;
+                chkHabilitado.Enabled = false;
             }else{
                 estadoAnterior = chkHabilitado.Checked = false;
             }
@@ -198,8 +199,16 @@ namespace WindowsFormsApplication1.ABM_Rol
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(comando);
             if (dt.Rows.Count != 0)
             {
-                MessageBox.Show("El nombre de rol ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
+                if (dt.Rows[0][2].ToString() == "0")
+                {
+                    MessageBox.Show("Existe un rol deshabilitado con ese nombre", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("El nombre de rol ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
             }
             return false;
         }

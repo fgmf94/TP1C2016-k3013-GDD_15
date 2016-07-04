@@ -42,8 +42,16 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(comando);
             if (dt.Rows.Count != 0)
             {
-                MessageBox.Show("El nombre de visibilidad ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                if (dt.Rows[0][5].ToString() == "0")
+                {
+                    MessageBox.Show("Existe una visibilidad deshabilitada con ese nombre", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                {
+                    MessageBox.Show("El nombre de visibilidad ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
 
             cPrecio = (new Validaciones()).validacionStringAFloat(txtCPrecio.Text, "Error Precio");

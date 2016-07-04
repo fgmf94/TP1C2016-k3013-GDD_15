@@ -74,8 +74,16 @@ namespace WindowsFormsApplication1.ABM_Usuario
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(comando);
             if (dt.Rows.Count != 0)
             {
-                MessageBox.Show("El nombre de usuario ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                if (dt.Rows[0][5].ToString() == "0")
+                {
+                    MessageBox.Show("Existe un usuario deshabilitado con ese nombre", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                {
+                    MessageBox.Show("El nombre de usuario ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
 
             return true;

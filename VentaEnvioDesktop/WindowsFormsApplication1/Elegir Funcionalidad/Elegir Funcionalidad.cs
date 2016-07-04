@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
             switch (funcionalidad)
             {
                 case "ABM de Rol":
-                    abmRol = new ABM_Rol.ABMRol();
+                    abmRol = new ABM_Rol.ABMRol(rol);
                     abmRol.ShowDialog();
                     break;
                 case "ABM de Usuarios":
