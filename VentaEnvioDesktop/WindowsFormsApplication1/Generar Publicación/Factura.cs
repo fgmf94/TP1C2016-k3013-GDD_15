@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             InitializeComponent();
 
             txtCodPub.Text = idPubli;
-
+            
             string query5 = "SELECT N_ID_FACTURA, F_ALTA FROM GDD_15.FACTURAS WHERE N_ID_PUBLICACION = '" + idPubli + "'";
             DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
             string idFactura = dt5.Rows[0][0].ToString();

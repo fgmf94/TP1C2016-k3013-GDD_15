@@ -173,7 +173,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                         MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                         this.Close();
 
-                        Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                        Generar_Publicación.Factura fact = new Generar_Publicación.Factura(numeroPub.ToString());
                         fact.ShowDialog();
 
                         return;
@@ -185,7 +185,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                         this.Close();
                         form.Close();
 
-                        Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                        Generar_Publicación.Factura fact = new Generar_Publicación.Factura(idPublicacion.ToString());
                         fact.ShowDialog();
 
                         return;
@@ -201,7 +201,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                     MessageBox.Show("Publicación " + numeroPub + " generada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.Close();
 
-                    Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                    Generar_Publicación.Factura fact = new Generar_Publicación.Factura(numeroPub.ToString());
                     fact.ShowDialog();
 
                     return;
@@ -216,7 +216,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                     this.Close();
                     form.Close();
 
-                    Generar_Publicación.Factura fact = new Generar_Publicación.Factura(txtCodPub.Text);
+                    Generar_Publicación.Factura fact = new Generar_Publicación.Factura(idPublicacion.ToString());
                     fact.ShowDialog();
 
                     return;
