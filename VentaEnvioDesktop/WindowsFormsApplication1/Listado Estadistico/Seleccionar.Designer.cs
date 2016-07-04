@@ -59,6 +59,7 @@
             this.buttonListado2.TabIndex = 200;
             this.buttonListado2.Text = "Clientes con mayor cantidad de productos comprados";
             this.buttonListado2.UseVisualStyleBackColor = true;
+            this.buttonListado2.Click += new System.EventHandler(this.buttonListado2_Click);
             // 
             // buttonListado3
             // 
@@ -69,6 +70,7 @@
             this.buttonListado3.TabIndex = 201;
             this.buttonListado3.Text = "Vendedores con mayor cantidad de facturas";
             this.buttonListado3.UseVisualStyleBackColor = true;
+            this.buttonListado3.Click += new System.EventHandler(this.buttonListado3_Click);
             // 
             // buttonListado4
             // 

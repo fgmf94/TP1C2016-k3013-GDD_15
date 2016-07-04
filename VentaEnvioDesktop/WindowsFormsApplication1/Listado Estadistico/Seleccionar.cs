@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            mostrarListado(4);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,7 +51,23 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            mostrarListado(1);
+        }
 
+        private void buttonListado2_Click(object sender, EventArgs e)
+        {
+            mostrarListado(2);
+        }
+
+        private void buttonListado3_Click(object sender, EventArgs e)
+        {
+            mostrarListado(3);
+        }
+
+        private void mostrarListado(int numero)
+        {
+            Listado_Estadistico.Listado list = new Listado_Estadistico.Listado(Convert.ToInt16(comboBoxAño.Text), comboBoxTri.Text, numero);
+            list.ShowDialog();
         }
     }
 }
