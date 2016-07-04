@@ -68,7 +68,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 return;
             }
 
-            float promedio = (estrellasOfertas + estrellasCompras) / (cantComprasCalif + cantOfertasCalif);
+            float promedio = (float)(estrellasOfertas + estrellasCompras) / (float)(cantComprasCalif + cantOfertasCalif);
 
             float factor = factorDeAjuste(cantComprasCalif + cantOfertasCalif);
 
