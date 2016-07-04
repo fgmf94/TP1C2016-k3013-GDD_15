@@ -123,6 +123,12 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 return false;
             }
 
+            if (!txtNombreVisibilidad.Text.All(Char.IsLetter))
+            {
+                MessageBox.Show("Sólo se admiten letras en el nombre de la visibilidad", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             if (txtNombreVisibilidad.Text != visibilidadPasada)
             {
                 string comando = "SELECT * FROM  GDD_15.VISIBILIDADES WHERE D_DESCRIP = '" + txtNombreVisibilidad.Text + "'";

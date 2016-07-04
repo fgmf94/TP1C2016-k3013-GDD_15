@@ -170,6 +170,12 @@ namespace WindowsFormsApplication1.ABM_Rol
                 return;
             };
 
+            if (!txtNombreRol.Text.All(Char.IsLetter))
+            {
+                MessageBox.Show("Sólo se admiten letras en el nombre del rol", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtNombreRol.Text != rolPasado)
             {
                 if (validacionNombreExistente())

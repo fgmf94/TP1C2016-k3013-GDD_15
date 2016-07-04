@@ -145,6 +145,24 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 return false;
             }
 
+            if (!txtNombre.Text.All(Char.IsLetter))
+            {
+                MessageBox.Show("Sólo se admiten letras en el nombre", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!txtApellido.Text.All(Char.IsLetter))
+            {
+                MessageBox.Show("Sólo se admiten letras en el apellido", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!txtCalle.Text.All(Char.IsLetter))
+            {
+                MessageBox.Show("Sólo se admiten letras en el nombre de la calle", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             if (txtPiso.TextLength > 50)
             {
                 MessageBox.Show("El piso no debe superar los 50 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -251,7 +269,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 return false;
             }
 
-            DateTime diaDeHoy = DateTime.Now;
+            DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
 
             if (diaDeHoy < DateTime.Parse(dateFechaNac.Text))
             {
