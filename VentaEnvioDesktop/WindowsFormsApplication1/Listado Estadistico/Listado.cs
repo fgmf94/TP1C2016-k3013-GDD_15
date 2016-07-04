@@ -22,6 +22,11 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
             listado = listadoPasado;
 
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowTemplate.MinimumHeight = 33;
+
             DateTime hoy = DateTime.Parse(Program.nuevaFechaSistema());
 
             int añoHoy = hoy.Year;
@@ -125,12 +130,54 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         private void filtrar()
         {
+            if (!validaciones())
+            {
+                return;
+            }
 
+            if (listado == 1)
+            {
+                armarWheresVisibilidades();
+            }
+            else if (listado == 2)
+            {
+                //string st = "SELECT * FROM GDD_15.DEV_CLI_MAYOR_PROD_COMPR(" + comboBoxTri.Text[0] + ", " + comboBoxAño.Text + ", '" + comboBoxRubro.Text + "')";
+                //MessageBox.Show(st);
+                CompletadorDeTablas.hacerQuery("SELECT * FROM GDD_15.DEV_CLI_MAYOR_PROD_COMPR(" + comboBoxTri.Text[0] + ", " + comboBoxAño.Text + ", '" + comboBoxRubro.Text + "')", ref dataGridView1);
+            }
+            else if (listado == 3)
+            {
+                CompletadorDeTablas.hacerQuery("SELECT * FROM GDD_15.DEV_VEN_MAYOR_FACT(" + comboBoxTri.Text[0] + ", " + comboBoxAño.Text + ")", ref dataGridView1);
+            }
+            else if (listado == 4)
+            {
+
+            }
         }
 
-        private void armarWheres()
+        private void armarWheresVisibilidades()
         {
+            wheres = "";
+            foreach (Rubros elemento in chkListaVisibilidades.CheckedItems)
+            {
+                wheres = wheres + " '" + elemento.Descripcion + "',";
+            }
+            wheres = wheres.Substring(0, wheres.Length - 1);
+            wheres = wheres + "";
+        }
 
+        private bool validaciones()
+        {
+            if (listado == 1)
+            {
+                if (chkListaVisibilidades.CheckedIndices.Count == 0)
+                {
+                    MessageBox.Show("Se debe elegir al menos una visibilidad", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                };
+            }
+
+            return true;
         }
     }
 }

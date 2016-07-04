@@ -49,7 +49,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(376, 65);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(843, 220);
+            this.dataGridView1.Size = new System.Drawing.Size(843, 201);
             this.dataGridView1.TabIndex = 53;
             // 
             // labelTitulo
@@ -66,7 +66,7 @@
             // buttonFiltrar
             // 
             this.buttonFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonFiltrar.Location = new System.Drawing.Point(376, 308);
+            this.buttonFiltrar.Location = new System.Drawing.Point(376, 272);
             this.buttonFiltrar.Name = "buttonFiltrar";
             this.buttonFiltrar.Size = new System.Drawing.Size(172, 38);
             this.buttonFiltrar.TabIndex = 61;
@@ -77,7 +77,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonCancelar.Location = new System.Drawing.Point(22, 308);
+            this.buttonCancelar.Location = new System.Drawing.Point(43, 272);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(98, 38);
             this.buttonCancelar.TabIndex = 60;
@@ -163,7 +163,7 @@
             this.chkListaVisibilidades.FormattingEnabled = true;
             this.chkListaVisibilidades.Location = new System.Drawing.Point(43, 167);
             this.chkListaVisibilidades.Name = "chkListaVisibilidades";
-            this.chkListaVisibilidades.Size = new System.Drawing.Size(319, 118);
+            this.chkListaVisibilidades.Size = new System.Drawing.Size(319, 99);
             this.chkListaVisibilidades.TabIndex = 214;
             this.chkListaVisibilidades.SelectedIndexChanged += new System.EventHandler(this.chkListaRubros_SelectedIndexChanged);
             // 
@@ -172,7 +172,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1249, 358);
+            this.ClientSize = new System.Drawing.Size(1249, 317);
             this.Controls.Add(this.labelVisi);
             this.Controls.Add(this.chkListaVisibilidades);
             this.Controls.Add(this.comboBoxRubro);
