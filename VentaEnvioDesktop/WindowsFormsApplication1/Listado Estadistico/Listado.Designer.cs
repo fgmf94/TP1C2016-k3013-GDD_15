@@ -38,8 +38,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxRubro = new System.Windows.Forms.ComboBox();
             this.labelRubro = new System.Windows.Forms.Label();
-            this.labelVisi = new System.Windows.Forms.Label();
-            this.chkListaVisibilidades = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,34 +145,12 @@
             this.labelRubro.TabIndex = 212;
             this.labelRubro.Text = "Rubro";
             // 
-            // labelVisi
-            // 
-            this.labelVisi.AutoSize = true;
-            this.labelVisi.Location = new System.Drawing.Point(98, 151);
-            this.labelVisi.Name = "labelVisi";
-            this.labelVisi.Size = new System.Drawing.Size(208, 13);
-            this.labelVisi.TabIndex = 215;
-            this.labelVisi.Text = "Hacer doble click para marcar visibilidades";
-            this.labelVisi.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // chkListaVisibilidades
-            // 
-            this.chkListaVisibilidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkListaVisibilidades.FormattingEnabled = true;
-            this.chkListaVisibilidades.Location = new System.Drawing.Point(43, 167);
-            this.chkListaVisibilidades.Name = "chkListaVisibilidades";
-            this.chkListaVisibilidades.Size = new System.Drawing.Size(319, 99);
-            this.chkListaVisibilidades.TabIndex = 214;
-            this.chkListaVisibilidades.SelectedIndexChanged += new System.EventHandler(this.chkListaRubros_SelectedIndexChanged);
-            // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1249, 317);
-            this.Controls.Add(this.labelVisi);
-            this.Controls.Add(this.chkListaVisibilidades);
             this.Controls.Add(this.comboBoxRubro);
             this.Controls.Add(this.labelRubro);
             this.Controls.Add(this.comboBoxTri);
@@ -205,7 +181,5 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBoxRubro;
         private System.Windows.Forms.Label labelRubro;
-        private System.Windows.Forms.Label labelVisi;
-        private System.Windows.Forms.CheckedListBox chkListaVisibilidades;
     }
 }
