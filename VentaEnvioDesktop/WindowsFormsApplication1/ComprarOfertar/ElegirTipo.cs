@@ -54,10 +54,22 @@ namespace WindowsFormsApplication1.ComprarOfertar
             }
             else
             {
-                MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publiaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
-                DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
-                this.Close();
+                string query3 = "SELECT N_COMPRA_HABILITADA FROM GDD_15.CLIENTES WHERE N_ID_USUARIO = '" + idCli + "'";
+                DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+                string compraHabilitada = dt5.Rows[0][0].ToString();
+
+                if (compraHabilitada == "1")
+                {
+                    MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publicaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
+                    DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Debe calificar todas sus publicaciones para realizar una compra u oferta", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
             }
         }
 
@@ -87,10 +99,22 @@ namespace WindowsFormsApplication1.ComprarOfertar
             }
             else
             {
-                MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publiaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
-                DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
-                this.Close();
+                string query3 = "SELECT N_COMPRA_HABILITADA FROM GDD_15.CLIENTES WHERE N_ID_USUARIO = '" + idCli + "'";
+                DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+                string compraHabilitada = dt5.Rows[0][0].ToString();
+
+                if (compraHabilitada == "1")
+                {
+                    MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publicaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
+                    DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Debe calificar todas sus publicaciones para realizar una compra u oferta", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
             }
         }
 

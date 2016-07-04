@@ -80,6 +80,7 @@
             "Malo",
             "Medio",
             "Bueno",
+            "Muy bueno",
             "Excelente"});
             this.comboBoxDetalle.Location = new System.Drawing.Point(200, 190);
             this.comboBoxDetalle.Name = "comboBoxDetalle";

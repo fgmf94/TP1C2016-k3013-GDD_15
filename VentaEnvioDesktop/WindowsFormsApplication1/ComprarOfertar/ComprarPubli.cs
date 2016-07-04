@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
         Int64 idPubli;
         String nombreUsuario;
         Form form;
+        string idCli;
         public ComprarPubli(Int64 idPubliPasado, String nombreUsuarioPasado, Form formPasado)
         {
             InitializeComponent();
@@ -120,6 +121,22 @@ namespace WindowsFormsApplication1.ComprarOfertar
             {
                 realizarCompra();
                 MessageBox.Show("Compra realizada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+
+                string query5 = "SELECT (SELECT COUNT(*) FROM GDD_15.OFERTAS WHERE N_ID_CLIENTE = '" + idCli + "' AND C_GANADOR = 'SI') + (SELECT COUNT(*) FROM GDD_15.COMPRAS WHERE N_ID_CLIENTE = '" + idCli + "') - (SELECT COUNT(*) FROM GDD_15.CALIFICACIONES WHERE N_ID_CLIENTE = '" + idCli + "')";
+                DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+                string comprasSinCalif = dt5.Rows[0][0].ToString();
+                Int32 cantComprasSinCalif = Convert.ToInt32(comprasSinCalif);
+                if (cantComprasSinCalif < 4)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publicaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
+                    DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
+                }
+
                 form.Close();
                 this.Close();
             }
@@ -130,6 +147,8 @@ namespace WindowsFormsApplication1.ComprarOfertar
             string query5 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
             DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
             string usuarioID = dt5.Rows[0][0].ToString();
+
+            idCli = usuarioID;
 
             String envio;
 

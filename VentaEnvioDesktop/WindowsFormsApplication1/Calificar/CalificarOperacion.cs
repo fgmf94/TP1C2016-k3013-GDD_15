@@ -47,6 +47,7 @@ namespace WindowsFormsApplication1.Calificar
             {
                 txtTextoLibre.ReadOnly = true;
                 txtTextoLibre.Text = "";
+                comboBoxEstrellas.SelectedIndex = comboBoxDetalle.SelectedIndex - 1;
             }
         }
 
@@ -127,7 +128,7 @@ namespace WindowsFormsApplication1.Calificar
 
         private void comboBoxEstrellas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            comboBoxDetalle.SelectedIndex = comboBoxEstrellas.SelectedIndex + 1;
         }
     }
 }

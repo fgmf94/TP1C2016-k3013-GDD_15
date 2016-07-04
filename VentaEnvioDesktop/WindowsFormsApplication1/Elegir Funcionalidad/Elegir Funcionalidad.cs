@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
         ABM_Visibilidad.ABMVisibilidad abmVis;
         ABM_Usuario.ABMUsuario abmUsuario;
         ABM_Usuario.Modificar_Usuario mUsuario;
+        Int64 idCli;
 
         public EleccionFuncionalidad(String rolPasado, String username)
         {
@@ -30,6 +31,39 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
             DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT F.D_DESCRED FROM GDD_15.FUNCIONALIDADES_ROLES FR JOIN GDD_15.ROLES R ON (R.N_ID_ROL = FR.N_ID_ROL) JOIN GDD_15.FUNCIONALIDADES F ON (F.N_ID_FUNCIONALIDAD = FR.N_ID_FUNCIONALIDAD) WHERE R.C_ROL = '" + rolPasado + "' AND R.N_HABILITADO = 1"); 
             comboBoxFuncionalidad.DataSource = dt.DefaultView;
             comboBoxFuncionalidad.ValueMember = "D_DESCRED";
+
+            string query2 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
+            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
+            string idCliente = dt2.Rows[0][0].ToString();
+            idCli = Convert.ToInt64(idCliente);
+
+            //Verifica si puede seguir comprando o no
+
+            if (rolPasado == "Cliente")
+            {
+                string query5 = "SELECT (SELECT COUNT(*) FROM GDD_15.OFERTAS WHERE N_ID_CLIENTE = '" + idCli + "' AND C_GANADOR = 'SI') + (SELECT COUNT(*) FROM GDD_15.COMPRAS WHERE N_ID_CLIENTE = '" + idCli + "') - (SELECT COUNT(*) FROM GDD_15.CALIFICACIONES WHERE N_ID_CLIENTE = '" + idCli + "')";
+                DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
+                string comprasSinCalif = dt5.Rows[0][0].ToString();
+                Int32 cantComprasSinCalif = Convert.ToInt32(comprasSinCalif);
+
+                string query3 = "SELECT N_COMPRA_HABILITADA FROM GDD_15.CLIENTES WHERE N_ID_USUARIO = '" + idCli + "'";
+                DataTable dt3 = (new ConexionSQL()).cargarTablaSQL(query3);
+                string compraHabilitada = dt3.Rows[0][0].ToString();
+
+                if (compraHabilitada == "1")
+                {
+                    if (cantComprasSinCalif < 4)
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publicaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
+                        DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
+                    }
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,10 +84,6 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
         private void button1_Click(object sender, EventArgs e)
         {
             funcionalidad = comboBoxFuncionalidad.Text;
-            string query2 = "SELECT N_ID_USUARIO FROM GDD_15.USUARIOS WHERE C_USUARIO_NOMBRE = '" + nombreUsuario + "'";
-            DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
-            string idCliente = dt2.Rows[0][0].ToString();
-            Int64 idCli = Convert.ToInt64(idCliente);
 
             switch (funcionalidad)
             {
@@ -105,7 +135,7 @@ namespace WindowsFormsApplication1.Elegir_Funcionalidad
                         {
                             string query7 = "UPDATE GDD_15.CLIENTES SET N_COMPRA_HABILITADA = '0' WHERE N_ID_USUARIO = '" + idCli + "'";
                             DataTable dt7 = (new ConexionSQL()).cargarTablaSQL(query7);
-                            MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publiaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Como tiene más de 3 publicaciones (" + cantComprasSinCalif + ") sin calificar no puede realizar compras u ofertas hasta que califique todas sus publicaciones", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
