@@ -14,7 +14,6 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 {
     public partial class Listado : Form
     {
-        String wheres;
         int listado;
         public Listado(int añoPasado, string trimPasado, int listadoPasado)
         {
@@ -121,7 +120,7 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
             if (listado == 1)
             {
-                
+                CompletadorDeTablas.hacerQuery("SELECT * FROM GDD_15.DEV_VEN_MAYOR_PROD_NO_VEND(" + comboBoxTri.Text[0] + ", " + comboBoxAño.Text + ", '" + comboBoxRubro.Text + "')", ref dataGridView1);
             }
             else if (listado == 2)
             {
@@ -133,12 +132,26 @@ namespace WindowsFormsApplication1.Listado_Estadistico
             }
             else if (listado == 4)
             {
-
+                CompletadorDeTablas.hacerQuery("SELECT * FROM GDD_15.DEV_VEN_MAYOR_MONTO_FACT(" + comboBoxTri.Text[0] + ", " + comboBoxAño.Text + ")", ref dataGridView1);
             }
         }
 
         private bool validaciones()
         {
+            DateTime hoy = DateTime.Parse(Program.nuevaFechaSistema());
+
+            Int16 añoAhora = Convert.ToInt16(hoy.Year);
+            Int16 mesAhora = Convert.ToInt16(hoy.Month);
+
+            if (añoAhora == Convert.ToInt16(comboBoxAño.Text))
+            {
+                if (Convert.ToInt16((comboBoxTri.Text[0]).ToString()) * 3 - 2 > mesAhora)
+                {
+                    MessageBox.Show("No se puede elegir un trimestre posterior al trimestre de hoy", "Error Descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
             return true;
         }
     }

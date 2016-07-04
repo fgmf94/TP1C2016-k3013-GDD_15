@@ -66,8 +66,31 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         private void mostrarListado(int numero)
         {
+            if (!validaciones())
+            {
+                return;
+            }
             Listado_Estadistico.Listado list = new Listado_Estadistico.Listado(Convert.ToInt16(comboBoxAño.Text), comboBoxTri.Text, numero);
             list.ShowDialog();
+        }
+
+        private bool validaciones()
+        {
+            DateTime hoy = DateTime.Parse(Program.nuevaFechaSistema());
+
+            Int16 añoAhora = Convert.ToInt16(hoy.Year);
+            Int16 mesAhora = Convert.ToInt16(hoy.Month);
+
+            if (añoAhora == Convert.ToInt16(comboBoxAño.Text))
+            {
+                if (Convert.ToInt16((comboBoxTri.Text[0]).ToString()) * 3 - 2 > mesAhora)
+                {
+                    MessageBox.Show("No se puede elegir un trimestre posterior al trimestre de hoy", "Error Descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
