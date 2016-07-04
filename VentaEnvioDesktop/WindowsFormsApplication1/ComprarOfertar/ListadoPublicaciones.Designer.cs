@@ -95,6 +95,7 @@
             this.label4.Size = new System.Drawing.Size(181, 13);
             this.label4.TabIndex = 48;
             this.label4.Text = "Hacer doble click para marcar rubros";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // chkListaRubros
             // 
@@ -104,6 +105,7 @@
             this.chkListaRubros.Name = "chkListaRubros";
             this.chkListaRubros.Size = new System.Drawing.Size(319, 308);
             this.chkListaRubros.TabIndex = 47;
+            this.chkListaRubros.SelectedIndexChanged += new System.EventHandler(this.chkListaRubros_SelectedIndexChanged);
             // 
             // buttonReestablecer
             // 
