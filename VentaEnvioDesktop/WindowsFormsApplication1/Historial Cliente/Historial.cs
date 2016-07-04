@@ -74,6 +74,10 @@ namespace WindowsFormsApplication1.Historial_Cliente
             if (pagina == cantTotalPags)
             {
                 buttonSigPag.Enabled = false;
+            } 
+            else if (pagina < cantTotalPags)
+            {
+                buttonSigPag.Enabled = true;
             }
 
             if (pagina == 1)
@@ -94,6 +98,11 @@ namespace WindowsFormsApplication1.Historial_Cliente
             {
                 buttonPaginaAnt.Enabled = true;
                 buttonPriPag.Enabled = true;
+            }
+
+            if (cantPublis == 0)
+            {
+                buttonSigPag.Enabled = false;
             }
 
             if (pagina == 1)

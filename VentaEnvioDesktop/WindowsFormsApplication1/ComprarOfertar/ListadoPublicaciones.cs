@@ -181,6 +181,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
             {
                 buttonSigPag.Enabled = false;
             }
+            else if (pagina < cantTotalPags)
+            {
+                buttonSigPag.Enabled = true;
+            }
 
             if (pagina == 1)
             {
@@ -200,6 +204,11 @@ namespace WindowsFormsApplication1.ComprarOfertar
             {
                 buttonPaginaAnt.Enabled = true;
                 buttonPriPag.Enabled = true;
+            }
+
+            if (cantPublis == 0)
+            {
+                buttonSigPag.Enabled = false;
             }
 
             string campos = "";
