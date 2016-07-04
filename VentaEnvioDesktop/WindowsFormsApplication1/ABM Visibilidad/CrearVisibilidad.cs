@@ -69,6 +69,12 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 return false;
             }
 
+            if ((txtNombreVisibilidad.Text).ToLower() == "todas")
+            {
+                MessageBox.Show("No se puede crear una visibilidad con ese nombre", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
 

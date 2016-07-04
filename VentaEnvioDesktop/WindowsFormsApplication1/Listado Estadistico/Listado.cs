@@ -55,8 +55,12 @@ namespace WindowsFormsApplication1.Listado_Estadistico
                 listadoTexto = "Vendedores con mayor cantidad de productos no vendidos";
 
                 DataTable dt2 = (new ConexionSQL()).cargarTablaSQL("SELECT D_DESCRIP FROM GDD_15.VISIBILIDADES");
+                DataRow row = dt2.NewRow();
+                row["D_DESCRIP"] = "Todas";
+                dt2.Rows.Add(row);
                 comboBoxRubro.DataSource = dt2.DefaultView;
                 comboBoxRubro.ValueMember = "D_DESCRIP";
+                comboBoxRubro.Text = "Todas";
 
                 labelRubro.Text = "Visibilidad";
             }
@@ -153,6 +157,11 @@ namespace WindowsFormsApplication1.Listado_Estadistico
             }
 
             return true;
+        }
+
+        private void comboBoxRubro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -134,6 +134,7 @@
             this.comboBoxRubro.Name = "comboBoxRubro";
             this.comboBoxRubro.Size = new System.Drawing.Size(209, 28);
             this.comboBoxRubro.TabIndex = 213;
+            this.comboBoxRubro.SelectedIndexChanged += new System.EventHandler(this.comboBoxRubro_SelectedIndexChanged);
             // 
             // labelRubro
             // 
