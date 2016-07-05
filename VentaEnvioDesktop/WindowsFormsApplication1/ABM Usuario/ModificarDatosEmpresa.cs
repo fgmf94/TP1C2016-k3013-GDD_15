@@ -242,6 +242,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 return false;
             }
 
+            if (numTel < 1)
+            {
+                MessageBox.Show("El número de teléfono debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             if (txtCiudad.TextLength > 100)
             {
                 MessageBox.Show("La ciudad no debe superar los 100 caractéres", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);

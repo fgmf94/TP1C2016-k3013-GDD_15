@@ -190,6 +190,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
 
             Int64 numTel;
+
             try
             {
                 numTel = Convert.ToInt64(txtTel.Text);
@@ -197,6 +198,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
             catch
             {
                 MessageBox.Show("El número de téléfono debe ser un entero menor a 922337203685477580", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (numTel < 1)
+            {
+                MessageBox.Show("El número de teléfono debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
