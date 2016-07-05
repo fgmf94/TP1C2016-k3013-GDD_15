@@ -66,7 +66,7 @@ namespace WindowsFormsApplication1.ABM_Rol
 
             agregarRol();
 
-            MessageBox.Show("Rol agregado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+            MessageBox.Show("Rol " + txtNombreRol.Text + " agregado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
             this.Close();
 
         }
