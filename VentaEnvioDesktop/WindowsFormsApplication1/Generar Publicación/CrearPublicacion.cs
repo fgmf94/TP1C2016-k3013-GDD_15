@@ -290,8 +290,16 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 envio = "NO";
             }
 
-            string comando = "execute GDD_15.BORRADOR_A_ACTIVA '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + idPublicacion + "', '" + beneficioGratis + "'";
+            string precio = aStringSinComa((new Validaciones()).validacionStringAFloat(txtPrecio.Text, "Error Precio"));
+
+            string comando = "execute GDD_15.BORRADOR_A_ACTIVA '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + precio + "', '" + envio + "', '" + idPublicacion + "', '" + beneficioGratis + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
+        }
+
+        private string aStringSinComa(float numero)
+        {
+            string stringNumero = numero.ToString().Replace(',', '.');
+            return stringNumero;
         }
 
         public void crearPublicacion(String estado, String beneficioGratis)
@@ -332,7 +340,9 @@ namespace WindowsFormsApplication1.Generar_Publicación
             //string agregarPublicacion = "INSERT INTO GDD_15.PUBLICACIONES(N_ID_USUARIO, N_ID_RUBRO, C_VISIBILIDAD, N_ID_ESTADO, N_ID_TIPO, D_DESCRED, N_STOCK, F_INICIO, F_VENCIMIENTO, N_PRECIO, C_PERMITE_ENVIO) VALUES ('" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Now.ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "')";
             //(new ConexionSQL()).ejecutarComandoSQL(agregarPublicacion);
 
-            string comando = "execute GDD_15.AGREGARPUBLICACION '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + txtPrecio.Text + "', '" + envio + "', '" + beneficioGratis + "'";
+            string precio = aStringSinComa((new Validaciones()).validacionStringAFloat(txtPrecio.Text, "Error Precio"));
+
+            string comando = "execute GDD_15.AGREGARPUBLICACION '" + usuarioID + "', '" + rubroID + "', '" + visiID + "', '" + estadoID + "', '" + tipoID + "', '" + txtDescrip.Text + "', '" + txtStock.Text + "', '" + DateTime.Parse(Program.nuevaFechaSistema()).ToString() + "', '" + DateTime.Parse(dateFechaVen.Text).ToString() + "', '" + precio + "', '" + envio + "', '" + beneficioGratis + "'";
             DataTable dt6 = (new ConexionSQL()).cargarTablaSQL(comando);
         }
 
