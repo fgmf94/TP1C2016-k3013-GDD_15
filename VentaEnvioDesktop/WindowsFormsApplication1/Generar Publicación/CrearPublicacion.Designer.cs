@@ -285,7 +285,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelTitulo);
             this.Name = "CrearPublicacion";
-            this.Text = "Crear Compra";
+            this.Text = "Crear Publicación";
             this.Load += new System.EventHandler(this.CrearCompra_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

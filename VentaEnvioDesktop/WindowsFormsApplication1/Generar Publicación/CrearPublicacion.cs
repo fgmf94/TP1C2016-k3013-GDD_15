@@ -385,6 +385,12 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 return false;
             }
 
+            if (precio < 1)
+            {
+                MessageBox.Show("El precio debe ser mayor o igual a 1", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             DateTime diaDeHoy = DateTime.Parse(Program.nuevaFechaSistema());
 
             if (diaDeHoy > DateTime.Parse(dateFechaVen.Text))
