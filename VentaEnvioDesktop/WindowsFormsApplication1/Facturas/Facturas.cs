@@ -204,6 +204,12 @@ namespace WindowsFormsApplication1.Facturas
                     return false;
                 }
 
+                if (ini < 0)
+                {
+                    MessageBox.Show("El precio de inicio debe ser mayor o igual a 0", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
                 int fin;
 
                 try
@@ -213,6 +219,12 @@ namespace WindowsFormsApplication1.Facturas
                 catch
                 {
                     MessageBox.Show("El precio de fin debe ser un entero menor a 2147483647", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (fin < 0)
+                {
+                    MessageBox.Show("El precio de fin debe ser mayor o igual a 0", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
