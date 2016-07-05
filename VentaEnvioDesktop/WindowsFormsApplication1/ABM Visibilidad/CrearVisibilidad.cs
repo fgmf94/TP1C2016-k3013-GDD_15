@@ -113,7 +113,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 string agregarVisibilidad = "INSERT INTO GDD_15.VISIBILIDADES(D_DESCRIP,N_COMISION_PRECIO,N_COMISION_PORCENTAJE,N_COMISION_ENVIO) SELECT '" + txtNombreVisibilidad.Text + "', " + scPrecio + ", " + scPorcentaje + ", " + scEnvio;
                 (new ConexionSQL()).ejecutarComandoSQL(agregarVisibilidad);
 
-                MessageBox.Show("Visibilidad agregada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
+                MessageBox.Show("Visibilidad " + txtNombreVisibilidad.Text + " agregada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                 this.Close();
             }
         }
